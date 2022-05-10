@@ -10,6 +10,8 @@ None
 
 [AccountPages](prototypes/paper/AccountPages.jpeg)
 
+[Search](prototypes/paper/Search.jpeg)
+
 ##### On Figma
 
 None
