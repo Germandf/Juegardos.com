@@ -12,9 +12,9 @@ None
 
 ##### On Paper
 
-[AccountPages](prototypes/paper/AccountPages.jpeg)
+[AccountPages](prototypes/AccountPages.jpeg)
 
-[Search](prototypes/paper/Search.jpeg)
+[Search](prototypes/Search.jpeg)
 
 ##### On Figma
 
