@@ -14,7 +14,11 @@ None
 
 ##### On Figma
 
-None
+[Editor Mode](https://www.figma.com/file/Lc1x3JCy1Z0pWCTe5iACAa/Juegardos.com?node-id=12%3A2)
+
+[Desktop Demo](https://www.figma.com/proto/Lc1x3JCy1Z0pWCTe5iACAa/Juegardos.com?node-id=0%3A1&scaling=scale-down&starting-point-node-id=54%3A375)
+
+[Mobile Demo](https://www.figma.com/proto/Lc1x3JCy1Z0pWCTe5iACAa/Juegardos.com?node-id=13%3A3&scaling=scale-down&starting-point-node-id=62%3A1562)
 
 ### Development Team
 
