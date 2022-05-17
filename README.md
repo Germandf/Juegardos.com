@@ -12,9 +12,9 @@ None
 
 ##### On Paper
 
-[Home](prototypes/Home.jpeg)
+[Home](prototypes/Home.jpg)
 
-[GamePlay](prototypes/GamePlay.jpeg)
+[GamePlay](prototypes/GamePlay.jpg)
 
 [AccountPages](prototypes/AccountPages.jpeg)
 
