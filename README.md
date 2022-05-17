@@ -12,6 +12,10 @@ None
 
 ##### On Paper
 
+[Home](prototypes/Home.jpg)
+
+[GamePlay](prototypes/GamePlay.jpg)
+
 [AccountPages](prototypes/AccountPages.jpeg)
 
 [Search](prototypes/Search.jpeg)
