@@ -2,7 +2,7 @@
 
 ### Deployed Site
 
-None
+[Juegardos.com](https://germandf.github.io/Juegardos.com/)
 
 ### Github Repo
 
