@@ -35,6 +35,12 @@ jobs:
       - name: Copy index.html to 404.html
         run: cp release/wwwroot/index.html release/wwwroot/404.html
 
+      # copy prototypes folder and readme
+      - name: Copy non Blazor's files
+        run: |
+          cp -r prototypes/ release/wwwroot/
+          cp README.md release/wwwroot/README.md
+
       # publishes static files to github pages
       - name: Commit wwwroot to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.7.1
