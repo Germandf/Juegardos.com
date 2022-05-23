@@ -15,9 +15,7 @@ else
 {
     foreach (var game in _games)
     {
-        <ul>
-            <li>@game.Title - @game.Description</li>
-        </ul>
+        <GameCard Game="game" />
     }
 }
 
