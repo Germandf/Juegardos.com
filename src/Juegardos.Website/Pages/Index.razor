@@ -1,7 +1,33 @@
 ﻿@page "/"
+@inject IGameService _gameService
 
 <PageTitle>Index</PageTitle>
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+
+@if (_games is null)
+{
+    <p>Loading games...</p>
+}
+else
+{
+    foreach (var game in _games)
+    {
+        <ul>
+            <li>@game.Title - @game.Description</li>
+        </ul>
+    }
+}
+
+@code{
+
+    private List<Game>? _games = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _games = await _gameService.GetGames();
+    }
+
+}
