@@ -1,9 +1,21 @@
-﻿<NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-    Home
-</NavLink>
-<NavLink class="nav-link active" href="counter">
-    Counter
-</NavLink>
-<NavLink class="nav-link" href="fetchdata">
-    Fetch data
-</NavLink>
+﻿<nav class="navbar">
+    <div class="minimized-navbar">
+        <i class="material-icons toggle-button" @onclick="() => _active = !_active">menu</i>
+        <div class="brand-title">Juegardos.com</div>
+        <i class="material-icons search-button">search</i>
+    </div>
+    
+    <div class="navbar-links @(_active ? "active" : "")">
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Mi cuenta</a></li>
+        </ul>
+    </div>
+</nav>
+
+@code{
+
+    private bool _active = false;
+
+}
