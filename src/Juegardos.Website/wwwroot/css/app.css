@@ -137,3 +137,26 @@ label {
 
 /* INPUT */
 
+.primary-input {
+    border-bottom: 2px solid var(--primary-light);
+    border-radius: 5px;
+    background: var(--white);
+    height: 35px;
+    width: 100%;
+    padding: 0 10px 0 10px;
+    display: block;
+    box-sizing: border-box;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    font-family: var(--primary-font);
+}
+
+    .primary-input:focus {
+        border-bottom-color: var(--white);
+        border-color: var(--primary-light);
+        box-shadow: 0 -0.04rem 0rem 0.1rem var(--primary-light);
+    }
+
+textarea.primary-input {
+    height: auto;
+    padding: 10px;
+}
