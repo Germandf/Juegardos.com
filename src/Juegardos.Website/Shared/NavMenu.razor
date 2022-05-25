@@ -7,7 +7,34 @@
     
     <div class="navbar-links @(_active ? "active" : "")">
         <ul>
-            <li><span>Categorias</span></li>
+            <li>
+                <a class="megamenu-toggle" @onclick="() => _showMegaMenu = !_showMegaMenu">Categorias<i class="material-icons">arrow_drop_down</i></a>
+                <div class="mega-box @(_showMegaMenu ? "active" : "")">
+                    <div class="content">
+                        <div class="row">
+                        <ul class="mega-links">
+                            <li><a href="#">Acción</a></li>
+                            <li><a href="#">Aventura</a></li>
+                            <li><a href="#">Belleza</a></li>
+                        </ul>
+                        </div>
+                        <div class="row">
+                        <ul class="mega-links">
+                            <li><a href="#">Carreras</a></li>
+                            <li><a href="#">Clásicos</a></li>
+                            <li><a href="#">Click</a></li>
+                        </ul>
+                        </div>
+                        <div class="row">
+                        <ul class="mega-links">
+                            <li><a href="#">Deportes</a></li>
+                            <li><a href="#">Puzzle</a></li>
+                            <li><a href="#">Tiros</a></li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
             <li class="hide-on-mobile"><InputSearch /></li>
             <li class="hide-on-mobile"><a href=""><i class="material-icons">account_circle</i></a></li>
             <li class="hide-on-desktop"><a href="">Mi cuenta</a></li>
@@ -18,5 +45,6 @@
 @code{
 
     private bool _active = false;
+    private bool _showMegaMenu = false;
 
 }
