@@ -40,6 +40,7 @@ jobs:
         run: |
           cp -r prototypes/ release/wwwroot/
           cp README.md release/wwwroot/README.md
+          cp README.html release/wwwroot/README.html
 
       # publishes static files to github pages
       - name: Commit wwwroot to GitHub Pages
