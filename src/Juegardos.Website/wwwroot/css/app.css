@@ -118,6 +118,12 @@ a {
     text-decoration-line: underline;
 }
 
+    a:visited {
+        text-decoration-color: none;
+        text-decoration-line: underline;
+        color: inherit;
+    }
+
 label {
     font-size: 12px;
     line-height: 16px;
@@ -167,6 +173,7 @@ textarea.primary-input {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
+    min-width: 180px;
     width: 100%;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
@@ -204,6 +211,7 @@ textarea.primary-input {
     background-color: var(--terciary-normal);
     align-items: center;
     padding: 0px 4px;
+    color: var(--black);
 }
 
 .input-group-append:hover {
@@ -228,31 +236,33 @@ textarea.primary-input {
 
 .navbar-links ul {
     margin: 0;
-    padding: 0;
+    padding: 0 0.5rem;
     display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .navbar-links li {
+    width: 100%;
     list-style: none;
+    transform-box: border-box;
+    padding: .5rem;
+    white-space: nowrap;
 }
 
 .navbar-links li:hover {
-    background-color: var(--primary-normal);
+    cursor: pointer;
 }
 
     .navbar-links li a {
         text-decoration: none;
-        color: var(--white);
-        padding: 1rem;
-        display: block;
-        white-space: nowrap;
     }
 
 .toggle-button,
 .search-button {
     display: none;
     width: 30px;
-    height: 21px;
+    height: 100%;
 }
 
 .toggle-button:hover,
@@ -267,7 +277,7 @@ textarea.primary-input {
     justify-content: space-between;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .toggle-button,
     .search-button {
         display: flex;
@@ -289,11 +299,17 @@ textarea.primary-input {
         width: 100%;
     }
 
-    .navbar-links li a {
-        padding: .5rem 1rem;
-    }
-
     .navbar-links.active {
         display: flex;
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .hide-on-desktop {
+        display: none;
     }
 }
