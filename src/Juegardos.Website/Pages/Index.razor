@@ -7,7 +7,19 @@
 
 Welcome to your new app.
 
-<form style="width:180px;">
+@if (_games is null)
+{
+    <p>Loading games...</p>
+}
+else
+{
+    foreach (var game in _games)
+    {
+        <GameCard Game="game" />
+    }
+}
+
+<form style="width:180px; margin-left: 20px;">
     <p>Form ejemplo</p>
     <div>
         <label>Nombre</label>
@@ -26,20 +38,14 @@ Welcome to your new app.
         <label>Observaciones</label>
         <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
     </div>
+    <div>
+        <label>Input Search</label>
+        <InputSearch />
+    </div>
 </form>
 
 
-@if (_games is null)
-{
-    <p>Loading games...</p>
-}
-else
-{
-    foreach (var game in _games)
-    {
-        <GameCard Game="game" />
-    }
-}
+
 
 @code{
 

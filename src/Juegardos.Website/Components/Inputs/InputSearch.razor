@@ -1,0 +1,15 @@
+﻿@namespace Juegardos.Website.Components
+
+<div class="input-group">
+    <input type="text" placeholder="Escribe aquí..." class="primary-input">
+    <div class="input-group-append" @onclick="() => OnSearch.InvokeAsync()">
+        <span class="iconify" data-icon="ant-design:search-outlined" style="font-size: 30px;"></span>
+    </div>
+</div>
+
+@code{
+
+    [Parameter]
+    public EventCallback OnSearch { get; set; }
+
+}

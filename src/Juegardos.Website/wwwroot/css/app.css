@@ -160,3 +160,52 @@ textarea.primary-input {
     height: auto;
     padding: 10px;
 }
+
+.input-group {
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+    .input-group:focus-within {
+        border-color: var(--terciary-normal);
+        box-shadow: 0 0 0 0.1rem var(--terciary-normal);
+    }
+
+        .input-group:focus-within *:focus {
+            border-color: inherit;
+            box-shadow: inherit;
+        }
+
+    .input-group > .primary-input {
+        position: relative;
+        -ms-flex: 1 1 auto;
+        flex: 1 1 auto;
+        width: 1%;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border: none;
+    }
+
+        .input-group > .primary-input:focus {
+            border-color: inherit;
+            box-shadow: inherit;
+        }
+
+.input-group-append {
+    display: flex;
+    border-radius: 0.25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: var(--terciary-normal);
+    align-items: center;
+    padding: 0px 4px;
+}
+
+.input-group-append:hover {
+    cursor: pointer;
+}
