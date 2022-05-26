@@ -1,0 +1,85 @@
+﻿@namespace Juegardos.Website.Components
+
+@if(_paginationButtons.Count() > 2)
+{
+    <ul class="pagination">
+        @foreach (var button in _paginationButtons)
+        {
+            <li class="page-item @(button.Enabled ? null : "disabled") @(button.Active ? "active" : null)">
+                @if (button.Text == "<")
+                {
+                    <i class="material-icons" @onclick="() => SelectPage(button)">chevron_left</i>
+                }
+                else if (button.Text == ">")
+                {
+                    <i class="material-icons" @onclick="() => SelectPage(button)">chevron_right</i>
+                }
+                else
+                {
+                    <a class="page-link" @onclick="() => SelectPage(button)">
+                        @button.Text
+                    </a>
+                }
+            </li>
+        }
+    </ul>
+}
+
+@code {
+
+    [Parameter]
+    public PaginationParameters PaginationParameters { get; set; }
+    [Parameter]
+    public EventCallback<int> OnSelectPage { get; set; }
+    [Parameter]
+    public int Radius { get; set; } = 3;
+
+    private List<PaginationButton> _paginationButtons = new();
+
+    protected override void OnParametersSet() =>
+        LoadPages();
+
+    private async Task SelectPage(PaginationButton button)
+    {
+        if (button.Page == PaginationParameters.PageNumber || !button.Enabled)
+            return;
+        PaginationParameters.PageNumber = button.Page;
+        await OnSelectPage.InvokeAsync(PaginationParameters.PageNumber);
+    }
+
+    private void LoadPages()
+    {
+        if (PaginationParameters.PageNumber == 0)
+            PaginationParameters.PageNumber = 1;
+        _paginationButtons = new();
+        var isPreviousPageLinkEnabled = PaginationParameters.PageNumber != 1;
+        _paginationButtons.Add(new(PaginationParameters.PageNumber - 1, isPreviousPageLinkEnabled, "<"));
+        for (int i = 1; i <= PaginationParameters.TotalCount; i++)
+            if (i >= PaginationParameters.PageNumber - Radius && i <= PaginationParameters.PageNumber + Radius)
+                _paginationButtons.Add(new(i) { Active = PaginationParameters.PageNumber == i });
+        var isNextPageLinkEnabled = PaginationParameters.PageNumber != PaginationParameters.TotalCount;
+        _paginationButtons.Add(new(PaginationParameters.PageNumber + 1, isNextPageLinkEnabled, ">"));
+    }
+
+    public class PaginationButton
+    {
+        public PaginationButton(int page)
+            : this(page, true) { }
+
+        public PaginationButton(int page, bool enabled)
+            : this(page, enabled, page.ToString())
+        { }
+
+        public PaginationButton(int page, bool enabled, string text)
+        {
+            Page = page;
+            Enabled = enabled;
+            Text = text;
+        }
+
+        public string Text { get; set; }
+        public int Page { get; set; }
+        public bool Enabled { get; set; } = true;
+        public bool Active { get; set; } = false;
+    }
+}

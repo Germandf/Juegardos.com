@@ -78,7 +78,8 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 16px;
-    color: var(--black);
+    color: var(--white);
+    background-color: var(--primary-dark);
 }
 
 h1 {
@@ -259,7 +260,7 @@ textarea.primary-input {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-dark);
+    background-color: var(--primary-normal);
     color: var(--white);
 }
 
@@ -406,7 +407,7 @@ textarea.primary-input {
     }
 
     .mega-box .content {
-        background: var(--primary-dark);
+        background: var(--primary-normal);
         display: flex;
         justify-content: space-between;
         box-shadow: 0 6px 10px rgba(0,0,0,0.15);
@@ -579,3 +580,45 @@ textarea.primary-input {
     flex: 1 1 auto;
     padding: 1rem;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    margin: 0;
+}
+
+    .pagination .page-item:hover {
+        cursor: pointer;
+    }
+
+    .pagination .page-item.active:hover {
+        cursor: default;
+    }
+
+    .pagination .page-item .page-link {
+        width: 35px;
+        height: 35px;
+        line-height: 33px;
+        text-align: center;
+        border-radius: 5px;
+        background-color: var(--secondary-normal);
+    }
+
+    .pagination .page-item > i {
+        color: var(--secondary-normal);
+        padding: 5px;
+    }
+
+    .pagination .page-item .page-link {
+        position: relative;
+        display: block;
+        color: var(--white);
+        text-decoration: none;
+    }
+
+    .pagination .page-item.active .page-link {
+        background-color: inherit;
+    }
