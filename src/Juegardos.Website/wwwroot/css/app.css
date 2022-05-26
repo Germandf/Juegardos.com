@@ -522,6 +522,10 @@ textarea.primary-input {
     outline: 0;
 }
 
+    .modal * {
+        color: var(--black);
+    }
+
     .modal.show {
         display: block;
         z-index: 3;
