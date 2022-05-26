@@ -76,7 +76,7 @@ body {
     font-family: var(--primary-font);
     font-style: normal;
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     line-height: 16px;
     color: var(--black);
 }
@@ -107,12 +107,11 @@ h4 {
 
 h5 {
     font-weight: 700;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 22px;
 }
 
 a {
-    font-size: 12px;
     text-decoration-color: none;
     text-decoration-line: underline;
 }
@@ -314,7 +313,7 @@ textarea.primary-input {
     }
 
     .navbar {
-        padding: 0 15px;
+        padding: 0 200px;
     }
 }
 
@@ -364,9 +363,9 @@ textarea.primary-input {
     .mega-box .content {
         background: var(--primary-dark);
         display: flex;
-        width: 100%;
         justify-content: space-between;
         box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        padding: 0px 400px;
     }
 
         .mega-box .content .row {
@@ -383,10 +382,7 @@ textarea.primary-input {
 }
 
     .row .mega-links li a {
-        padding: 0px;
         padding: 0 20px;
-        color: #d9d9d9;
-        font-size: 17px;
         display: block;
     }
 
@@ -435,6 +431,7 @@ textarea.primary-input {
         .mega-box .content {
             box-shadow: none;
             flex-direction: column;
+            padding: 0;
         }
 
             .mega-box .content .row {
