@@ -13,7 +13,20 @@ else
     }
 }
 
-<form style="width:180px; margin-left: 20px;">
+<div>
+    <label>Un boton</label>
+    <button class="simple-button" @onclick="() => _modal.Open()">Abrir modal</button>
+</div>
+<div>
+    <label>Botón play</label>
+    <OutstandingPlayButton/>
+</div>
+<div>
+    <label>Botón Más info</label>
+    <OutstandingMoreInfo/>
+</div>
+
+<Modal Title="Modal ejemplo" @ref="_modal">
     <p>Form ejemplo</p>
     <div>
         <label>Nombre</label>
@@ -32,27 +45,12 @@ else
         <label>Observaciones</label>
         <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
     </div>
-    <div>
-        <label>Input Search</label>
-        <InputSearch />
-    </div>
-    <div>
-        <label>Un boton</label>
-        <SimpleButton/>
-    </div>
-    <div>
-        <label>Botón play</label>
-        <OutstandingPlayButton/>
-    </div>
-    <div>
-        <label>Botón Más info</label>
-        <OutstandingMoreInfo/>
-    </div>
-</form>
+</Modal>
 
 @code{
 
     private List<Game>? _games = null;
+    private Modal _modal = new();
 
     protected override async Task OnInitializedAsync()
     {

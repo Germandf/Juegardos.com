@@ -1,0 +1,39 @@
+﻿@namespace Juegardos.Website.Components
+
+<div class="modal-backdrop @(_showModal ? "show" : "")" @onclick="Close"></div>
+<div class="modal @(_showModal ? "show" : "")" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">@Title</h3>
+                <i class="material-icons" @onclick="Close">close</i>
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private bool _showModal = false;
+
+    public void Open()
+    {
+        _showModal = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        _showModal = false;
+        StateHasChanged();
+    }
+
+}
