@@ -397,6 +397,7 @@ textarea.primary-input {
     top: 85px;
     opacity: 0;
     visibility: hidden;
+    z-index: 1;
 }
 
     .mega-box.active {
