@@ -1,0 +1,21 @@
+﻿@namespace Juegardos.Website.Components
+
+<div class="wrap">
+    <img src="@Game.Image" class="carousel-poster" />
+    <h5 class="poster-title">@Game.Title</h5>
+    @if (Game.IsFavourite)
+    {
+        <i class="material-icons" style="color:var(--terciary-normal);">star</i>
+    }
+    else
+    {
+        <i class="material-icons">star</i>
+    }
+</div>
+
+@code {
+
+    [Parameter]
+    public Game Game { get; set; } = null!;
+
+}
