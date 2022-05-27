@@ -4,5 +4,7 @@
     {
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
+        public bool IsFavourite { get; set; }
+        public string Image { get; set; }
     }
 }

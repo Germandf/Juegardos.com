@@ -6,9 +6,16 @@ namespace Juegardos.Website.Services
     {
         private readonly List<Game> _games = new()
         {
-            new(){ Title = "Bubble Shot", Description = "Un juego de disparar" },
-            new(){ Title = "Contra", Description = "Otro juego de disparar" },
-            new(){ Title = "Counter", Description = "Otro juego mas de disparar" },
+            new(){ Title = "Bubble Shot", Description = "", IsFavourite = true },
+            new(){ Title = "Contra", Description = "" },
+            new(){ Title = "Counter", Description = "" },
+            new(){ Title = "Call Of Duty", Description = "" },
+            new(){ Title = "Stardew Valley", Description = "", IsFavourite = true },
+            new(){ Title = "Hollow Knight", Description = "" },
+            new(){ Title = "Dark Souls", Description = "" },
+            new(){ Title = "Outer Wilds", Description = "", IsFavourite = true },
+            new(){ Title = "Dead Cells", Description = "" },
+            new(){ Title = "Carto", Description = "" },
         };
 
         public async Task<List<Game>> GetGames()

@@ -667,14 +667,15 @@ textarea.primary-input {
 }
 
 .carousel .poster-title {
-    font-family: "Cinzel", serif;
     position: absolute;
-    left: 20px;
-    bottom: 20px;
-    color: #f0f0f0;
-    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    opacity: 1;
-    transition: opacity 2000ms 1000ms;
+    left: 10px;
+    bottom: 10px;
+}
+
+.carousel .wrap > i {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .carousel .scroll-button {
