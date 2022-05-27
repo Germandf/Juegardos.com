@@ -1,0 +1,93 @@
+﻿@namespace Juegardos.Website.Components
+@inject IJSRuntime _js
+
+<div class="carousel">
+    <h3 class="carousel-title">Trending Now</h3>
+    <div class="carousel-posters" @onscroll="GetScrollVal">
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="wrap">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
+        <h5 class="poster-title">Stranger Things</h5>
+    </div>
+    <div class="left-arrow scroll-button" @onclick="ScrollL">
+        <i class="arrow left"></i>
+    </div>
+    <div class="right-arrow scroll-button" @onclick="ScrollR">
+        <i class="arrow right"></i>
+    </div>
+    </div>
+</div>
+
+@code {
+
+    private async Task ScrollL()
+    {
+        await _js.InvokeVoidAsync("scrollL");
+    }
+
+    private async Task ScrollR()
+    {
+        await _js.InvokeVoidAsync("scrollR");
+    }
+
+    private async Task GetScrollVal()
+    {
+        await _js.InvokeVoidAsync("getScrollVal");
+    }
+    
+}
