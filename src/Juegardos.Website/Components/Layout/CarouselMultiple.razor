@@ -1,7 +1,7 @@
 ﻿@namespace Juegardos.Website.Components
 @inject IJSRuntime _js
 
-<div class="carousel">
+<div class="carousel" id="@_carouselId">
     <h3 class="carousel-title">@Title</h3>
     <div class="carousel-posters" @onscroll="GetScrollVal">
     <div class="wrap">
@@ -78,19 +78,21 @@
     [Parameter]
     public string Title { get; set; } = "";
 
+    private readonly string _carouselId = StringHelper.RandomString();
+
     private async Task ScrollL()
     {
-        await _js.InvokeVoidAsync("scrollL");
+        await _js.InvokeVoidAsync("scrollL", _carouselId);
     }
 
     private async Task ScrollR()
     {
-        await _js.InvokeVoidAsync("scrollR");
+        await _js.InvokeVoidAsync("scrollR", _carouselId);
     }
 
     private async Task GetScrollVal()
     {
-        await _js.InvokeVoidAsync("getScrollVal");
+        await _js.InvokeVoidAsync("getScrollVal", _carouselId);
     }
     
 }
