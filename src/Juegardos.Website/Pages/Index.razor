@@ -7,11 +7,10 @@
 }
 else
 {
-    <CarouselMultiple Title="Acción" Games="_games" />
-
-    <CarouselMultiple Title="Aventura" Games="_games" />
-
-    <CarouselMultiple Title="Belleza" Games="_games" />
+    foreach (var game in _games)
+    {
+        <GameCard Game="game" />
+    }
 }
 
 <div>
@@ -30,11 +29,17 @@ else
     <MoreInfoButton bigButton=false/>
 </div>
 <div>
-    <p>Favorito</p>
+    <p>Favoritos</p>
     <Star/><Starred/>
 </div>
 
 <Pagination PaginationParameters="_paginationParameters" />
+
+<CarouselMultiple Title="Acción" />
+
+<CarouselMultiple Title="Aventura" />
+
+<CarouselMultiple Title="Belleza" />
 
 <Modal Title="Modal ejemplo" @ref="_modal">
     <p>Form ejemplo</p>
@@ -45,10 +50,10 @@ else
     <div>
         <label>Género</label>
         <select class="primary-input">
-            <option selected hidden disabled>Seleccione uno...</option>
-            <option>Hombre</option>
-            <option>Mujer</option>
-            <option>Otro</option>
+          <option selected hidden disabled>Seleccione uno...</option>
+          <option>Hombre</option>
+          <option>Mujer</option>
+          <option>Otro</option>
         </select>
     </div>
     <div>
