@@ -14,16 +14,23 @@ else
 }
 
 <div>
-    <label>Un boton</label>
+    <p>Un boton</p>
     <button class="simple-button" @onclick="() => _modal.Open()">Abrir modal</button>
+    <p>Botón play grande</p>
+    <PlayButton/>
+
+    <label>Botón play chico</label>
+    <PlayButton bigButton=false/>
+
+    <label>Botón Más info grande</label>
+    <MoreInfoButton/>
+
+    <label>Botón Más info chico</label>
+    <MoreInfoButton bigButton=false/>
 </div>
 <div>
-    <label>Botón play</label>
-    <OutstandingPlayButton/>
-</div>
-<div>
-    <label>Botón Más info</label>
-    <OutstandingMoreInfo/>
+    <p>Favorito</p>
+    <Star/><Starred/>
 </div>
 
 <Pagination PaginationParameters="_paginationParameters" />
