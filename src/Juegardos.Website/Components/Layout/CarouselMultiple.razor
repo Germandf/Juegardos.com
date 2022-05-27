@@ -4,27 +4,16 @@
 <div class="carousel" id="@_carouselId">
     <h3 class="carousel-title">@Title</h3>
     <div class="carousel-posters" @onscroll="GetScrollVal">
-    @foreach (var game in Games)
-    {
-        <div class="wrap">
-            <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" class="carousel-poster" />
-            <h5 class="poster-title">@game.Title</h5>
-            @if (game.IsFavourite)
-            {
-                <i class="material-icons" style="color:var(--terciary-normal);">star</i>
-            }
-            else
-            {
-                <i class="material-icons">star</i>
-            }
+        @foreach (var game in Games)
+        {
+            <GameCard Game="game" />
+        }
+        <div class="left-arrow scroll-button" @onclick="ScrollL">
+            <i class="arrow left"></i>
         </div>
-    }
-    <div class="left-arrow scroll-button" @onclick="ScrollL">
-        <i class="arrow left"></i>
-    </div>
-    <div class="right-arrow scroll-button" @onclick="ScrollR">
-        <i class="arrow right"></i>
-    </div>
+        <div class="right-arrow scroll-button" @onclick="ScrollR">
+            <i class="arrow right"></i>
+        </div>
     </div>
 </div>
 
