@@ -2,7 +2,7 @@
 @inject IJSRuntime _js
 
 <div class="carousel">
-    <h3 class="carousel-title">Trending Now</h3>
+    <h3 class="carousel-title">@Title</h3>
     <div class="carousel-posters" @onscroll="GetScrollVal">
     <div class="wrap">
         <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" alt="movieImage" class="carousel-poster" />
@@ -74,6 +74,9 @@
 </div>
 
 @code {
+
+    [Parameter]
+    public string Title { get; set; } = "";
 
     private async Task ScrollL()
     {
