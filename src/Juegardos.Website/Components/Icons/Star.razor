@@ -1,5 +1,6 @@
 ﻿@namespace Juegardos.Website.Components
-@if(starred)
+
+@if(Starred)
 {
     <i class="material-icons starred">star</i>
 }
@@ -10,5 +11,5 @@ else
 
 @code {
     [Parameter]
-    public bool starred { get; set; } = false;
+    public bool Starred { get; set; } = false;
 }

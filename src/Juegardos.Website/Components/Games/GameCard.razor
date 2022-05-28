@@ -3,19 +3,12 @@
 <div class="wrap">
     <img src="@Game.Image" class="carousel-poster" />
     <h5 class="poster-title">@Game.Title</h5>
-    @if(Game.IsFavourite)
-    {
-        <Star starred/>
-    }
-    else
-    {
-        <Star/>
-    }
-    </div>
+    <Star Starred="Game.IsFavourite"/>
+</div>
 
-    @code {
+@code {
 
     [Parameter]
     public Game Game { get; set; } = null!;
 
-    }
+}

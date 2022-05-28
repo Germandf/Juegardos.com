@@ -7,39 +7,32 @@
 }
 else
 {
-    foreach (var game in _games)
-    {
-        <GameCard Game="game" />
-    }
+    <CarouselMultiple Title="Acción" Games="_games" />
+
+    <CarouselMultiple Title="Aventura" Games="_games" />
+
+    <CarouselMultiple Title="Belleza" Games="_games" />
 }
 
 <div>
     <p>Un boton</p>
     <button class="simple-button" @onclick="() => _modal.Open()">Abrir modal</button>
+
     <p>Botón play grande</p>
-    <PlayButton/>
+    <button class="play-button big-button"><i class="material-icons">play_arrow</i>Jugar</button>
 
     <label>Botón play chico</label>
-    <PlayButton bigButton=false/>
+    <button class="play-button small-button"><i class="material-icons">play_arrow</i>Jugar</button>
 
     <label>Botón Más info grande</label>
-    <MoreInfoButton/>
+    <button class="moreinfo-button big-button"><i class="material-icons">info_outline</i>Más información</button>
 
     <label>Botón Más info chico</label>
-    <MoreInfoButton bigButton=false/>
-</div>
-<div>
-    <p>Favoritos</p>
-    <Star/><Star starred/>
+    <button class="moreinfo-button small-button"><i class="material-icons">info_outline</i>Más información</button>
 </div>
 
 <Pagination PaginationParameters="_paginationParameters" />
 
-<CarouselMultiple Title="Acción" />
-
-<CarouselMultiple Title="Aventura" />
-
-<CarouselMultiple Title="Belleza" />
 
 <Modal Title="Modal ejemplo" @ref="_modal">
     <p>Form ejemplo</p>
@@ -50,10 +43,10 @@ else
     <div>
         <label>Género</label>
         <select class="primary-input">
-          <option selected hidden disabled>Seleccione uno...</option>
-          <option>Hombre</option>
-          <option>Mujer</option>
-          <option>Otro</option>
+            <option selected hidden disabled>Seleccione uno...</option>
+            <option>Hombre</option>
+            <option>Mujer</option>
+            <option>Otro</option>
         </select>
     </div>
     <div>
