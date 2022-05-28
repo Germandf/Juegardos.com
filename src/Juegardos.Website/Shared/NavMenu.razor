@@ -42,9 +42,53 @@
     </div>
 </nav>
 
+<Modal Title="Iniciar sesión" @ref="_modalSignIn">
+    <p>Form ejemplo</p>
+    <div>
+        <label>Nombre</label>
+        <input type="text" class="primary-input" placeholder="Escribe aqui..." />
+    </div>
+    <div>
+        <label>Género</label>
+        <select class="primary-input">
+            <option selected hidden disabled>Seleccione uno...</option>
+            <option>Hombre</option>
+            <option>Mujer</option>
+            <option>Otro</option>
+        </select>
+    </div>
+    <div>
+        <label>Observaciones</label>
+        <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
+    </div>
+</Modal>
+
+<Modal Title="Registrarse" @ref="_modalSignUp">
+    <p>Form ejemplo</p>
+    <div>
+        <label>Nombre</label>
+        <input type="text" class="primary-input" placeholder="Escribe aqui..." />
+    </div>
+    <div>
+        <label>Género</label>
+        <select class="primary-input">
+            <option selected hidden disabled>Seleccione uno...</option>
+            <option>Hombre</option>
+            <option>Mujer</option>
+            <option>Otro</option>
+        </select>
+    </div>
+    <div>
+        <label>Observaciones</label>
+        <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
+    </div>
+</Modal>
+
 @code{
 
     private bool _active = false;
     private bool _showMegaMenu = false;
+    private Modal _modalSignIn = new();
+    private Modal _modalSignUp = new();
 
 }

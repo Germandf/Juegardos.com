@@ -1,20 +1,12 @@
 ﻿@page "/"
 @inject IGameService _gameService
 
-<Ad Type="AdType.Ad160x600" />
-<Ad Type="AdType.Ad300x250" />
-<Ad Type="AdType.Ad300x600" />
-<Ad Type="AdType.Ad728x90" />
-<Ad Type="AdType.Ad970x90" />
-
 @if (_games is null)
 {
-    <p>Loading games...</p>
+    <div class="spinner"></div>
 }
 else
 {
-    <GameCard Game="_games.FirstOrDefault()" />
-
     <CarouselMultiple Title="Acción" Games="_games" />
 
     <CarouselMultiple Title="Aventura" Games="_games" />
@@ -24,7 +16,7 @@ else
 
 <div>
     <p>Un boton</p>
-    <button class="simple-button" @onclick="() => _modal.Open()">Abrir modal</button>
+    <button class="simple-button">Confirmar</button>
 
     <p>Botón play grande</p>
     <button class="play-button big-button"><i class="material-icons">play_arrow</i>Jugar</button>
@@ -39,35 +31,9 @@ else
     <button class="moreinfo-button small-button"><i class="material-icons">info_outline</i>Más información</button>
 </div>
 
-<Pagination PaginationParameters="_paginationParameters" />
-
-
-<Modal Title="Modal ejemplo" @ref="_modal">
-    <p>Form ejemplo</p>
-    <div>
-        <label>Nombre</label>
-        <input type="text" class="primary-input" placeholder="Escribe aqui..." />
-    </div>
-    <div>
-        <label>Género</label>
-        <select class="primary-input">
-            <option selected hidden disabled>Seleccione uno...</option>
-            <option>Hombre</option>
-            <option>Mujer</option>
-            <option>Otro</option>
-        </select>
-    </div>
-    <div>
-        <label>Observaciones</label>
-        <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
-    </div>
-</Modal>
-
 @code{
 
     private List<Game>? _games = null;
-    private Modal _modal = new();
-    private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
 
     protected override async Task OnInitializedAsync()
     {
