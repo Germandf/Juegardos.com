@@ -656,10 +656,6 @@ textarea.primary-input {
         background-color: inherit;
     }
 
-.carousel .carousel-posters .wrap:first-child {
-    margin-left: 30px;
-}
-
 .carousel .carousel-title {
     font-size: 1.3rem;
     font-weight: 600;
@@ -680,32 +676,13 @@ textarea.primary-input {
         display: none;
     }
 
-.carousel .carousel-poster {
-    object-fit: contain;
-    height: 100%;
-}
+    .carousel .carousel-posters .carousel-poster {
+        margin: 0 4px;
+    }
 
-.carousel .wrap {
-    display: inline-block;
-    position: relative;
-    height: 150px;
-    width: fit-content;
-    margin: 0 1px;
-    cursor: pointer;
-    transition: height 500ms;
-}
-
-.carousel .poster-title {
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-}
-
-.carousel .wrap > i {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-}
+    .carousel .carousel-posters .carousel-poster:first-child {
+        margin-left: 30px;
+    }
 
 .carousel .scroll-button {
     position: absolute;
@@ -809,4 +786,31 @@ textarea.primary-input {
     .ad .ad-970x90 {
         width: 970px;
         height: 90px;
+    }
+
+/* GAMES */
+
+.game-card {
+    display: inline-block;
+    position: relative;
+    height: 150px;
+    width: fit-content;
+    cursor: pointer;
+}
+
+    .game-card > img {
+        object-fit: contain;
+        height: 100%;
+    }
+
+    .game-card > h5 {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+    }
+
+    .game-card > i {
+        position: absolute;
+        right: 10px;
+        top: 10px;
     }

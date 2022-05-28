@@ -6,7 +6,9 @@
     <div class="carousel-posters" @onscroll="GetScrollVal">
         @foreach (var game in Games)
         {
-            <GameCard Game="game" />
+            <div class="carousel-poster">
+                <GameCard Game="game" />
+            </div>
         }
         <div class="left-arrow scroll-button" @onclick="ScrollL">
             <i class="arrow left"></i>
