@@ -28,7 +28,7 @@
 @code {
 
     [Parameter]
-    public PaginationParameters PaginationParameters { get; set; }
+    public PaginationParameters PaginationParameters { get; set; } = new();
     [Parameter]
     public EventCallback<int> OnSelectPage { get; set; }
     [Parameter]

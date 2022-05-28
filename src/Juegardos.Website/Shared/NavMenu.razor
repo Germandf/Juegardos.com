@@ -1,10 +1,11 @@
-﻿<nav class="navbar">
+﻿@inject NavigationManager _navigationManager
+
+<nav class="navbar">
     <div class="minimized-navbar">
         <i class="material-icons toggle-button" @onclick="() => _active = !_active">menu</i>
-        <div class="brand-title logo"><Logo /></div>
+        <div class="brand-title logo" @onclick='() => _navigationManager.NavigateTo("")'><Logo /></div>
         <i class="material-icons search-button">search</i>
     </div>
-    
     <div class="navbar-links @(_active ? "active" : "")">
         <ul>
             <li>
@@ -12,76 +13,97 @@
                 <div class="mega-box @(_showMegaMenu ? "active" : "")">
                     <div class="content">
                         <div class="row">
-                        <ul class="mega-links">
-                            <li><a href="#">Acción</a></li>
-                            <li><a href="#">Aventura</a></li>
-                            <li><a href="#">Belleza</a></li>
-                        </ul>
+                            <ul class="mega-links">
+                                <li><a href="buscar/accion">Acción</a></li>
+                                <li><a href="buscar/aventura">Aventura</a></li>
+                                <li><a href="buscar/belleza">Belleza</a></li>
+                            </ul>
                         </div>
                         <div class="row">
-                        <ul class="mega-links">
-                            <li><a href="#">Carreras</a></li>
-                            <li><a href="#">Clásicos</a></li>
-                            <li><a href="#">Click</a></li>
-                        </ul>
+                            <ul class="mega-links">
+                                <li><a href="buscar/carreras">Carreras</a></li>
+                                <li><a href="buscar/clasicos">Clásicos</a></li>
+                                <li><a href="buscar/click">Click</a></li>
+                            </ul>
                         </div>
                         <div class="row">
-                        <ul class="mega-links">
-                            <li><a href="#">Deportes</a></li>
-                            <li><a href="#">Puzzle</a></li>
-                            <li><a href="#">Tiros</a></li>
-                        </ul>
+                            <ul class="mega-links">
+                                <li><a href="buscar/deportes">Deportes</a></li>
+                                <li><a href="buscar/puzzle">Puzzle</a></li>
+                                <li><a href="buscar/tiros">Tiros</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </li>
             <li class="hide-on-mobile"><InputSearch /></li>
-            <li class="hide-on-mobile"><a href=""><i class="material-icons">account_circle</i></a></li>
-            <li class="hide-on-desktop"><a href="">Mi cuenta</a></li>
+            <li class="hide-on-mobile" @onclick="() => _modalSignIn.Open()"><a href=""><i class="material-icons">account_circle</i></a></li>
+            <li class="hide-on-desktop" @onclick="() => _modalSignIn.Open()"><a href="">Mi cuenta</a></li>
         </ul>
     </div>
 </nav>
 
-<Modal Title="Iniciar sesión" @ref="_modalSignIn">
-    <p>Form ejemplo</p>
-    <div>
-        <label>Nombre</label>
-        <input type="text" class="primary-input" placeholder="Escribe aqui..." />
-    </div>
-    <div>
-        <label>Género</label>
-        <select class="primary-input">
-            <option selected hidden disabled>Seleccione uno...</option>
-            <option>Hombre</option>
-            <option>Mujer</option>
-            <option>Otro</option>
-        </select>
-    </div>
-    <div>
-        <label>Observaciones</label>
-        <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
-    </div>
+<Modal Title="Iniciá sesión" @ref="_modalSignIn">
+    <EditForm Model="_signIn" OnValidSubmit="HandleSignIn">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Usuario o correo electrónico</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_signIn.UsernameOrEmail" />
+            <ValidationMessage For="() => _signIn.UsernameOrEmail" />
+        </div>
+        <div>
+            <label>Contraseña</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." type="password" @bind-Value="_signIn.Password" />
+            <ValidationMessage For="() => _signIn.Password" />
+        </div>
+        <div>
+            <button class="simple-button">Ingresar</button>
+        </div>
+        <div>
+            <a @onclick="SignInToSignUp">¿No tenés cuenta? ¡Registrate!</a>
+            <a @onclick="SignInToResetPassword">Olvidé mi contraseña</a>
+        </div>
+    </EditForm>
 </Modal>
 
-<Modal Title="Registrarse" @ref="_modalSignUp">
-    <p>Form ejemplo</p>
-    <div>
-        <label>Nombre</label>
-        <input type="text" class="primary-input" placeholder="Escribe aqui..." />
-    </div>
-    <div>
-        <label>Género</label>
-        <select class="primary-input">
-            <option selected hidden disabled>Seleccione uno...</option>
-            <option>Hombre</option>
-            <option>Mujer</option>
-            <option>Otro</option>
-        </select>
-    </div>
-    <div>
-        <label>Observaciones</label>
-        <textarea class="primary-input" rows="4" placeholder="Escribe aquí..."></textarea>
-    </div>
+<Modal Title="Creá tu cuenta" @ref="_modalSignUp">
+    <EditForm Model="_signUp" OnValidSubmit="HandleSignUp">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Nombre de usuario</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_signUp.Username" />
+            <ValidationMessage For="() => _signUp.Username" />
+        </div>
+        <div>
+            <label>Correo electrónico</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_signUp.Email" />
+            <ValidationMessage For="() => _signUp.Email" />
+        </div>
+        <div>
+            <label>Contraseña</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." type="password" @bind-Value="_signUp.Password" />
+            <ValidationMessage For="() => _signUp.Password" />
+        </div>
+        <div>
+            <a @onclick="SignUpToSignIn">Ya tengo una cuenta</a>
+            <button class="simple-button">Registrarme</button>
+        </div>
+    </EditForm>
+</Modal>
+
+<Modal Title="Recuperá tu cuenta" @ref="_modalResetPassword">
+    <EditForm Model="_resetPassword" OnValidSubmit="HandleResetPassword">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Usuario o correo electrónico</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_resetPassword.UsernameOrEmail" />
+            <ValidationMessage For="() => _resetPassword.UsernameOrEmail" />
+        </div>
+        <div>
+            <a @onclick="ResetPasswordToSignIn">Recordé mi contraseña</a>
+            <button class="simple-button">Recuperar</button>
+        </div>
+    </EditForm>
 </Modal>
 
 @code{
@@ -90,5 +112,51 @@
     private bool _showMegaMenu = false;
     private Modal _modalSignIn = new();
     private Modal _modalSignUp = new();
+    private Modal _modalResetPassword = new();
+    private SignIn _signIn = new();
+    private SignUp _signUp = new();
+    private ResetPassword _resetPassword = new();
+
+    private void SignInToSignUp()
+    {
+        _modalSignIn.Close();
+        _modalSignUp.Open();
+    }
+
+    private void SignUpToSignIn()
+    {
+        _modalSignUp.Close();
+        _modalSignIn.Open();
+    }
+
+    private void SignInToResetPassword()
+    {
+        _modalSignIn.Close();
+        _modalResetPassword.Open();
+    }
+
+    private void ResetPasswordToSignIn()
+    {
+        _modalResetPassword.Close();
+        _modalSignIn.Open();
+    }
+
+    private void HandleSignIn()
+    {
+        _modalSignIn.Close();
+        _signIn = new();
+    }
+
+    private void HandleSignUp()
+    {
+        _modalSignUp.Close();
+        _signUp = new();
+    }
+
+    private void HandleResetPassword()
+    {
+        _modalResetPassword.Close();
+        _resetPassword = new();
+    }
 
 }

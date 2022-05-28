@@ -9,7 +9,8 @@
 }
 
 .validation-message {
-    color: red;
+    color: red !important;
+    font-size: 12px;
 }
 
 #blazor-error-ui {
@@ -115,12 +116,17 @@ h5 {
 a {
     text-decoration-color: none;
     text-decoration-line: underline;
+    color: var(--white);
 }
 
     a:visited {
         text-decoration-color: none;
         text-decoration-line: underline;
         color: inherit;
+    }
+
+    a:not([href]):hover {
+        cursor: pointer;
     }
 
 label {
@@ -137,6 +143,10 @@ label {
     font-weight: 700;
     font-size: 40px;
     color: var(--terciary-normal);
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 /* INPUT */
@@ -214,6 +224,15 @@ textarea.primary-input {
 
 .input-group-append:hover {
     cursor: pointer;
+}
+
+form > div {
+    margin: 20px 0;
+}
+
+form > div > label {
+    display: block;
+    margin-bottom: 5px;
 }
 
 /* BUTTON */
