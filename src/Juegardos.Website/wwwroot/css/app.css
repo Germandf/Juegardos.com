@@ -758,3 +758,55 @@ textarea.primary-input {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
 }
+
+/* ADS */
+
+.ad {
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+}
+
+    .ad i {
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 16px;
+        background-color: var(--white);
+        color: var(--secondary-light);
+    }
+
+    .ad i:hover {
+        cursor: pointer;
+    }
+
+    .ad img {
+        background-repeat: repeat;
+        object-fit: cover;
+    }
+
+    .ad .ad-160x600{
+        width: 160px;
+        height: 600px;
+    }
+
+    .ad .ad-300x250 {
+        width: 300px;
+        height: 250px;
+    }
+
+    .ad .ad-300x600 {
+        width: 300px;
+        height: 600px;
+    }
+
+    .ad .ad-728x90 {
+        width: 728px;
+        height: 90px;
+        object-position: 0 -250px;
+    }
+
+    .ad .ad-970x90 {
+        width: 970px;
+        height: 90px;
+    }

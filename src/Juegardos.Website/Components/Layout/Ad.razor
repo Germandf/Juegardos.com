@@ -1,0 +1,38 @@
+﻿@namespace Juegardos.Website.Components
+
+<div class="ad">
+    <img src="@_imageUrl" class="@_typeClass" />
+    <i class="material-icons">close</i>
+</div>
+
+@code {
+
+    [Parameter]
+    public AdType Type { get; set; } = AdType.Ad300x600;
+
+    private string _typeClass = "";
+    private string _imageUrl = "";
+
+    protected override void OnInitialized()
+    {
+        _typeClass = Type switch
+        {
+            AdType.Ad160x600 => "ad-160x600",
+            AdType.Ad300x250 => "ad-300x250",
+            AdType.Ad300x600 => "ad-300x600",
+            AdType.Ad728x90 => "ad-728x90",
+            AdType.Ad970x90 => "ad-970x90",
+            _ => throw new IndexOutOfRangeException()
+        };
+        _imageUrl = "images/ads/" + Type switch
+        {
+            AdType.Ad160x600 => "ad-160x600.png",
+            AdType.Ad300x250 => "ad-300x250.png",
+            AdType.Ad300x600 => "ad-300x600.png",
+            AdType.Ad728x90 => "ad-728x90.png",
+            AdType.Ad970x90 => "ad-970x90.png",
+            _ => throw new IndexOutOfRangeException()
+        };
+    }
+
+}

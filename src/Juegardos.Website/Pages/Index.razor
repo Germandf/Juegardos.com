@@ -1,6 +1,12 @@
 ﻿@page "/"
 @inject IGameService _gameService
 
+<Ad Type="AdType.Ad160x600" />
+<Ad Type="AdType.Ad300x250" />
+<Ad Type="AdType.Ad300x600" />
+<Ad Type="AdType.Ad728x90" />
+<Ad Type="AdType.Ad970x90" />
+
 @if (_games is null)
 {
     <p>Loading games...</p>
