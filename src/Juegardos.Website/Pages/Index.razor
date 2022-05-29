@@ -1,7 +1,6 @@
 ﻿@page "/"
 @inject IGameService _gameService
 
-
 @if (_games is null)
 {
     <div class="spinner"></div>
@@ -9,26 +8,13 @@
 else
 {
     <OutstandingGameCard Game="_games[0]"/>
+
     <CarouselMultiple Title="Acción" Games="_games" />
 
     <CarouselMultiple Title="Aventura" Games="_games" />
 
     <CarouselMultiple Title="Belleza" Games="_games" />
 }
-
-<div>
-    <p>Botón play grande</p>
-    <button class="play-button big-button"><i class="material-icons">play_arrow</i>Jugar</button>
-
-    <label>Botón play chico</label>
-    <button class="play-button small-button"><i class="material-icons">play_arrow</i>Jugar</button>
-
-    <label>Botón Más info grande</label>
-    <button class="moreinfo-button big-button"><i class="material-icons">info_outline</i>Más información</button>
-
-    <label>Botón Más info chico</label>
-    <button class="moreinfo-button small-button"><i class="material-icons">info_outline</i>Más información</button>
-</div>
 
 @code{
 
