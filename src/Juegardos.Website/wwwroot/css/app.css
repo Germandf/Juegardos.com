@@ -913,7 +913,6 @@ form > div > label {
 .outstangin-game-card {
     display: flex;
     position: relative;
-    height: 900px;
     cursor: pointer;
 }
 
@@ -942,3 +941,9 @@ form > div > label {
         left: 100px;
         top: 600px;
     }
+
+@media (min-width: 768px) {
+    .outstangin-game-card {
+        height: 75vh;
+    }
+}
