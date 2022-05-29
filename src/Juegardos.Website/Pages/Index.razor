@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inject IGameService _gameService
 
-@if (_games is null)
+@if (_isLoading)
 {
     <div class="loading-zone">
         <div class="spinner screen-centered"></div>
@@ -9,27 +9,29 @@
 }
 else
 {
-    <OutstandingGameCard Game="_games[0]"/>
+    if (_outstandingGame is not null)
+    {
+        <OutstandingGameCard Game="_outstandingGame" />
+    }
 
-    <CarouselMultiple Title="Acción" Games="_games" />
-
-    <CarouselMultiple Title="Aventura" Games="_games" />
-
-    <CarouselMultiple Title="Belleza" Games="_games" />
+    foreach (var gameCategory in _gameCategories)
+    {
+        <CarouselMultiple Title="@gameCategory.Name" Games="gameCategory.Games" />
+    }
 }
 
 @code{
 
-    private List<Game>? _games = null;
+    private Game? _outstandingGame = null;
+    private List<GameCategory> _gameCategories = new();
+    private bool _isLoading = false;
 
     protected override async Task OnInitializedAsync()
     {
-        _games = await _gameService.GetGames();
-    }
-
-    private void Foo()
-    {
-        Console.WriteLine("foo");
+        _isLoading = true;
+        _outstandingGame = await _gameService.GetOutstandingGame();
+        _gameCategories = await _gameService.GetCategoriesWithGames();
+        _isLoading = false;
     }
 
 }

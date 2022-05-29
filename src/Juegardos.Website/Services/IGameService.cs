@@ -4,6 +4,9 @@ namespace Juegardos.Website.Services
 {
     public interface IGameService
     {
-        Task<List<Game>> GetGames();
+        Task<List<GameCategory>> GetCategoriesWithGames();
+        Task<List<Game>> SearchGames(string name);
+        Task<Game?> GetGame(string name);
+        Task<Game?> GetOutstandingGame();
     }
 }
