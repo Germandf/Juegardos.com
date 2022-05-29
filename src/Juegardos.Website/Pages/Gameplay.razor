@@ -1,7 +1,7 @@
-﻿@page "/jugar"
+﻿@page "/jugar/{name}"
 @inject IGameService _gameService
 
-@if (_game is null)
+@if (_isLoading)
 {
     <div class="loading-zone">
         <div class="spinner screen-centered"></div>
@@ -9,24 +9,38 @@
 }
 else
 {
-    <h1>Game name</h1>
-    <div class="game-main-container">
-        <GamePlayBox Game="_game" />
-        <Ad Type="AdType.Ad160x600" />
-        <Ad Type="AdType.Ad970x90" />
-        <Ad Type="AdType.Ad728x90" />
-        <Ad Type="AdType.Ad300x250" />
-        <Ad Type="AdType.Ad300x600" />
-    </div>
+    if (_game is null)
+    {
+        <p>El juego no existe</p>
+    }
+    else
+    {
+        <h1>@_game.Name</h1>
+        <div class="game-main-container">
+            <GamePlayBox Game="_game" />
+            <Ad Type="AdType.Ad160x600" />
+            <Ad Type="AdType.Ad970x90" />
+            <Ad Type="AdType.Ad728x90" />
+            <Ad Type="AdType.Ad300x250" />
+            <Ad Type="AdType.Ad300x600" />
+        </div>
+    }
 }
 
 @code {
 
+    [Parameter]
+    public string? Name { get; set; }
+
     private Game? _game = null;
+    private bool _isLoading = false;
 
     protected override async Task OnInitializedAsync()
     {
-        _game = await _gameService.GetGame("");
+        _isLoading = true;
+        if (Name is not null)
+            _game = await _gameService.GetGame(Name);
+        _isLoading = false;
     }
 
 }
