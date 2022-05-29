@@ -679,6 +679,7 @@ form > div > label {
     font-size: 1.3rem;
     font-weight: 600;
     margin-left: 30px;
+    margin-top: 20px;
 }
 
 .carousel .carousel-posters {
@@ -753,6 +754,11 @@ form > div > label {
 .carousel .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+
+.loading-zone {
+    position: relative;
+    height: 80vh;
 }
 
 .spinner {
@@ -908,12 +914,11 @@ form > div > label {
     display: flex;
     position: relative;
     height: 900px;
-    width: fit-content;
     cursor: pointer;
 }
 
     .outstangin-game-card > img {
-        object-fit: contain;
+        width: 100%;
         height: 100%;
     }
 
