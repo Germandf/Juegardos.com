@@ -249,22 +249,7 @@ form > div > label {
     cursor:pointer;
 }
 
-.big-button {
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    width: auto;
-    height: 55px;
-    padding: 0 15px 0 10px;
-    margin: 5px 0 5px;
-    border-radius: 15px;
-    font-family: var(--primary-font);
-    font-weight: bold;
-    font-size: 32px;
-    cursor: pointer;
-}
-
-.small-button {
+.outstanding-button {
     display: flex;
     align-items: center;
     justify-content: left;
@@ -279,13 +264,21 @@ form > div > label {
     cursor: pointer;
 }
 
-.play-button {
-    color: var(--black);
-}
+    .outstanding-button.play-button {
+        color: var(--black);
+    }
 
-.moreinfo-button {
-    color: var(--white);
-    background-color: var(--gray);
+    .outstanding-button.info-button {
+        color: var(--white);
+        background-color: var(--gray);
+    }
+
+@media (min-width: 768px) {
+    .outstanding-button {
+    height: 55px;
+    border-radius: 15px;
+    font-size: 32px;
+    }
 }
 
 /* ICONS */
@@ -910,40 +903,53 @@ form > div > label {
     font-size: 40px;
 }
 
-.outstanding-game-card {
-    display: flex;
-    position: relative;
-    cursor: pointer;
-}
+    .outstanding-game-card {
+        position: relative;
+    }
 
     .outstanding-game-card > img {
         width: 100%;
         height: 100%;
     }
 
-    .outstanding-game-card > h1 {
+    .outstanding-game-details {
         position: absolute;
-        left: 100px;
-        top: 400px;
+        left: 5%;
+        bottom: 5%;
     }
 
-    .outstanding-game-card > h4 {
-        position: absolute;
-        left: 100px;
-        top: 500px;
-    }
+        .outstanding-game-details > * {
+            margin-bottom: 5px;
+        }
 
-    .outstanding-game-card .outstanding-buttons {
-        position: absolute;
-        display:flex;
-        width: 480px;
-        justify-content:space-between;
-        left: 100px;
-        top: 600px;
-    }
+        .outstanding-game-details > h1 {
+            font-size: 30px;
+            line-height: initial;
+        }
+
+        .outstanding-game-details > h4 {
+            font-size: 14px;
+            line-height: initial;
+        }
+
+        .outstanding-game-details > div.outstanding-buttons {
+            display: flex;
+        }
+
+            .outstanding-game-details > div.outstanding-buttons > *:first-child {
+                margin-right: 5px;
+            }
 
 @media (min-width: 768px) {
     .outstanding-game-card {
         height: 75vh;
+    }
+
+    .outstanding-game-details > h1 {
+        font-size: 46px;
+    }
+
+    .outstanding-game-details > h4 {
+        font-size: 18px;
     }
 }
