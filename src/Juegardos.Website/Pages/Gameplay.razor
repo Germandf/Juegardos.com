@@ -1,13 +1,34 @@
 ﻿@page "/jugar"
-
-<h3>Game</h3>
-
-<Ad Type="AdType.Ad160x600" />
-<Ad Type="AdType.Ad300x250" />
-<Ad Type="AdType.Ad300x600" />
-<Ad Type="AdType.Ad728x90" />
-<Ad Type="AdType.Ad970x90" />
+@inject IGameService _gameService
+<h1>Game name</h1>
+<div id="game-main-container">
+    <div id="game-play-container">
+        <GamePlayBox/>
+        <GamePlayBoxBar/>
+    </div>
+    <Ad Type="AdType.Ad160x600" />
+    <Ad Type="AdType.Ad970x90" />
+    <Ad Type="AdType.Ad728x90" />    
+    <Ad Type="AdType.Ad300x250" />
+    <Ad Type="AdType.Ad300x600" />    
+@if (_games is null)
+{
+<div class="spinner"></div>
+}
+else
+{
+<CarouselMultiple Title="Jugos similares" Games="_games" />
+}
+</div>
 
 @code {
+    [Parameter]
+    public Game Game { get; set; } = null!;
 
+    private List<Game>? _games = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _games = await _gameService.GetGames();
+    }
 }

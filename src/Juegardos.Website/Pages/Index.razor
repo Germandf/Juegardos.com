@@ -1,12 +1,14 @@
 ﻿@page "/"
 @inject IGameService _gameService
 
+
 @if (_games is null)
 {
     <div class="spinner"></div>
 }
 else
 {
+    <OutstandingGameCard Game="_games[0]"/>
     <CarouselMultiple Title="Acción" Games="_games" />
 
     <CarouselMultiple Title="Aventura" Games="_games" />
