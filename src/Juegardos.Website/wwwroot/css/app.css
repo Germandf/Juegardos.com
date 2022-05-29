@@ -264,6 +264,10 @@ form > div > label {
     cursor: pointer;
 }
 
+    .outstanding-button > span {
+        margin-bottom: 1px;
+    }
+
     .outstanding-button.play-button {
         color: var(--black);
     }
@@ -273,12 +277,23 @@ form > div > label {
         background-color: var(--gray);
     }
 
+    .outstanding-button > i {
+        margin-right: 5px;
+    }
+
 @media (min-width: 768px) {
     .outstanding-button {
-    height: 55px;
-    border-radius: 15px;
-    font-size: 32px;
+        height: 45px;
+        font-size: 32px;
     }
+
+        .outstanding-button > i {
+            font-size: 36px;
+        }
+
+        .outstanding-button > span {
+            font-size: 1.6rem;
+        }
 }
 
 /* ICONS */
@@ -955,5 +970,9 @@ form > div > label {
 
     .outstanding-game-details > h4 {
         font-size: 18px;
+    }
+
+    .outstanding-game-details > div.outstanding-buttons > *:first-child {
+        margin-right: 10px;
     }
 }
