@@ -1,0 +1,16 @@
+﻿@namespace Juegardos.Website.Components
+
+<div id="game-play-box-bar">
+    <Home/>
+    <HowToPlay/>
+    <Share/>
+    <Star/>
+    <FullScreen/>
+</div>
+
+@code {
+
+    [Parameter]
+    public Game Game { get; set; } = null!;
+
+}
