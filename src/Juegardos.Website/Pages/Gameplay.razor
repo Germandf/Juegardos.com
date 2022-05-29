@@ -1,35 +1,27 @@
 ﻿@page "/jugar"
 @inject IGameService _gameService
 
-<h1>Game name</h1>
-
-<div id="game-main-container">
-
-    <div id="game-play-container">
-        <GamePlayBox/>
+@if (_games is null)
+{
+    <div class="loading-zone">
+        <div class="spinner screen-centered"></div>
     </div>
-
-    <Ad Type="AdType.Ad160x600" />
-    <Ad Type="AdType.Ad970x90" />
-    <Ad Type="AdType.Ad728x90" />
-    <Ad Type="AdType.Ad300x250" />
-    <Ad Type="AdType.Ad300x600" />
-
-    @if (_games is null)
-    {
-        <div class="spinner"></div>
-    }
-    else
-    {
+}
+else
+{
+    <h1>Game name</h1>
+    <div class="game-main-container">
+        <GamePlayBox Game="_games[0]" />
+        <Ad Type="AdType.Ad160x600" />
+        <Ad Type="AdType.Ad970x90" />
+        <Ad Type="AdType.Ad728x90" />
+        <Ad Type="AdType.Ad300x250" />
+        <Ad Type="AdType.Ad300x600" />
         <CarouselMultiple Title="Jugos similares" Games="_games" />
-    }
-
-</div>
+    </div>
+}
 
 @code {
-
-    [Parameter]
-    public Game Game { get; set; } = null!;
 
     private List<Game>? _games = null;
 

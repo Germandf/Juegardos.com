@@ -1,14 +1,16 @@
 ﻿@namespace Juegardos.Website.Components
 
-<div id="game-play-box">
-    <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" />
-</div>
-<div id="game-play-box-bar">
-    <i class="material-icons-outlined">home</i>
-    <i class="material-symbols-outlined">help</i>
-    <i class="material-icons-outlined">share</i>
-    <Star Starred="Game.IsFavourite" />
-    <i class="material-icons">open_in_full</i>
+<div class="game-play-container">
+    <div class="game-play-box">
+        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" />
+    </div>
+    <div class="game-play-box-bar">
+        <i class="material-icons-outlined">home</i>
+        <i class="material-symbols-outlined">help</i>
+        <i class="material-icons-outlined">share</i>
+        <Star Starred="Game.IsFavourite" />
+        <i class="material-icons">open_in_full</i>
+    </div>
 </div>
 
 @code {
