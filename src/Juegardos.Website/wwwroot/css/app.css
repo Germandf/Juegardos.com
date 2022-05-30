@@ -662,6 +662,7 @@ textarea.primary-input {
     }
 
     .modal-body > form > div.links > div > a:first-child {
+        margin-bottom: 0px;
         margin-right: 10px;
     }
 }
