@@ -13,7 +13,14 @@
 
     [Parameter]
     public EventCallback<string> OnSearch { get; set; }
+    [Parameter]
+    public string InitialText { get; set; } = "";
 
     private string _searchText = "";
+
+    protected override void OnInitialized()
+    {
+        _searchText = InitialText;
+    }
 
 }

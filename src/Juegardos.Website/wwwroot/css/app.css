@@ -632,7 +632,7 @@ textarea.primary-input {
     flex-wrap: wrap;
     gap: 6px;
     align-items: center;
-    margin: 0;
+    margin: 40px 0;
 }
 
     .pagination .page-item:hover {
@@ -960,4 +960,41 @@ textarea.primary-input {
     .outstanding-game-details > div.outstanding-buttons > *:first-child {
         margin-right: 10px;
     }
+}
+
+/* SEARCH PAGE */
+
+.search-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+    .search-container > * {
+        margin: 20px 10px;
+    }
+
+    .search-container > .search-title {
+        text-align: center;
+    }
+
+    .search-container > .search-filters {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .search-container > .search-filters > .search-filter {
+        width: 30%;
+    }
+
+    .search-container > .search-filters > .search-filter > label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+.search-games-container {
+    margin: 20px;
+}
+
+.search-games-container > * {
+    margin: 10px;
 }

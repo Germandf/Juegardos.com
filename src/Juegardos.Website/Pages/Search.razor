@@ -2,27 +2,68 @@
 @page "/buscar/{nameOrCategory}"
 @inject IGameService _gameService
 
-<h3>Search</h3>
-
-@if (_isLoading)
-{
-    <div class="loading-zone">
-        <div class="spinner screen-centered"></div>
+<div class="search-container">
+    <h3 class="search-title">Buscar</h3>
+    <InputSearch InitialText="@StringHelper.FormatToNonUrlName(NameOrCategory ?? "")" OnSearch="SearchGames" />
+    <div class="search-filters">
+        <div class="search-filter">
+            <label>Categoría</label>
+            <select class="primary-input">
+                <option selected hidden disabled>Seleccioná...</option>
+                <option>Acción</option>
+                <option>Aventura</option>
+                <option>Belleza</option>
+                <option>Carreras</option>
+                <option>Clásicos</option>
+                <option>Click</option>
+                <option>Deporte</option>
+                <option>Puzzle</option>
+                <option>Tiros</option>
+            </select>
+        </div>
+        <div class="search-filter">
+            <label>Popularidad</label>
+            <select class="primary-input">
+                <option selected hidden disabled>Seleccioná...</option>
+                <option>Más populares</option>
+                <option>Menos populares</option>
+            </select>
+        </div>
+        <div class="search-filter">
+            <label>Ordenamiento</label>
+            <select class="primary-input">
+                <option selected hidden disabled>Seleccioná...</option>
+                <option>Ascendente</option>
+                <option>Descendente</option>
+            </select>
+        </div>
     </div>
-}
-else
-{
-    if (!_games.Any())
+</div>
+<div class="search-games-container">
+    @if (_isLoading)
     {
-        <p>No se encontraron juegos</p>
+        <div class="loading-zone">
+            <div class="spinner screen-centered"></div>
+        </div>
     }
-    else foreach (var game in _games)
+    else
     {
-        <GameCard Game="game" />
-    }
-}
+        @if (!_games.Any())
+        {
+            <p>No se encontraron juegos</p>
+        }
+        else
+        {
+            foreach (var game in _games)
+            {
+                <GameCard Game="game" />
+            }
+            <Pagination PaginationParameters="_paginationParameters" />
+        }
 
-<Pagination PaginationParameters="_paginationParameters" />
+        
+    }
+</div>
 
 @code {
 
@@ -35,6 +76,15 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
+        _isLoading = true;
+        if (NameOrCategory is not null)
+            _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory));
+        _isLoading = false;
+    }
+
+    private async Task SearchGames(string name)
+    {
+        NameOrCategory = name;
         _isLoading = true;
         if (NameOrCategory is not null)
             _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory));
