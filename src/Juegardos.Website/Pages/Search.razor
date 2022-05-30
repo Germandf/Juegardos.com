@@ -1,11 +1,44 @@
 ﻿@page "/buscar"
+@page "/buscar/{nameOrCategory}"
+@inject IGameService _gameService
 
 <h3>Search</h3>
+
+@if (_isLoading)
+{
+    <div class="loading-zone">
+        <div class="spinner screen-centered"></div>
+    </div>
+}
+else
+{
+    if (!_games.Any())
+    {
+        <p>No se encontraron juegos</p>
+    }
+    else foreach (var game in _games)
+    {
+        <GameCard Game="game" />
+    }
+}
 
 <Pagination PaginationParameters="_paginationParameters" />
 
 @code {
 
+    [Parameter]
+    public string? NameOrCategory { get; set; }
+
     private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
+    private List<Game> _games = new();
+    private bool _isLoading = false;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _isLoading = true;
+        if (NameOrCategory is not null)
+            _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory));
+        _isLoading = false;
+    }
 
 }

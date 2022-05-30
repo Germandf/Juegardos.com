@@ -9,4 +9,18 @@ public static class StringHelper
         return new string(Enumerable.Repeat(chars, length)
           .Select(s => s[_random.Next(s.Length)]).ToArray());
     }
+
+    public static string FormatToNonUrlName(string name)
+    {
+        name = name.Replace("-", " ");
+        name = name.ToLower();
+        return name;
+    }
+
+    public static string FormatToUrlName(string name)
+    {
+        name = name.Replace(" ", "-");
+        name = name.ToLower();
+        return name;
+    }
 }

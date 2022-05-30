@@ -142,13 +142,13 @@ namespace Juegardos.Website.Services
             return null;
         }
 
-        public async Task<List<Game>> SearchGames(string name)
+        public async Task<List<Game>> SearchGames(string nameOrCategory)
         {
             await Task.Delay(1000);
             var games = new List<Game>();
             foreach (var category in _categories)
                 foreach (var game in category.Games)
-                    if (game.Name.ToLower().Contains(name.ToLower()))
+                    if (category.Name.ToLower().Contains(nameOrCategory.ToLower()) || game.Name.ToLower().Contains(nameOrCategory.ToLower()))
                         games.Add(game);
             return games;
         }

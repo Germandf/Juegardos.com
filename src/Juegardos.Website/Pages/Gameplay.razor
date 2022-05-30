@@ -39,7 +39,7 @@ else
     {
         _isLoading = true;
         if (Name is not null)
-            _game = await _gameService.GetGame(Name);
+            _game = await _gameService.GetGame(StringHelper.FormatToNonUrlName(Name));
         _isLoading = false;
     }
 
