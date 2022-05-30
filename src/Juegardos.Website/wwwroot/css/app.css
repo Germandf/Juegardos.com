@@ -302,6 +302,17 @@ textarea.primary-input {
     color: var(--terciary-normal)
 }
 /* LAYOUT */
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.content {
+    flex: 1;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -747,11 +758,6 @@ textarea.primary-input {
 .carousel .left {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
-}
-
-.loading-zone {
-    position: relative;
-    height: 80vh;
 }
 
 .spinner {
