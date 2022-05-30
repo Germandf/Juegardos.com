@@ -30,7 +30,7 @@
             </select>
         </div>
         <div class="search-filter">
-            <label>Ordenamiento</label>
+            <label>Ordenar</label>
             <select class="primary-input">
                 <option selected hidden disabled>Seleccioná...</option>
                 <option>Ascendente</option>
@@ -39,7 +39,8 @@
         </div>
     </div>
 </div>
-<div class="search-games-container">
+@if (!_nameOrCategoryNullAtBeginning)
+{
     @if (_isLoading)
     {
         <div class="loading-zone">
@@ -54,16 +55,16 @@
         }
         else
         {
-            foreach (var game in _games)
-            {
-                <GameCard Game="game" />
-            }
+            <div class="search-games-container">
+                @foreach (var game in _games)
+                {
+                    <GameCard Game="game" />
+                }
+            </div>
             <Pagination PaginationParameters="_paginationParameters" />
         }
-
-        
     }
-</div>
+}
 
 @code {
 
@@ -73,11 +74,14 @@
     private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
     private List<Game> _games = new();
     private bool _isLoading = false;
+    private bool _nameOrCategoryNullAtBeginning = false;
 
     protected override async Task OnParametersSetAsync()
     {
         _isLoading = true;
-        if (NameOrCategory is not null)
+        if (NameOrCategory is null)
+            _nameOrCategoryNullAtBeginning = true;
+        else
             _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory));
         _isLoading = false;
     }
@@ -89,6 +93,7 @@
         if (NameOrCategory is not null)
             _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory));
         _isLoading = false;
+        _nameOrCategoryNullAtBeginning = false;
     }
 
 }

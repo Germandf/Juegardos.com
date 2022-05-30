@@ -966,7 +966,7 @@ textarea.primary-input {
 
 .search-container {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 40px 10px;
 }
 
     .search-container > * {
@@ -992,9 +992,41 @@ textarea.primary-input {
     }
 
 .search-games-container {
-    margin: 20px;
+    display: grid;
+    align-content: center;
+    grid-template-columns: auto;
+    gap: 10px;
+    justify-content: center;
 }
 
 .search-games-container > * {
     margin: 10px;
+}
+
+@media (min-width: 768px) {
+    .search-container {
+        margin: 40px auto;
+    }
+
+    .search-games-container {
+        grid-template-columns: auto auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-games-container {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    .search-games-container {
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    .search-games-container {
+        grid-template-columns: auto auto auto auto;
+    }
 }
