@@ -418,11 +418,6 @@ form > div > label {
     }
 }
 
-.megamenu-toggle {
-    display: flex;
-    align-items: center;
-}
-
 .nav-links li {
     list-style: none;
 }
@@ -445,6 +440,30 @@ form > div > label {
     display: none;
 }
 
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0;
+}
+
+    .backdrop.show {
+        z-index: 2;
+    }
+
+        .backdrop.show.opacity-background {
+            opacity: .5;
+        }
+
+.mega-box-toggle {
+    display: flex;
+    align-items: center;
+}
+
 .mega-box {
     position: absolute;
     left: 0;
@@ -452,7 +471,7 @@ form > div > label {
     top: 85px;
     opacity: 0;
     visibility: hidden;
-    z-index: 1;
+    z-index: -1;
 }
 
     .mega-box.active {
@@ -460,6 +479,7 @@ form > div > label {
         top: 52px;
         opacity: 1;
         visibility: visible;
+        z-index: 3;
     }
 
     .mega-box .content {
@@ -548,22 +568,6 @@ form > div > label {
         margin: 0;
     }
 }
-
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -2;
-    width: 100vw;
-    height: 100vh;
-    background-color: #000;
-    opacity: 0;
-}
-
-    .modal-backdrop.show {
-        z-index: 2;
-        opacity: .5;
-    }
 
 .modal {
     position: absolute;

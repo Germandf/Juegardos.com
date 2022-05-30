@@ -1,5 +1,6 @@
 ﻿@inject NavigationManager _navigationManager
 
+<div class="backdrop @(_showMegaMenu ? "show" : "")" @onclick="Close"></div>
 <nav class="navbar">
     <div class="minimized-navbar">
         <i class="material-icons toggle-button" @onclick="() => _active = !_active">menu</i>
@@ -9,28 +10,28 @@
     <div class="navbar-links @(_active ? "active" : "")">
         <ul>
             <li>
-                <a class="megamenu-toggle" @onclick="() => _showMegaMenu = !_showMegaMenu">Categorias<i class="material-icons">arrow_drop_down</i></a>
+                <a class="mega-box-toggle" @onclick="() => _showMegaMenu = !_showMegaMenu">Categorias<i class="material-icons">arrow_drop_down</i></a>
                 <div class="mega-box @(_showMegaMenu ? "active" : "")">
                     <div class="content">
                         <div class="row">
                             <ul class="mega-links">
-                                <li><a href="buscar/accion">Acción</a></li>
-                                <li><a href="buscar/aventura">Aventura</a></li>
-                                <li><a href="buscar/belleza">Belleza</a></li>
+                                <li><a href="buscar/accion" @onclick='() => NavigateToAndCloseMegaMenu("buscar/accion")'>Acción</a></li>
+                                <li><a href="buscar/aventura" @onclick='() => NavigateToAndCloseMegaMenu("buscar/aventura")'>Aventura</a></li>
+                                <li><a href="buscar/belleza" @onclick='() => NavigateToAndCloseMegaMenu("buscar/belleza")'>Belleza</a></li>
                             </ul>
                         </div>
                         <div class="row">
                             <ul class="mega-links">
-                                <li><a href="buscar/carreras">Carreras</a></li>
-                                <li><a href="buscar/clasicos">Clásicos</a></li>
-                                <li><a href="buscar/click">Click</a></li>
+                                <li><a href="buscar/carreras" @onclick='() => NavigateToAndCloseMegaMenu("buscar/carreras")'>Carreras</a></li>
+                                <li><a href="buscar/clasicos" @onclick='() => NavigateToAndCloseMegaMenu("buscar/clasicos")'>Clásicos</a></li>
+                                <li><a href="buscar/click" @onclick='() => NavigateToAndCloseMegaMenu("buscar/click")'>Click</a></li>
                             </ul>
                         </div>
                         <div class="row">
                             <ul class="mega-links">
-                                <li><a href="buscar/deportes">Deportes</a></li>
-                                <li><a href="buscar/puzzle">Puzzle</a></li>
-                                <li><a href="buscar/tiros">Tiros</a></li>
+                                <li><a href="buscar/deportes" @onclick='() => NavigateToAndCloseMegaMenu("buscar/deportes")'>Deportes</a></li>
+                                <li><a href="buscar/puzzle" @onclick='() => NavigateToAndCloseMegaMenu("buscar/puzzle")'>Puzzle</a></li>
+                                <li><a href="buscar/tiros" @onclick='() => NavigateToAndCloseMegaMenu("buscar/tiros")'>Tiros</a></li>
                             </ul>
                         </div>
                     </div>
@@ -157,6 +158,18 @@
     {
         _modalResetPassword.Close();
         _resetPassword = new();
+    }
+
+    public void Close()
+    {
+        _showMegaMenu = false;
+        StateHasChanged();
+    }
+
+    public void NavigateToAndCloseMegaMenu(string url)
+    {
+        _navigationManager.NavigateTo(url);
+        _showMegaMenu = false;
     }
 
 }
