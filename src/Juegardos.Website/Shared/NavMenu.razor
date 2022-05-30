@@ -5,7 +5,10 @@
     <div class="minimized-navbar">
         <i class="material-icons toggle-button" @onclick="() => _active = !_active">menu</i>
         <div class="brand-title logo" @onclick='() => _navigationManager.NavigateTo("")'><Logo /></div>
-        <a href="buscar"><i class="material-icons search-button">search</i></a>
+        @if (!_isInSearchPage)
+        {
+            <a href="buscar"><i class="material-icons search-button">search</i></a>
+        }
     </div>
     <div class="navbar-links @(_active ? "active" : "")">
         <ul>
@@ -37,7 +40,10 @@
                     </div>
                 </div>
             </li>
-            <li class="hide-on-mobile"><InputSearch OnSearch="(string text) => SearchGames(text)" /></li>
+            @if (!_isInSearchPage)
+            {
+                <li class="hide-on-mobile"><InputSearch OnSearch="(string text) => SearchGames(text)" /></li>
+            }
             <li class="hide-on-mobile" @onclick="() => _modalSignIn.Open()"><a href=""><i class="material-icons">account_circle</i></a></li>
             <li class="hide-on-desktop" @onclick="() => _modalSignIn.Open()"><a href="">Mi cuenta</a></li>
         </ul>
@@ -111,12 +117,24 @@
 
     private bool _active = false;
     private bool _showMegaMenu = false;
+    private bool _isInSearchPage = false;
     private Modal _modalSignIn = new();
     private Modal _modalSignUp = new();
     private Modal _modalResetPassword = new();
     private SignIn _signIn = new();
     private SignUp _signUp = new();
     private ResetPassword _resetPassword = new();
+
+    protected override void OnInitialized()
+    {
+        _navigationManager.LocationChanged += SetIsInSearchPage;
+    }
+
+    private void SetIsInSearchPage(object? sender, LocationChangedEventArgs args)
+    {
+        _isInSearchPage = args.Location.Contains("buscar");
+        StateHasChanged();
+    }
 
     private void SignInToSignUp()
     {
@@ -175,6 +193,7 @@
     public void SearchGames(string text)
     {
         _navigationManager.NavigateTo($"buscar/{StringHelper.FormatToUrlName(text)}");
+        StateHasChanged();
     }
 
 }
