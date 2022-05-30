@@ -8,5 +8,6 @@ builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddSingleton<IAppState, AppState>();
 
 await builder.Build().RunAsync();

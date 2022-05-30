@@ -2,15 +2,15 @@
 
 public static class GameCategoryOptions
 {
-    public const string Action = "accion";
-    public const string Adventure = "aventura";
-    public const string Beauty = "belleza";
-    public const string Races = "carreras";
-    public const string Classics = "clasicos";
-    public const string Click = "click";
-    public const string Sports = "deportes";
-    public const string Puzzle = "puzzle";
-    public const string Shots = "tiros";
+    public const string Action = "Acción";
+    public const string Adventure = "Aventura";
+    public const string Beauty = "Belleza";
+    public const string Races = "Carreras";
+    public const string Classics = "Clásicos";
+    public const string Click = "Click";
+    public const string Sports = "Deportes";
+    public const string Puzzle = "Puzzle";
+    public const string Shots = "Tiros";
 }
 
 public static class GamePopularityOptions
