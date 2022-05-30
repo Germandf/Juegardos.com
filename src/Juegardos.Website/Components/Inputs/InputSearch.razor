@@ -1,15 +1,19 @@
 ﻿@namespace Juegardos.Website.Components
 
-<div class="input-group">
-    <input type="text" placeholder="Escribe aquí..." class="primary-input">
-    <div class="input-group-append" @onclick="() => OnSearch.InvokeAsync()">
-        <i class="material-icons">search</i>
+<form @onsubmit="() => OnSearch.InvokeAsync(_searchText)">
+    <div class="input-group">
+        <input type="text" placeholder="Escribe aquí..." class="primary-input" @bind-value="@_searchText">
+        <div class="input-group-append" @onclick="() => OnSearch.InvokeAsync(_searchText)">
+            <i class="material-icons">search</i>
+        </div>
     </div>
-</div>
+</form>
 
 @code{
 
     [Parameter]
-    public EventCallback OnSearch { get; set; }
+    public EventCallback<string> OnSearch { get; set; }
+
+    private string _searchText = "";
 
 }

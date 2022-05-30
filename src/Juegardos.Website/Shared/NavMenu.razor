@@ -5,7 +5,7 @@
     <div class="minimized-navbar">
         <i class="material-icons toggle-button" @onclick="() => _active = !_active">menu</i>
         <div class="brand-title logo" @onclick='() => _navigationManager.NavigateTo("")'><Logo /></div>
-        <i class="material-icons search-button">search</i>
+        <a href="buscar"><i class="material-icons search-button">search</i></a>
     </div>
     <div class="navbar-links @(_active ? "active" : "")">
         <ul>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </li>
-            <li class="hide-on-mobile"><InputSearch /></li>
+            <li class="hide-on-mobile"><InputSearch OnSearch="(string text) => SearchGames(text)" /></li>
             <li class="hide-on-mobile" @onclick="() => _modalSignIn.Open()"><a href=""><i class="material-icons">account_circle</i></a></li>
             <li class="hide-on-desktop" @onclick="() => _modalSignIn.Open()"><a href="">Mi cuenta</a></li>
         </ul>
@@ -170,6 +170,11 @@
     {
         _navigationManager.NavigateTo(url);
         _showMegaMenu = false;
+    }
+
+    public void SearchGames(string text)
+    {
+        _navigationManager.NavigateTo($"buscar/{StringHelper.FormatToUrlName(text)}");
     }
 
 }

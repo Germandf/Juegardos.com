@@ -226,15 +226,6 @@ textarea.primary-input {
     cursor: pointer;
 }
 
-form > div {
-    margin: 20px 0;
-}
-
-form > div > label {
-    display: block;
-    margin-bottom: 5px;
-}
-
 /* BUTTON */
 
 .simple-button {
@@ -369,11 +360,15 @@ form > div > label {
     justify-content: space-between;
 }
 
+    .minimized-navbar > a {
+        text-decoration: none;
+    }
+
 .footer {
     text-align: center;
     color: var(--gray);
     background-color: var(--black);
-    margin-top:20px;
+    margin-top: 20px;
     padding: 10px 10px;
 }
 
@@ -621,6 +616,15 @@ form > div > label {
     flex: 1 1 auto;
     padding: 1rem;
 }
+
+.modal > form > div {
+    margin: 20px 0;
+}
+
+    .modal > form > div > label {
+        display: block;
+        margin-bottom: 5px;
+    }
 
 .pagination {
     display: flex;
