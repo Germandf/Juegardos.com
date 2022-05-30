@@ -1,15 +1,17 @@
 ﻿@namespace Juegardos.Website.Components
 
-@if(Starred)
+@if(Game.IsFavourite)
 {
-    <i class="material-icons starred">star</i>
+    <i class="material-icons starred" @onclick="() => Game.IsFavourite = !Game.IsFavourite">star</i>
 }
 else
 {
-    <i class="material-icons">star_outline</i>
+    <i class="material-icons" @onclick="() => Game.IsFavourite = !Game.IsFavourite">star</i>
 }
 
 @code {
+
     [Parameter]
-    public bool Starred { get; set; } = false;
+    public Game Game { get; set; } = new();
+
 }
