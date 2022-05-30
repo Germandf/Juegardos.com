@@ -7,4 +7,7 @@ public class Game
     public bool IsFavourite { get; set; }
     public string Image { get; set; } = "https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg";
     public bool IsOutstanding { get; set; }
+    public string Category { get; set; } = "";
+    public int Likes { get; set; }
+    public int Dislikes { get; set; }
 }
