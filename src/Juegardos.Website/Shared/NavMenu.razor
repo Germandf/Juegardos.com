@@ -67,12 +67,12 @@
             <InputText class="primary-input" placeholder="Escribe aquí..." type="password" @bind-Value="_signIn.Password" />
             <ValidationMessage For="() => _signIn.Password" />
         </div>
-        <div>
+        <div class="links">
+            <div>
+                <a @onclick="SignInToSignUp">No recuerdo cómo ingresar</a>
+                <a @onclick="SignInToResetPassword">¡Registrarme!</a>
+            </div>
             <button class="simple-button">Ingresar</button>
-        </div>
-        <div>
-            <a @onclick="SignInToSignUp">¿No tenés cuenta? ¡Registrate!</a>
-            <a @onclick="SignInToResetPassword">Olvidé mi contraseña</a>
         </div>
     </EditForm>
 </Modal>
@@ -95,7 +95,7 @@
             <InputText class="primary-input" placeholder="Escribe aquí..." type="password" @bind-Value="_signUp.Password" />
             <ValidationMessage For="() => _signUp.Password" />
         </div>
-        <div>
+        <div class="links">
             <a @onclick="SignUpToSignIn">Ya tengo una cuenta</a>
             <button class="simple-button">Registrarme</button>
         </div>
@@ -110,7 +110,7 @@
             <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_resetPassword.UsernameOrEmail" />
             <ValidationMessage For="() => _resetPassword.UsernameOrEmail" />
         </div>
-        <div>
+        <div class="links">
             <a @onclick="ResetPasswordToSignIn">Recordé mi contraseña</a>
             <button class="simple-button">Recuperar</button>
         </div>

@@ -155,7 +155,7 @@ label {
     border-bottom: 2px solid var(--primary-light);
     border-radius: 5px;
     background: var(--white);
-    height: 35px;
+    height: 38px;
     width: 100%;
     padding: 0 10px 0 10px;
     display: block;
@@ -230,7 +230,7 @@ textarea.primary-input {
 
 .simple-button {
     width: auto;
-    height: 32px;
+    height: 38px;
     padding: 0 20px;
     border-radius: 20px;
     font-family: var(--primary-font);
@@ -628,14 +628,43 @@ textarea.primary-input {
     padding: 1rem;
 }
 
-.modal > form > div {
-    margin: 20px 0;
-}
+    .modal-body > form > div {
+        margin: 20px 0;
+    }
 
-    .modal > form > div > label {
+    .modal-body > form > div > label {
         display: block;
         margin-bottom: 5px;
     }
+
+    .modal-body > form > div.links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-body > form > div.links > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .modal-body > form > div.links > div > * {
+            display: block;
+        }
+
+        .modal-body > form > div.links > div > a:first-child {
+            margin-bottom: 15px;
+        }
+
+@media (min-width: 768px) {
+    .modal-body > form > div.links > div {
+        flex-direction: row;
+    }
+
+    .modal-body > form > div.links > div > a:first-child {
+        margin-right: 10px;
+    }
+}
 
 .pagination {
     display: flex;
