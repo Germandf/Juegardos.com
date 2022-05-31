@@ -1,4 +1,5 @@
 ﻿@inherits LayoutComponentBase
+@inject IAppState _appState
 
 <div class="wrapper">
     <NavMenu />
@@ -7,3 +8,30 @@
     </div>
     <Footer/>
 </div>
+
+<Modal Expanded="true" @ref="_gameModal">
+    <TitleContent>
+        @_appState.GameToShow.Name
+    </TitleContent>
+    <ChildContent>
+        <div class="game-modal">
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </ChildContent>
+</Modal>
+
+@code {
+
+    private Modal _gameModal = new();
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            _appState.GameModal = _gameModal;
+    }
+
+}

@@ -1,6 +1,7 @@
 ﻿@namespace Juegardos.Website.Components
+@inject IAppState _appState
 
-<div class="game-card">
+<div class="game-card" @onclick="OpenGameModal">
     <img src="@Game.Image" />
     <h5>@Game.Name</h5>
     <Star Game="Game"/>
@@ -10,5 +11,11 @@
 
     [Parameter]
     public Game Game { get; set; } = null!;
+
+    private void OpenGameModal()
+    {
+        _appState.GameToShow = Game;
+        _appState.GameModal.Open();
+    }
 
 }
