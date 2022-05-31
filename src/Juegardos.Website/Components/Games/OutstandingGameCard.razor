@@ -1,12 +1,15 @@
 ﻿@namespace Juegardos.Website.Components
+@inject IAppState _appState
+@inject NavigationManager _navigationManager
+
 <div class="outstanding-game-card">
     <img src="@Game.Image" />
     <div class="outstanding-game-details">
         <h1>@Game.Name</h1>
         <h4>@Game.Description</h4>
         <div class="outstanding-buttons">
-            <button class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
-            <button class="outstanding-button info-button"><i class="material-icons">info_outline</i><span>Más información</span></button>
+            <button @onclick="GoToGame" class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
+            <button @onclick="OpenGameModal" class="outstanding-button info-button"><i class="material-icons">info_outline</i><span>Más información</span></button>
         </div>
     </div>
 </div>
@@ -15,5 +18,16 @@
 
     [Parameter]
     public Game Game { get; set; } = null!;
+
+    private void OpenGameModal()
+    {
+        _appState.GameToShow = Game;
+        _appState.GameModal.Open();
+    }
+
+    private void GoToGame()
+    {
+        _navigationManager.NavigateTo($"jugar/{StringHelper.FormatToUrlName(Game.Name)}");
+    }
 
 }
