@@ -13,25 +13,25 @@ else
     }
     else
     {
-    <div class="my-account-main">
-        <div class="my-account-container">
-            <h3>Mi cuenta</h3>
-            <div class="user-pic">
-                <i class="material-icons">account_circle</i>
+        <div class="my-account-main">
+            <div class="my-account-container">
+                <h3>Mi cuenta</h3>
+                <div class="user-pic">
+                    <i class="material-icons">account_circle</i>
+                </div>
+                <p>@_user.Name</p>
+                <p>@_user.Email</p>
+                <h4>Tiempo jugado</h4>
+                <p>@_user.TimePlayed</p>
+                <h4>Juegos favoritos</h4>
+                <ul class="account-fav-list">
+                    <li>@_user.FavGames, </li>
+                    <li>Juego2</li>
+                </ul>
+                <h4>Miebro desde</h4>
+                <p>@_user.MemberSince</p>
             </div>
-            <p>@_user.Name</p>
-            <p>@_user.Email</p>
-            <h4>Tiempo jugado</h4>
-            <p>@_user.TimePlayed</p>
-            <h4>Juegos favoritos</h4>
-            <ul class="account-fav-list">
-                <li>@_user.FavGames, </li>
-                <li>Juego2</li>
-            </ul>
-            <h4>Miebro desde</h4>
-            <p>@_user.MemberSince</p>
         </div>
-    </div>
     }
 }
 
