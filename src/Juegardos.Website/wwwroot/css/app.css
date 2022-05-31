@@ -587,7 +587,7 @@ textarea.primary-input {
     z-index: -1;
     display: none;
     max-width: 500px;
-    background-color: #fff;
+    background-color: var(--primary-normal);
     border-radius: 0.3rem;
 }
 
@@ -597,10 +597,6 @@ textarea.primary-input {
         left: 0;
         right: 0;
         margin: 0 auto;
-    }
-
-    .modal * {
-        color: var(--black);
     }
 
     .modal.show {
@@ -615,16 +611,26 @@ textarea.primary-input {
         width: auto;
     }
 
+        .modal.expanded *:not(button) {
+            padding: 0;
+        }
+
+        .modal.expanded .modal-header {
+            margin: 0 15px;
+        }
+
 .modal-header {
     display: flex;
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
     padding: 1rem 1rem;
-    border-bottom: 1px solid #dee2e6;
-    border-top-left-radius: calc(0.3rem - 1px);
-    border-top-right-radius: calc(0.3rem - 1px);
+    border-bottom: 1px solid var(--white);
 }
+
+    .modal.expanded .modal-header {
+        border: none;
+    }
 
 .modal-header > i {
     padding: 10px;
@@ -1087,6 +1093,43 @@ textarea.primary-input {
 .game-modal > iframe {
     width: 100%;
     height: 200px;
+}
+
+.game-modal > div.game-modal-play {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.game-modal h3 {
+    margin-bottom: 20px;
+}
+
+.game-modal h5 {
+    margin-bottom: 10px;
+}
+
+.game-modal p {
+    margin-bottom: 20px;
+}
+
+.game-modal li {
+    list-style: circle;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.game-modal .game-modal-info {
+    padding: 16px !important;
+}
+
+.game-modal .game-modal-info > div > div {
+    padding-left: 16px;
+}
+
+.game-modal .game-modal-info > div > div > p,
+.game-modal .game-modal-info > div > div > ul {
+    padding-left: 16px;
 }
 
 @media (min-width: 768px) {
