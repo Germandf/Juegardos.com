@@ -21,31 +21,18 @@
                 <button @onclick="GoToGame" class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
             </div>
             <div class="game-modal-info">
-                <div>
-                    <h3>Resumen</h3>
-                    <div>
-                        <p>Call of Duty: Civil War transporta a los jugadores al corazón de la volátil batalla geopolítica de la Guerra Fría, a principios de la década de 1980. Nada es lo que parece en la fascinante campaña para un jugador, donde los jugadores se enfrentan cara a cara a figuras históricas y verdades incómodas mientras luchan por todo el mundo en escenarios icónicos de la Guerra Fría como Berlín Este, Vietnam, la sede del KGB y más.</p>
-                        <p>Género: @_appState.GameToShow.Category</p>
-                        <p>Popularidad: @_appState.GameToShow.Likes</p>
-                    </div>
-                </div>
-                <div>
-                    <h3>Cómo jugar</h3>
-                    <div>
-                        <h5>¿Qué tengo que hacer?</h5>
-                        <p>Call of Duty: Civil War es un juego de disparos construido en el mismo estilo que Battlefield y cuenta con la misma acción emocionante que te mantiene decidido a superar cada nivel. Coge el arma que mejor se adapte al trabajo y ábrete paso por el mapa, derribando enemigos y controlando el tiempo cuidadosamente con tus movimientos. Cualquier cosa puede usarse como un arma, así que no tengas miedo de utilizar lo que la situación requiera.</p>
-                        <h5>Controles</h5>
-                        <ul>
-                            <li>WASD - Moverse</li>
-                            <li>Click izquierdo - Disparar</li>
-                            <li>Click derecho - Apuntar</li>
-                            <li>R - Recargar</li>
-                            <li>Espacio - Saltar</li>
-                            <li>Q - Cambio de arma</li>
-                        </ul>
-                    </div>
-                </div>
+                <p>@_appState.GameToShow.Description</p>
+                <p>Género: @_appState.GameToShow.Category</p>
+                <p>Popularidad: @_appState.GameToShow.Likes</p>
             </div>
+            @if (!_appState.RelatedGames.Any())
+            {
+                <div class="spinner"></div>
+            }
+            else
+            {
+                <CarouselMultiple Title="Juegos relacionados" Games="_appState.RelatedGames" />
+            }
         </div>
     </ChildContent>
 </Modal>
@@ -57,7 +44,11 @@
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
+        {
             _appState.GameModal = _gameModal;
+            _appState.StateHasChangedInModal = new EventCallback(this, StateHasChanged);
+        }
+        
     }
 
     private void GoToGame()

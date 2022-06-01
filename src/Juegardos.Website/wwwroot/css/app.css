@@ -611,12 +611,8 @@ textarea.primary-input {
         width: auto;
     }
 
-        .modal.expanded *:not(button) {
-            padding: 0;
-        }
-
         .modal.expanded .modal-header {
-            margin: 0 15px;
+            padding-bottom: 0;
         }
 
 .modal-header {
@@ -834,6 +830,15 @@ textarea.primary-input {
         border: 6px solid #fff;
         border-color: #fff transparent #fff transparent;
         animation: spinner 1.2s linear infinite;
+    }
+
+    .spinner:not(.screen-centered) {
+        display: inherit;
+        margin: auto;
+    }
+
+    .spinner:not(.screen-centered):after {
+        margin: auto;
     }
 
 @keyframes spinner {
@@ -1114,25 +1119,6 @@ textarea.primary-input {
 
 .game-modal p {
     margin-bottom: 20px;
-}
-
-.game-modal li {
-    list-style: circle;
-    margin-left: 30px;
-    margin-bottom: 5px;
-}
-
-.game-modal .game-modal-info {
-    padding: 16px !important;
-}
-
-.game-modal .game-modal-info > div > div {
-    padding-left: 16px;
-}
-
-.game-modal .game-modal-info > div > div > p,
-.game-modal .game-modal-info > div > div > ul {
-    padding-left: 16px;
 }
 
 @media (min-width: 768px) {
