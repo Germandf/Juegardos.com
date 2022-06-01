@@ -1126,6 +1126,11 @@ textarea.primary-input {
     }
 }
 
+.game-modal .carousel .carousel-posters .carousel-poster:first-child,
+.game-modal .carousel .carousel-title {
+    margin-left: 0;
+}
+
 /* ACCOUNT PAGE */
 .my-account-main {
     display: flex;
