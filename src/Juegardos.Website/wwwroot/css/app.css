@@ -1166,3 +1166,47 @@ textarea.primary-input {
     .my-account-container ul li {
         display: inline-block;
     }
+
+/* NOT FOUND */
+
+.inner {
+    text-align: center;
+    height: auto;
+    overflow: hidden;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .inner img {
+        max-width: 267px;
+    }
+
+    .inner .message {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    }
+
+    .inner .message h1 {
+        padding-bottom: 0;
+        margin-bottom: 2rem;
+        font-size: 1.875rem;
+        line-height: 1.1;
+    }
+
+        .inner .message h2 {
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+        }
+
+        .inner .message h2 {
+            font-size: 1em;
+            font-weight: 400;
+            font-weight: var(--body-font-weight);
+            line-height: 1.2em;
+            color: #a3a8ab;
+            margin: 0;
+            padding: 0;
+        }
