@@ -902,16 +902,18 @@ textarea.primary-input {
 .game-card {
     display: inline-block;
     position: relative;
-    height: 150px;
-    width: fit-content;
+    height: 140px;
+    width: 250px;
     cursor: pointer;
     background-image: linear-gradient(var(--invisible), #0f0f0f);
+    border-radius: 4px;
 }
 
     .game-card > img {
-        object-fit: contain;
         height: 100%;
+        width: 100%;
         -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgb(0 0 0 / 30%)));
+        border-radius: 4px;
     }
 
     .game-card > h5 {
