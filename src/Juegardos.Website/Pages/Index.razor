@@ -27,8 +27,10 @@ else
     protected override async Task OnInitializedAsync()
     {
         _isLoading = true;
-        _outstandingGame = await _gameService.GetOutstandingGame();
-        _gameCategories = await _gameService.GetCategoriesWithGames();
+        var getGameTask = _gameService.GetOutstandingGame();
+        var getCategoriesWithGamesTask = _gameService.GetCategoriesWithGames();
+        _outstandingGame = await getGameTask;
+        _gameCategories = await getCategoriesWithGamesTask;
         _isLoading = false;
     }
 
