@@ -168,12 +168,14 @@
     {
         _modalSignIn.Close();
         _signIn = new();
+        _navigationManager.NavigateTo("mi-cuenta");
     }
 
     private void HandleSignUp()
     {
         _modalSignUp.Close();
         _signUp = new();
+        _navigationManager.NavigateTo("mi-cuenta");
     }
 
     private void HandleResetPassword()
