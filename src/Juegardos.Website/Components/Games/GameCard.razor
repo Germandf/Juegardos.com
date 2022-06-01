@@ -1,5 +1,6 @@
 ﻿@namespace Juegardos.Website.Components
 @inject IAppState _appState
+@inject IGameService _gameService
 
 <div class="game-card" @onclick="OpenGameModal">
     <img src="@Game.Image" />
@@ -12,10 +13,13 @@
     [Parameter]
     public Game Game { get; set; } = null!;
 
-    private void OpenGameModal()
+    private async Task OpenGameModal()
     {
         _appState.GameToShow = Game;
+        _appState.RelatedGames = new();
         _appState.GameModal.Open();
+        _appState.RelatedGames = await _gameService.SearchGames(Game.Category);
+        await _appState.StateHasChangedInModal.InvokeAsync();
     }
 
 }
