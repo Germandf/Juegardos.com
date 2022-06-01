@@ -298,9 +298,14 @@ textarea.primary-input {
     margin: 5px 5px 5px 0;
 }
 
-.starred {
+.star:hover{
+    cursor: pointer;
+}
+
+.star.starred {
     color: var(--terciary-normal)
 }
+
 /* LAYOUT */
 
 .wrapper {
@@ -946,7 +951,6 @@ textarea.primary-input {
 }
 
 .game-play-box {
-    
     height: 640px;
     width: 970px;
     border: solid black 1px;   
@@ -969,6 +973,10 @@ textarea.primary-input {
 .game-play-box-bar i {
     font-size: 40px;
 }
+
+    .game-play-box-bar i:hover {
+        cursor: pointer;
+    }
 
 .outstanding-game-card {
     position: relative;
@@ -1210,3 +1218,16 @@ textarea.primary-input {
             margin: 0;
             padding: 0;
         }
+
+.how-to-play-modal > h5 {
+    margin-bottom: 10px;
+}
+
+.how-to-play-modal > p {
+    margin-bottom: 30px;
+}
+
+.how-to-play-modal > ul > li {
+    margin-left: 30px;
+    list-style: circle;
+}
