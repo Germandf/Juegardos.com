@@ -25,29 +25,11 @@ else
     }
 }
 
-<Modal Title="Cómo jugar" @ref="_howToPlayModal">
-    <div>
-        <h5>¿Qué tengo que hacer?</h5>
-            <p>Tu misión es infiltrarte en las tropas enemigas y eliminar tantos soldados como sea posible. 
-               Contás con munición limitada, pero podés conseguir más comprando en la tienda cada vez que el juego así lo permita.</p>
-        <h5>Controles</h5>
-        <ul>
-            <li>WASD - Moverse</li>
-            <li>Click izquierdo - Disparar</li>
-            <li>Click derecho - Apuntar</li>
-            <li>R - Recargar</li>
-            <li>Espacio - Saltar</li>
-            <li>Q - Cambio de arma</li>
-        </ul>
-    </div>
-</Modal>
-
 @code {
 
     [Parameter]
     public string? Name { get; set; }
 
-    private Modal _howToPlayModal = new();
     private Game? _game = null;
     private bool _isLoading = false;
 

@@ -5,7 +5,7 @@
 }
 
 .invalid {
-    outline: 1px solid red;
+    /*outline: 1px solid red;*/
 }
 
 .validation-message {
@@ -306,9 +306,14 @@ textarea.primary-input {
     margin: 5px 5px 5px 0;
 }
 
-.starred {
+.star:hover{
+    cursor: pointer;
+}
+
+.star.starred {
     color: var(--terciary-normal)
 }
+
 /* LAYOUT */
 
 .wrapper {
@@ -962,7 +967,6 @@ textarea.primary-input {
 }
 
 .game-play-box {
-    
     height: 640px;
     width: 970px;
     border: solid black 1px;   
@@ -985,6 +989,10 @@ textarea.primary-input {
 .game-play-box-bar i {
     font-size: 40px;
 }
+
+    .game-play-box-bar i:hover {
+        cursor: pointer;
+    }
 
 .outstanding-game-card {
     position: relative;
@@ -1142,6 +1150,11 @@ textarea.primary-input {
     }
 }
 
+.game-modal .carousel .carousel-posters .carousel-poster:first-child,
+.game-modal .carousel .carousel-title {
+    margin-left: 0;
+}
+
 /* ACCOUNT PAGE */
 .my-account-main {
     display: flex;
@@ -1177,3 +1190,60 @@ textarea.primary-input {
     .my-account-container ul li {
         display: inline-block;
     }
+
+/* NOT FOUND */
+
+.inner {
+    text-align: center;
+    height: auto;
+    overflow: hidden;
+    padding-top: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .inner img {
+        max-width: 267px;
+    }
+
+    .inner .message {
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+    }
+
+    .inner .message h1 {
+        padding-bottom: 0;
+        margin-bottom: 2rem;
+        font-size: 1.875rem;
+        line-height: 1.1;
+    }
+
+        .inner .message h2 {
+            margin-bottom: 2.5rem;
+            line-height: 1.4;
+        }
+
+        .inner .message h2 {
+            font-size: 1em;
+            font-weight: 400;
+            font-weight: var(--body-font-weight);
+            line-height: 1.2em;
+            color: #a3a8ab;
+            margin: 0;
+            padding: 0;
+        }
+
+.how-to-play-modal > h5 {
+    margin-bottom: 10px;
+}
+
+.how-to-play-modal > p {
+    margin-bottom: 30px;
+}
+
+.how-to-play-modal > ul > li {
+    margin-left: 30px;
+    list-style: circle;
+}

@@ -1,21 +1,41 @@
 ﻿@namespace Juegardos.Website.Components
+@inject NavigationManager _navigationManager
 
 <div class="game-play-container">
     <div class="game-play-box">
-        <img src="https://image.tmdb.org/t/p/original///56v2KjBlU4XaOv9rVYEQypROD7P.jpg" />
+        <img src="@Game.Image" />
     </div>
     <div class="game-play-box-bar">
-        <i class="material-icons-outlined">home</i>
-        <i class="material-symbols-outlined">help</i>
+        <i class="material-icons-outlined" @onclick='() => _navigationManager.NavigateTo("")'>home</i>
+        <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
         <i class="material-icons-outlined">share</i>
         <Star Game="Game" />
         <i class="material-icons">open_in_full</i>
     </div>
 </div>
 
+<Modal Title="Cómo jugar" @ref="_howToPlayModal">
+    <div class="how-to-play-modal">
+        <h5>¿Qué tengo que hacer?</h5>
+            <p>Tu misión es infiltrarte en las tropas enemigas y eliminar tantos soldados como sea posible. 
+               Contás con munición limitada, pero podés conseguir más comprando en la tienda cada vez que el juego así lo permita.</p>
+        <h5>Controles</h5>
+        <ul>
+            <li>WASD - Moverse</li>
+            <li>Click izquierdo - Disparar</li>
+            <li>Click derecho - Apuntar</li>
+            <li>R - Recargar</li>
+            <li>Espacio - Saltar</li>
+            <li>Q - Cambio de arma</li>
+        </ul>
+    </div>
+</Modal>
+
 @code {
 
     [Parameter]
     public Game Game { get; set; } = null!;
+
+    private Modal _howToPlayModal = new();
 
 }
