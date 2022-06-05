@@ -957,23 +957,42 @@ textarea.primary-input {
         top: 10px;
     }
    
-/* [3] Finally, transforming the image when container gets hovered */
     .game-card:hover img {
         transform: scale(1.5);
     }
-    
+
 
 .game-main-container {
     display: flex;
-    flex-wrap: wrap;
-    background-color: var(--primary-dark);
-    justify-content: center;
+    justify-content: space-evenly;
+    margin: 20px 0;
+}
+
+.game-with-ad {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.game-with-ad > h2 {
+    margin-bottom: 10px;
+}
+
+.side-ads {
+    padding-top: 64px;
+    display: none;
+}
+
+@media (min-width: 1440px) {
+    .side-ads {
+        display: block;
+    }
 }
 
 .game-play-container {
     display: block;
     width: fit-content;
-    margin: 20px 0 20px;
+    margin-bottom: 40px;
 }
 
 .game-play-box {
