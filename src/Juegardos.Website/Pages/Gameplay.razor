@@ -13,17 +13,15 @@ else
     }
     else
     {
-        
+        <h2 class="gameplay-title">@_game.Name</h2>
         <div class="game-main-container">
+            <Ad Type="AdType.Ad160x600" />
             <div class="game-with-ad">
-                <h2>@_game.Name</h2>
+                
                 <GamePlayBox Game="_game" />
                 <Ad Type="AdType.Ad970x90" />
             </div>
-            <div class="side-ads">
-                <Ad Type="AdType.Ad300x600" />
-                <Ad Type="AdType.Ad300x250" />
-            </div>
+            <Ad Type="AdType.Ad160x600" />
         </div>
     }
 }

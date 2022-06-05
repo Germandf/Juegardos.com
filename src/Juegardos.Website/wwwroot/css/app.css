@@ -964,8 +964,17 @@ textarea.primary-input {
 
 .game-main-container {
     display: flex;
-    justify-content: space-evenly;
-    margin: 20px 0;
+    justify-content: center;
+}
+
+.game-main-container > .ad {
+    margin: 0 40px;
+    display: none;
+}
+
+.gameplay-title {
+    text-align: center;
+    margin: 20px;
 }
 
 .game-with-ad {
@@ -974,17 +983,12 @@ textarea.primary-input {
     justify-content: space-between;
 }
 
-.game-with-ad > h2 {
-    margin-bottom: 10px;
-}
-
-.side-ads {
-    padding-top: 64px;
-    display: none;
-}
+    .game-with-ad > .ad {
+        margin: 40px 0;
+    }
 
 @media (min-width: 1440px) {
-    .side-ads {
+    .game-main-container > .ad {
         display: block;
     }
 }
@@ -992,7 +996,6 @@ textarea.primary-input {
 .game-play-container {
     display: block;
     width: fit-content;
-    margin-bottom: 40px;
 }
 
 .game-play-box {
