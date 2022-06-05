@@ -16,7 +16,10 @@
     </TitleContent>
     <ChildContent>
         <div class="game-modal">
-            <iframe width="1920" height="1080" src="https://www.youtube.com/embed/zdVk4hHQTn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="game-modal-video">
+                <video src="videos/call-of-duty-trailer.mp4" autoplay loop muted style="width: 100%;"></video>
+                <i class="material-icons" @onclick="_gameModal.Close">close</i>
+            </div>
             <div class="game-modal-play">
                 <button @onclick="GoToGame" class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
             </div>
@@ -24,15 +27,15 @@
                 <p>@_appState.GameToShow.Description</p>
                 <p>Género: @_appState.GameToShow.Category</p>
                 <p>Popularidad: @_appState.GameToShow.Likes</p>
+                @if (!_appState.RelatedGames.Any())
+                {
+                    <div class="spinner"></div>
+                }
+                else
+                {
+                    <CarouselMultiple Title="Juegos relacionados" Games="_appState.RelatedGames" />
+                }
             </div>
-            @if (!_appState.RelatedGames.Any())
-            {
-                <div class="spinner"></div>
-            }
-            else
-            {
-                <CarouselMultiple Title="Juegos relacionados" Games="_appState.RelatedGames" />
-            }
         </div>
     </ChildContent>
 </Modal>
