@@ -11,19 +11,19 @@
 </div>
 
 <Modal Expanded="true" @ref="_gameModal">
-    <TitleContent>
-        @_appState.GameToShow.Name
-    </TitleContent>
     <ChildContent>
         <div class="game-modal">
             <div class="game-modal-video">
-                <video src="videos/call-of-duty-trailer.mp4" autoplay loop muted style="width: 100%;"></video>
+                <div class="video">
+                    <video src="videos/dead-cells-trailer.mp4" autoplay loop muted style="width: 100%;"></video>
+                </div>
                 <i class="material-icons" @onclick="_gameModal.Close">close</i>
             </div>
             <div class="game-modal-play">
                 <button @onclick="GoToGame" class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
             </div>
             <div class="game-modal-info">
+                <h3>@_appState.GameToShow.Name</h3>
                 <div class="game-modal-info-details">
                     <p>@_appState.GameToShow.Description</p>
                     <div>

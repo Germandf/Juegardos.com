@@ -1170,6 +1170,11 @@ textarea.primary-input {
         padding: 1rem;
     }
 
+    .game-modal .video {
+        position: relative;
+        -webkit-mask-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
+    }
+
 @media (min-width: 768px) {
     .game-modal .game-modal-info .game-modal-info-details {
         display: flex;
