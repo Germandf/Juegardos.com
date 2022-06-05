@@ -967,6 +967,7 @@ textarea.primary-input {
 .gameplay-main-container {
     display: flex;
     justify-content: center;
+    margin: 20px;
 }
 
 .gameplay-main-container > .ad {
@@ -1004,9 +1005,8 @@ textarea.primary-input {
 }
 
 .gameplay-container {
-    display: block;
-    width: fit-content;
-    margin: 0 20px;
+    width: 100%;
+    max-width: 1080px;
 }
 
 .gameplay-box > img {
