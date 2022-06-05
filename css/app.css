@@ -626,10 +626,15 @@ textarea.primary-input {
         margin: 1.75rem auto;
         position: relative;
         width: auto;
+        background-color: var(--primary-dark);
     }
 
         .modal.expanded .modal-header {
-            padding-bottom: 0;
+            display: none;
+        }
+
+        .modal.expanded .modal-body {
+            padding: 0;
         }
 
 .modal-header {
@@ -1126,11 +1131,6 @@ textarea.primary-input {
     }
 }
 
-.game-modal > iframe {
-    width: 100%;
-    height: 200px;
-}
-
 .game-modal > div.game-modal-play {
     display: flex;
     justify-content: center;
@@ -1149,15 +1149,45 @@ textarea.primary-input {
     margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
-    .game-modal > iframe {
-        height: 400px;
+    .game-modal .carousel .carousel-posters .carousel-poster:first-child,
+    .game-modal .carousel .carousel-title {
+        margin-left: 0;
     }
-}
 
-.game-modal .carousel .carousel-posters .carousel-poster:first-child,
-.game-modal .carousel .carousel-title {
-    margin-left: 0;
+    .game-modal .game-modal-video {
+        position: relative;
+    }
+
+    .game-modal .game-modal-video > i {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .game-modal .game-modal-info {
+        padding: 1rem;
+    }
+
+    .game-modal .video {
+        position: relative;
+        -webkit-mask-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
+    }
+
+@media (min-width: 768px) {
+    .game-modal .game-modal-info .game-modal-info-details {
+        display: flex;
+    }
+
+    .game-modal-info-details > p {
+        margin-right: 30px;
+        text-align: justify;
+    }
+
+    .game-modal-info-details > div {
+        min-width: 180px;
+    }
 }
 
 /* ACCOUNT PAGE */
