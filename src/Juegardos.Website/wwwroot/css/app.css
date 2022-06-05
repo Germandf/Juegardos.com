@@ -581,6 +581,7 @@ textarea.primary-input {
     height: 100vh;
     background-color: #000;
     opacity: 0;
+    transition: opacity .5s;
 }
 
     .backdrop.show {
@@ -589,7 +590,7 @@ textarea.primary-input {
 
         .backdrop.show.opacity-background {
             opacity: 1;
-            background-color: rgb(0 0 0 / 50%);
+            background-color: rgb(0 0 0 / 80%);
         }
 
 .modal {
@@ -597,10 +598,13 @@ textarea.primary-input {
     margin-right: auto;
     margin-left: auto;
     z-index: -1;
-    display: none;
+    display: block;
     max-width: 500px;
     background-color: var(--primary-normal);
     border-radius: 0.3rem;
+    transition: transform .4s ease-in-out;
+    transform: scale(0.8);
+    visibility: hidden;
 }
 
     .modal:not(.expanded) {
@@ -612,8 +616,9 @@ textarea.primary-input {
     }
 
     .modal.show {
-        display: block;
+        visibility: visible;
         z-index: 3;
+        transform: scale(1);
     }
 
     .modal.expanded {
