@@ -1,11 +1,11 @@
 ﻿@namespace Juegardos.Website.Components
 @inject NavigationManager _navigationManager
 
-<div class="game-play-container">
-    <div class="game-play-box">
+<div class="gameplay-container">
+    <div class="gameplay-box">
         <img src="@Game.Image" />
     </div>
-    <div class="game-play-box-bar">
+    <div class="gameplay-box-bar">
         <i class="material-icons-outlined" @onclick='() => _navigationManager.NavigateTo("")'>home</i>
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
         <i class="material-icons-outlined">share</i>

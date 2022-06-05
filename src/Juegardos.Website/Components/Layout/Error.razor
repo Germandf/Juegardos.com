@@ -1,0 +1,20 @@
+﻿@namespace Juegardos.Website
+
+<div class="inner">
+    <div class="rich_text_image top_align">
+        <img src="https://cncdn.dmti.cloud/84b1fb9087e026d6b939e42e0f75b1fccfb704ee/static/media/Richard-Nicole.6b025b78.png" alt="not found">
+    </div>
+    <div class="message">
+        <h1>@Title</h1>
+        <h2>@Message</h2>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; } = "";
+    [Parameter]
+    public string Message { get; set; } = "";
+
+}

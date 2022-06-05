@@ -47,15 +47,7 @@ else
 {
     @if (!_games.Any())
     {
-        <div class="inner">
-            <div class="rich_text_image top_align">
-                <img src="https://cncdn.dmti.cloud/84b1fb9087e026d6b939e42e0f75b1fccfb704ee/static/media/Richard-Nicole.6b025b78.png" alt="not found">
-            </div>
-            <div class="message">
-                <h1>¡Ups! No encontramos resultados</h1>
-                <h2>¡Probá buscando algo diferente!</h2>
-            </div>
-        </div>
+        <Error Title="¡Ups! No encontramos resultados" Message="¡Probá buscando algo diferente!" />
     }
     else
     {
