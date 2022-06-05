@@ -24,9 +24,13 @@
                 <button @onclick="GoToGame" class="outstanding-button play-button"><i class="material-icons">play_arrow</i><span>Jugar</span></button>
             </div>
             <div class="game-modal-info">
-                <p>@_appState.GameToShow.Description</p>
-                <p>Género: @_appState.GameToShow.Category</p>
-                <p>Popularidad: @_appState.GameToShow.Likes</p>
+                <div class="game-modal-info-details">
+                    <p>@_appState.GameToShow.Description</p>
+                    <div>
+                        <p>Género: @_appState.GameToShow.Category</p>
+                        <p>Popularidad: @_appState.GameToShow.Likes</p>
+                    </div>
+                </div>
                 @if (!_appState.RelatedGames.Any())
                 {
                     <div class="spinner"></div>

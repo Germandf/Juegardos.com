@@ -626,6 +626,7 @@ textarea.primary-input {
         margin: 1.75rem auto;
         position: relative;
         width: auto;
+        background-color: var(--primary-dark);
     }
 
         .modal.expanded .modal-header {
@@ -635,18 +636,6 @@ textarea.primary-input {
         .modal.expanded .modal-body {
             padding: 0;
         }
-
-    .modal video::after {
-        content: "";
-        position: absolute;
-        z-index: 1;
-        bottom: 0;
-        left: 0;
-        pointer-events: none;
-        background-image: linear-gradient(to bottom, rgba(255,255,255, 0), rgba(255,255,255, 1) 90%);
-        width: 100%;
-        height: 4em;
-    }
 
 .modal-header {
     display: flex;
@@ -1180,6 +1169,21 @@ textarea.primary-input {
     .game-modal .game-modal-info {
         padding: 1rem;
     }
+
+@media (min-width: 768px) {
+    .game-modal .game-modal-info .game-modal-info-details {
+        display: flex;
+    }
+
+    .game-modal-info-details > p {
+        margin-right: 30px;
+        text-align: justify;
+    }
+
+    .game-modal-info-details > div {
+        min-width: 180px;
+    }
+}
 
 /* ACCOUNT PAGE */
 .my-account-main {
