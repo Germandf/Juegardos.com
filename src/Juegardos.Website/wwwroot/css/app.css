@@ -978,11 +978,19 @@ textarea.primary-input {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
 }
 
     .game-with-ad > .ad {
         margin: 40px 0;
+        display: none;
     }
+
+@media (min-width: 1024px) {
+    .game-with-ad > .ad {
+        display: block;
+    }
+}
 
 @media (min-width: 1440px) {
     .gameplay-main-container > .ad {
@@ -998,12 +1006,7 @@ textarea.primary-input {
 .gameplay-container {
     display: block;
     width: fit-content;
-}
-
-.gameplay-box {
-    height: 640px;
-    width: 970px;
-    border: solid black 1px;   
+    margin: 0 20px;
 }
 
 .gameplay-box > img {
@@ -1015,13 +1018,13 @@ textarea.primary-input {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    height: 72px;
     border-radius: 0 0 20.8px 20.8px;
     background-color: var(--primary-normal);
 }
 
 .gameplay-box-bar i {
-    font-size: 40px;
+    font-size: 36px;
 }
 
     .gameplay-box-bar i:hover {
