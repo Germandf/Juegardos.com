@@ -480,6 +480,7 @@ textarea.primary-input {
     .mega-box .content {
         box-shadow: 0 6px 10px rgba(0,0,0,0.15);
         flex-direction: unset !important;
+        padding: 0px 200px;
     }
 }
 
