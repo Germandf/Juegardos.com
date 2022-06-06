@@ -18,7 +18,7 @@
         _appState.GameToShow = Game;
         _appState.RelatedGames = new();
         _appState.GameModal.Open();
-        _appState.RelatedGames = await _gameService.SearchGames(Game.Category);
+        _appState.RelatedGames = await _gameService.SearchGames("", new GameFilters() { Category = Game.Category });
         await _appState.StateHasChangedInModal.InvokeAsync();
     }
 

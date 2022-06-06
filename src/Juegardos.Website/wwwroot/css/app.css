@@ -1009,6 +1009,7 @@ textarea.primary-input {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
     .game-with-ad > .ad {
@@ -1035,7 +1036,6 @@ textarea.primary-input {
 
 .gameplay-container {
     width: 100%;
-    max-width: 1080px;
 }
 
 .gameplay-box > img {

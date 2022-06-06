@@ -9,7 +9,7 @@ else
 {
     if (_game is null)
     {
-        <p>El juego no existe</p>
+        <Error Title="¡Ups! No pudimos encontrar el juego que elegiste" Message="Lo sentimos, te invitamos a probar algún otro juego de nuestro catálogo" />
     }
     else
     {
@@ -23,6 +23,10 @@ else
             <Ad Type="AdType.Ad160x600" />
         </div>
     }
+    @if (_relatedGames.Any())
+    {
+        <CarouselMultiple Title="@(_game is not null ? "Juegos relacionados" : "Otros juegos")" Games="_relatedGames" />
+    }
 }
 
 @code {
@@ -31,14 +35,19 @@ else
     public string? Name { get; set; }
 
     private Game? _game = null;
+    private List<Game> _relatedGames = new();
     private bool _isLoading = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         _isLoading = true;
         if (Name is not null)
             _game = await _gameService.GetGame(StringHelper.FormatToNonUrlName(Name));
         _isLoading = false;
+        if (_game is not null)
+            _relatedGames = await _gameService.SearchGames("", new GameFilters() { Category = _game.Category });
+        else
+            _relatedGames = await _gameService.SearchGames("");
     }
 
 }
