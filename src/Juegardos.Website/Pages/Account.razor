@@ -110,14 +110,16 @@ else
 
     private void HandleChangeUsername()
     {
-        _user.Username = _changeUserName.NewUsername;
+        if (_user is not null)
+            _user.Username = _changeUserName.NewUsername;
         _changeUsernameModal.Close();
         _changeUserName = new();
     }
 
     private void HandleChangeEmail()
     {
-        _user.Email = _changeEmail.NewEmail;
+        if (_user is not null)
+            _user.Email = _changeEmail.NewEmail;
         _changeEmailModal.Close();
         _changeEmail = new();
     }

@@ -430,7 +430,7 @@ textarea.primary-input {
     }
 
     .navbar-links {
-        display: initial;
+        display: flex;
         width: initial;
     }
 
@@ -1089,6 +1089,7 @@ textarea.primary-input {
         .outstanding-game-details > h4 {
             font-size: 14px;
             line-height: initial;
+            font-weight: initial;
         }
 
         .outstanding-game-details > div.outstanding-buttons {
