@@ -1,10 +1,10 @@
 ﻿@page "/buscar"
-@page "/buscar/{nameOrCategory}"
+@page "/buscar/{name}"
 @inject IGameService _gameService
 
 <div class="search-container">
     <h3 class="search-title">Buscar</h3>
-    <InputSearch InitialText="@StringHelper.FormatToNonUrlName(NameOrCategory ?? "")" OnSearch="SearchGames" />
+    <InputSearch InitialText="@StringHelper.FormatToNonUrlName(Name ?? "")" OnSearch="SearchGames" />
     <div class="search-filters">
         <div class="search-filter">
             <label>Categoría</label>
@@ -67,7 +67,11 @@ else
 @code {
 
     [Parameter]
-    public string? NameOrCategory { get; set; }
+    public string? Name { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? Category { get; set; }
 
     private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
     private List<Game> _games = new();
@@ -79,17 +83,20 @@ else
     protected override async Task OnParametersSetAsync()
     {
         _isLoading = true;
-        _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory ?? ""));
+        var gameFilters = new GameFilters();
+        if (!string.IsNullOrWhiteSpace(Category))
+            gameFilters.Category = Category;
+        _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(Name ?? ""), gameFilters);
         _games = _games.Take(16).ToList();
         _isLoading = false;
     }
 
     private async Task SearchGames(string name)
     {
-        NameOrCategory = name;
+        Name = name;
         _isLoading = true;
         var gameFilters = new GameFilters() { Category = _categoryFilter, Popularity = _popularityFilter, Order = _orderFilter };
-        _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory ?? ""), gameFilters);
+        _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(Name ?? ""), gameFilters);
         _paginationParameters.TotalCount = _games.Count;
         _games = _games.Take(16).ToList();
         _isLoading = false;

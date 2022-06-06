@@ -1,4 +1,5 @@
 ﻿using Juegardos.Website.Data;
+using System.Globalization;
 
 namespace Juegardos.Website.Services;
 
@@ -146,19 +147,19 @@ public class GameService : IGameService
         return null;
     }
 
-    public async Task<List<Game>> SearchGames(string nameOrCategory, GameFilters? filters = null)
+    public async Task<List<Game>> SearchGames(string name, GameFilters? filters = null)
     {
         await Task.Delay(1000);
         var games = new List<Game>();
         foreach (var game in _games)
-            if (game.Name.ToLower().Contains(nameOrCategory.ToLower()) || game.Category.ToLower().Contains(nameOrCategory.ToLower()))
+            if (game.Name.ToLower().Contains(name.ToLower()))
                 games.Add(game);
 
         if (filters is null)
             return games;
 
         if (!string.IsNullOrWhiteSpace(filters.Category))
-            games = games.Where(x => x.Category == filters.Category).ToList();
+            games = games.Where(x => string.Compare(x.Category, filters.Category, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase) == 0).ToList();
 
         if (!string.IsNullOrWhiteSpace(filters.Popularity))
         {

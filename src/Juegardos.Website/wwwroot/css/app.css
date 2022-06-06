@@ -354,6 +354,8 @@ textarea.primary-input {
     align-items: center;
     background-color: var(--primary-normal);
     color: var(--white);
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .brand-title {
@@ -363,21 +365,29 @@ textarea.primary-input {
     align-items: center;
 }
 
-.navbar-links > ul {
-    margin: 0;
-    padding: 0 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: left;
+.navbar-links {
+    display: none;
+    width: 100%;
 }
 
-.navbar-links > ul > li {
-    width: 100%;
-    list-style: none;
-    transform-box: border-box;
-    padding: .5rem;
-    white-space: nowrap;
-}
+    .navbar-links > ul {
+        margin: 0;
+        padding: 0 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-links > ul > li {
+        width: 100%;
+        list-style: none;
+        transform-box: border-box;
+        padding: 0.8rem;
+        padding-left: 1.5rem;
+        white-space: nowrap;
+    }
 
 .navbar-links li:hover {
     cursor: pointer;
@@ -387,15 +397,16 @@ textarea.primary-input {
         text-decoration: none;
     }
 
-.toggle-button,
-.search-button {
-    display: none;
-    width: 30px;
-    height: 100%;
+.navbar-links.active {
+    display: flex;
 }
 
-.toggle-button:hover,
-.search-button:hover {
+.toggle-button,
+.search-button {
+    display: flex;
+    padding: 10px;
+    width: 30px;
+    height: 100%;
     cursor: pointer;
 }
 
@@ -417,46 +428,101 @@ textarea.primary-input {
     padding: 10px 10px;
 }
 
-@media (max-width: 767px) {
-    .toggle-button,
-    .search-button {
-        display: flex;
-        padding: 10px;
-    }
+.hide-on-mobile {
+    display: none;
+}
 
-    .navbar-links {
-        display: none;
-        width: 100%;
-    }
-
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar-links ul {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .navbar-links.active {
-        display: flex;
-    }
-
-    .hide-on-mobile {
-        display: none;
-    }
+.hide-on-desktop {
+    display: block;
 }
 
 @media (min-width: 768px) {
+    .hide-on-mobile {
+        display: block;
+    }
+    
     .hide-on-desktop {
         display: none;
+    }
+
+    .navbar {
+        padding: 0 50px;
+        flex-direction: initial;
+        align-items: initial;
+    }
+
+    .navbar-links {
+        display: flex;
+        width: initial;
+    }
+
+    .navbar-links > ul {
+        flex-direction: initial;
+        width: initial;
+    }
+
+    .navbar-links > ul > li {
+        padding: .5rem;
+    }
+
+    .toggle-button,
+    .search-button {
+        display: none;
+        padding: initial;
+    }
+
+    .mega-box {
+        position: absolute !important;
+        top: 85px !important;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+        .mega-box.active {
+            max-height: initial;
+            transition: all 0.3s ease;
+        }
+
+    .nav-links .mobile-item {
+        display: none;
+    }
+
+    .nav-links .desktop-item {
+        display: initial;
+    }
+
+    .content .row .mega-links {
+        padding-left: unset;
+    }
+
+    .mega-box .content .row {
+        width: unset;
+    }
+
+    .mega-box .content {
+        box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+        flex-direction: unset !important;
+        padding: 0px 200px;
     }
 }
 
 @media (min-width: 1024px) {
     .navbar {
+        padding: 0 100px;
+    }
+
+    .mega-box .content {
+        padding: 0px 300px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .navbar {
         padding: 0 200px;
+    }
+
+    .mega-box .content {
+        padding: 0px 500px;
     }
 }
 
@@ -464,21 +530,32 @@ textarea.primary-input {
     list-style: none;
 }
 
-    .nav-links li a {
-        color: #f2f2f2;
-        text-decoration: none;
-        font-size: 18px;
-        font-weight: 500;
-        padding: 9px 15px;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
+.nav-links li a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 9px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
 
-        .nav-links li a:hover {
-            background: #3A3B3C;
-        }
+.nav-links li a:hover {
+    background: #3A3B3C;
+}
 
 .nav-links .mobile-item {
+    display: block;
+    color: #f2f2f2;
+    font-size: 20px;
+    font-weight: 500;
+    padding-left: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-links .desktop-item {
     display: none;
 }
 
@@ -488,108 +565,60 @@ textarea.primary-input {
 }
 
 .mega-box {
-    position: absolute;
+    position: static;
     left: 0;
+    top: 65px;
+    opacity: 1;
+    visibility: visible;
+    max-height: 0px;
+    overflow: hidden;
     width: 100%;
-    top: 85px;
-    opacity: 0;
-    visibility: hidden;
     z-index: -1;
 }
 
     .mega-box.active {
-        transition: all 0.3s ease;
-        top: 52px;
+        top: 52px !important;
         opacity: 1;
         visibility: visible;
         z-index: 3;
+        max-height: 100%;
     }
 
     .mega-box .content {
         background: var(--primary-normal);
         display: flex;
         justify-content: space-between;
-        box-shadow: 0 6px 10px rgba(0,0,0,0.15);
-        padding: 0px 400px;
+        box-shadow: none;
+        flex-direction: column;
     }
 
-        .mega-box .content .row {
-            width: calc(25% - 30px);
-            line-height: 45px;
-        }
+    .mega-box .content .row {
+        width: calc(25% - 30px);
+        line-height: 45px;
+        width: 100%;
+    }
 
 .content .row .mega-links {
     margin-left: -40px;
+    padding-left: 15px;
 }
 
 .row .mega-links li {
     padding: 0 20px;
+    margin: 0;
 }
 
-    .row .mega-links li a {
-        padding: 0 20px;
-        display: block;
-    }
+.row .mega-links li a {
+    padding: 0 20px;
+    display: block;
+}
 
-        .row .mega-links li a:hover {
-            color: #f2f2f2;
-        }
+.row .mega-links li a:hover {
+    color: #f2f2f2;
+}
 
-@media screen and (max-width: 970px) {
-    #menu-btn:checked ~ .nav-links {
-        left: 0%;
-    }
-
-    .mega-box.active {
-        max-height: 100%;
-    }
-
-    .nav-links .desktop-item {
-        display: none;
-    }
-
-    .nav-links .mobile-item {
-        display: block;
-        color: #f2f2f2;
-        font-size: 20px;
-        font-weight: 500;
-        padding-left: 20px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
-
-        .nav-links .mobile-item:hover {
-            background: #3A3B3C;
-        }
-
-    .mega-box {
-        position: static;
-        top: 65px;
-        opacity: 1;
-        visibility: visible;
-        max-height: 0px;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-        .mega-box .content {
-            box-shadow: none;
-            flex-direction: column;
-            padding: 0;
-        }
-
-            .mega-box .content .row {
-                width: 100%;
-            }
-
-    .content .row .mega-links {
-        padding-left: 15px;
-    }
-
-    .row .mega-links li {
-        margin: 0;
-    }
+#menu-btn:checked ~ .nav-links {
+    left: 0%;
 }
 
 .backdrop {
@@ -1002,6 +1031,7 @@ textarea.primary-input {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 
     .game-with-ad > .ad {
@@ -1028,7 +1058,6 @@ textarea.primary-input {
 
 .gameplay-container {
     width: 100%;
-    max-width: 1080px;
 }
 
 .gameplay-box > img {
@@ -1061,7 +1090,7 @@ textarea.primary-input {
     .outstanding-game-card > img {
         width: 100%;
         height: 100%;
-        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgb(0 0 0 / 30%)));
+        -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgb(0 0 0 / 10%)));
     }
 
     .outstanding-game-details {
@@ -1082,6 +1111,7 @@ textarea.primary-input {
         .outstanding-game-details > h4 {
             font-size: 14px;
             line-height: initial;
+            font-weight: initial;
         }
 
         .outstanding-game-details > div.outstanding-buttons {
