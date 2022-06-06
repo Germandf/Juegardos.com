@@ -1,5 +1,6 @@
 ﻿@page "/mi-cuenta"
 @inject IUserService _userService
+@inject IGameService _gameService
 
 @if (_isLoading)
 {
@@ -14,20 +15,34 @@ else
     else
     {
         <div class="my-account-main">
-            <div class="my-account-container">
-                <div>
-                    <h3>Mi cuenta</h3>
-                    <div class="user-pic">
-                        <i class="material-icons">account_circle</i>
+            <h3>Información personal</h3>
+            <div class="my-account-info">
+                <div class="user-pic">
+                    <i class="material-icons">account_circle</i>
+                </div>
+                <p>@_user.Name</p>
+                <p>@_user.Email</p>
+                <div class="my-account-pasive-info">
+                    <div>
+                        <h5>Tiempo jugado</h5>
+                        <p>@_user.TimePlayed</p>
                     </div>
-                    <p>@_user.Name</p>
-                    <p>@_user.Email</p>
-                    <h4>Tiempo jugado</h4>
-                    <p>@_user.TimePlayed</p>
-                    <h4>Miebro desde</h4>
-                    <p>@_user.MemberSince</p>
+                    <div>
+                        <h5>Miebro desde</h5>
+                        <p>@_user.MemberSince</p>
+                    </div>
                 </div>
             </div>
+            @if (_favouriteGames.Any())
+            {
+                <h3>Mis juegos favoritos</h3>
+                <div class="games-grid">
+                    @foreach (var game in _favouriteGames)
+                    {
+                        <GameCard Game="game" />
+                    }
+                </div>
+            }
         </div>
     }
 }
@@ -36,11 +51,15 @@ else
 
     private User? _user = null;
     private bool _isLoading = false;
+    private List<Game> _favouriteGames = new();
 
     protected override async Task OnInitializedAsync()
     {
         _isLoading = true;
-        _user = await _userService.GetUser();
+        var getUserTask = _userService.GetUser();
+        var getFavouriteGamesTask = _gameService.GetFavouriteGamesFromUser();
+        _user = await getUserTask;
+        _favouriteGames = await getFavouriteGamesTask;
         _isLoading = false;
     }
 }

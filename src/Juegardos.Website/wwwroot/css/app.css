@@ -1117,7 +1117,7 @@ textarea.primary-input {
         margin-bottom: 5px;
     }
 
-.search-games-container {
+.games-grid {
     display: grid;
     align-content: center;
     grid-template-columns: auto;
@@ -1125,7 +1125,7 @@ textarea.primary-input {
     justify-content: center;
 }
 
-.search-games-container > * {
+.games-grid > * {
     margin: 10px;
 }
 
@@ -1135,25 +1135,25 @@ textarea.primary-input {
         margin: 40px auto;
     }
 
-    .search-games-container {
+    .games-grid {
         grid-template-columns: auto auto;
     }
 }
 
 @media (min-width: 1024px) {
-    .search-games-container {
+    .games-grid {
         grid-template-columns: auto auto auto;
     }
 }
 
 @media (min-width: 1440px) {
-    .search-games-container {
+    .games-grid {
         grid-template-columns: auto auto auto auto;
     }
 }
 
 @media (min-width: 1440px) {
-    .search-games-container {
+    .games-grid {
         grid-template-columns: auto auto auto auto;
     }
 }
@@ -1220,38 +1220,43 @@ textarea.primary-input {
 /* ACCOUNT PAGE */
 .my-account-main {
     display: flex;
-    justify-content: center;
-    height: calc(100vh - 90px);
-}
-
-.my-account-container {
-    min-width: 300px;
-    width: 50%;
-    background: var(--primary-normal);
-    text-align: center;
-    padding: 30px 0 30px 0;
-    display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
-    .my-account-container h4 {
-        margin-top: 30px;
+.my-account-main > h3 {
+    margin: 20px;
+}
+
+.my-account-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .my-account-info p {
+        margin: 10px;
+        color: var(--terciary-normal);
     }
 
-
-    .my-account-container .user-pic i {
+    .my-account-info .user-pic i {
         font-size: 180px;
     }
 
-    .my-account-container p, .account-fav-list {
-        color: var(--terciary-normal);
-        margin-top: 10px;
-    }
+.my-account-info > h5 {
+    margin-top: 10px;
+}
 
-    .my-account-container ul li {
-        display: inline-block;
-    }
+.my-account-pasive-info {
+    display: flex;
+}
+
+.my-account-pasive-info > div {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 /* NOT FOUND */
 

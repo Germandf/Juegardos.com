@@ -122,6 +122,12 @@ public class GameService : IGameService
         return gameCategories;
     }
 
+    public async Task<List<Game>> GetFavouriteGamesFromUser()
+    {
+        await Task.Delay(1000);
+        return _games.Where(x => x.IsFavourite).ToList();
+    }
+
     public async Task<Game?> GetGame(string name)
     {
         await Task.Delay(1000);

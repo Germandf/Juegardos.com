@@ -8,4 +8,5 @@ public interface IGameService
     Task<List<Game>> SearchGames(string nameOrCategory, GameFilters? filters = null);
     Task<Game?> GetGame(string name);
     Task<Game?> GetOutstandingGame();
+    Task<List<Game>> GetFavouriteGamesFromUser();
 }
