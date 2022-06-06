@@ -22,11 +22,11 @@ else
                 </div>
                 <div class="editable">
                     <p>@_user.Username</p>
-                    <i class="material-icons">edit</i>
+                    <i class="material-icons" @onclick="_changeUsernameModal.Open">edit</i>
                 </div>
                 <div class="editable">
                     <p>@_user.Email</p>
-                    <i class="material-icons">edit</i>
+                    <i class="material-icons" @onclick="_changeEmailModal.Open">edit</i>
                 </div>
                 <div class="my-account-pasive-info">
                     <div>
@@ -57,12 +57,44 @@ else
     }
 }
 
+<Modal Title="Cambiá tu nombre de usuario" @ref="_changeUsernameModal">
+    <EditForm Model="_changeUserName" OnValidSubmit="HandleChangeUsername">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Nuevo nombre de usuario</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_changeUserName.NewUsername" />
+            <ValidationMessage For="() => _changeUserName.NewUsername" />
+        </div>
+        <div class="links">
+            <button class="simple-button">Cambiar</button>
+        </div>
+    </EditForm>
+</Modal>
+
+<Modal Title="Cambiá tu dirección de correo" @ref="_changeEmailModal">
+    <EditForm Model="_changeEmail" OnValidSubmit="HandleChangeEmail">
+        <DataAnnotationsValidator />
+        <div>
+            <label>Nueva dirección de correo</label>
+            <InputText class="primary-input" placeholder="Escribe aquí..." @bind-Value="_changeEmail.NewEmail" />
+            <ValidationMessage For="() => _changeEmail.NewEmail" />
+        </div>
+        <div class="links">
+            <button class="simple-button">Cambiar</button>
+        </div>
+    </EditForm>
+</Modal>
+
 @code {
 
     private User? _user = null;
     private bool _isLoading = false;
     private List<Game> _favouriteGames = new();
     private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
+    private Modal _changeUsernameModal = new();
+    private Modal _changeEmailModal = new();
+    private ChangeUsername _changeUserName = new();
+    private ChangeEmail _changeEmail = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -74,5 +106,19 @@ else
         _paginationParameters.TotalCount = _favouriteGames.Count;
         _favouriteGames = _favouriteGames.Take(16).ToList();
         _isLoading = false;
+    }
+
+    private void HandleChangeUsername()
+    {
+        _user.Username = _changeUserName.NewUsername;
+        _changeUsernameModal.Close();
+        _changeUserName = new();
+    }
+
+    private void HandleChangeEmail()
+    {
+        _user.Email = _changeEmail.NewEmail;
+        _changeEmailModal.Close();
+        _changeEmail = new();
     }
 }

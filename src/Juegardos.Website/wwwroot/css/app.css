@@ -1265,7 +1265,7 @@ textarea.primary-input {
 }
 
 .my-account-info > .editable > i {
-    color: var(--secondary-normal);
+    color: var(--secondary-light);
     cursor: pointer;
 }
 

@@ -19,6 +19,12 @@ public class UserService : IUserService
         await Task.Delay(1000);
         return _user;
     }
+
+    public async Task<bool> UpdateUser(User user)
+    {
+        await Task.Delay(1000);
+        return true;
+    }
 }
 
 
