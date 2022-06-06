@@ -1222,6 +1222,7 @@ textarea.primary-input {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 .my-account-main > h3 {
@@ -1256,6 +1257,16 @@ textarea.primary-input {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.my-account-info > .editable {
+    display: flex;
+    align-items: center;
+}
+
+.my-account-info > .editable > i {
+    color: var(--secondary-normal);
+    cursor: pointer;
 }
 
 /* NOT FOUND */

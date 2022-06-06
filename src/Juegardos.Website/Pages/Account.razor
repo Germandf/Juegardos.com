@@ -20,15 +20,21 @@ else
                 <div class="user-pic">
                     <i class="material-icons">account_circle</i>
                 </div>
-                <p>@_user.Name</p>
-                <p>@_user.Email</p>
+                <div class="editable">
+                    <p>@_user.Username</p>
+                    <i class="material-icons">edit</i>
+                </div>
+                <div class="editable">
+                    <p>@_user.Email</p>
+                    <i class="material-icons">edit</i>
+                </div>
                 <div class="my-account-pasive-info">
                     <div>
                         <h5>Tiempo jugado</h5>
                         <p>@_user.TimePlayed</p>
                     </div>
                     <div>
-                        <h5>Miebro desde</h5>
+                        <h5>Miembro desde</h5>
                         <p>@_user.MemberSince</p>
                     </div>
                 </div>
@@ -42,6 +48,10 @@ else
                         <GameCard Game="game" />
                     }
                 </div>
+                @if (_favouriteGames.Count >= 16)
+                {
+                    <Pagination PaginationParameters="_paginationParameters" />
+                }
             }
         </div>
     }
@@ -52,6 +62,7 @@ else
     private User? _user = null;
     private bool _isLoading = false;
     private List<Game> _favouriteGames = new();
+    private PaginationParameters _paginationParameters = new() { TotalCount = 100 };
 
     protected override async Task OnInitializedAsync()
     {
@@ -60,6 +71,8 @@ else
         var getFavouriteGamesTask = _gameService.GetFavouriteGamesFromUser();
         _user = await getUserTask;
         _favouriteGames = await getFavouriteGamesTask;
+        _paginationParameters.TotalCount = _favouriteGames.Count;
+        _favouriteGames = _favouriteGames.Take(16).ToList();
         _isLoading = false;
     }
 }

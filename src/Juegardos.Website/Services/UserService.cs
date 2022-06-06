@@ -7,11 +7,11 @@ public class UserService : IUserService
 {
     private readonly User _user = new()
     {
-        Name = "Juan Gonzales",
-        Email = "juna_gonzales@mail.com",
-        FavGames = "",
+        Username = "JuanGo17",
+        Email = "juangonzales@gmail.com",
         TimePlayed = "32,4 horas",
-        MemberSince = "14/02/2021"
+        MemberSince = "14/02/2021",
+        Image = "https://pbs.twimg.com/profile_images/1191360650624323584/Nk73n_r4_400x400.jpg"
     };
 
     public async Task<User?> GetUser()

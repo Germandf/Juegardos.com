@@ -90,6 +90,7 @@ else
         _isLoading = true;
         var gameFilters = new GameFilters() { Category = _categoryFilter, Popularity = _popularityFilter, Order = _orderFilter };
         _games = await _gameService.SearchGames(StringHelper.FormatToNonUrlName(NameOrCategory ?? ""), gameFilters);
+        _paginationParameters.TotalCount = _games.Count;
         _games = _games.Take(16).ToList();
         _isLoading = false;
     }
