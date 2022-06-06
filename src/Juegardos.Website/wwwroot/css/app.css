@@ -253,14 +253,14 @@ textarea.primary-input {
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
-    transition: all 950ms cubic-bezier(0.19, 1, 0.22, 1);
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
     .outstanding-button:hover {
         box-shadow: inset 0 0 20px #3d3d3d, 0 0 20px #ffb300;
         outline-color: rgba(255, 255, 255, 0);
         outline-offset: 15px;
-        text-shadow: 1px 1px 2px var(--gray);
+        text-shadow: 1px 1px 2px var(--gray);        
     }
 
     .outstanding-button > span {
@@ -295,8 +295,30 @@ textarea.primary-input {
         }
 }
 
-/* ICONS */
+.bounce-animation {
+    animation: bounce 2s ease 3s infinite alternate;
+}
 
+@keyframes bounce {
+    0% {
+        -webkit-transform: scale(1.05,.9);
+        transform: scale(1.05,.9);
+    }
+
+    10% {
+        -webkit-transform: scale(.9,1.1) translateY(-.5rem)
+    }
+
+    30% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    35% {
+        
+    }
+ }
+/* ICONS */
 .big-button i {
     font-size: 40px;
     margin: 0 5px 0 0;
