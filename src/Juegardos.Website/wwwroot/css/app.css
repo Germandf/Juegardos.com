@@ -547,6 +547,10 @@ textarea.primary-input {
         padding-left: unset;
     }
 
+    .row .mega-links li a {
+        text-align: center;
+    }
+
     .mega-box .content .row {
         width: unset;
     }

@@ -62,7 +62,7 @@ else
         <DataAnnotationsValidator />
         <div>
             <label>Nuevo nombre de usuario</label>
-            <InputText class="primary-input" placeholder=@_user.Username @bind-Value="_changeUserName.NewUsername" autofocus/>
+            <InputText class="primary-input" placeholder="@(_user is not null ? _user.Username : "Escribe aquí...")" @bind-Value="_changeUserName.NewUsername" autofocus/>
             <ValidationMessage For="() => _changeUserName.NewUsername" />
         </div>
         <div class="links">
@@ -76,7 +76,7 @@ else
         <DataAnnotationsValidator />
         <div>
             <label>Nueva dirección de correo</label>
-            <InputText class="primary-input" placeholder=@_user.Email @bind-Value="_changeEmail.NewEmail" />
+            <InputText class="primary-input" placeholder="@(_user is not null ? _user.Email : "Escribe aquí...")" @bind-Value="_changeEmail.NewEmail" />
             <ValidationMessage For="() => _changeEmail.NewEmail" />
         </div>
         <div class="links">
