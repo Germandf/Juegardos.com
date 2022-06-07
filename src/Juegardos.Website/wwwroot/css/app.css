@@ -531,7 +531,7 @@ textarea.primary-input {
 
         .mega-box.active {
             max-height: initial;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
     .nav-links .mobile-item {
@@ -558,6 +558,10 @@ textarea.primary-input {
         box-shadow: 0 6px 10px rgba(0,0,0,0.15);
         flex-direction: unset !important;
         padding: 0px 200px;
+    }
+
+    .row .mega-links > li:last-child {
+        margin-bottom: 5px;
     }
 }
 
@@ -670,7 +674,7 @@ textarea.primary-input {
 
     .row .mega-links li a:hover {
         color: #f2f2f2;
-        box-shadow: inset 0px 0px 9px -3px var(--terciary-normal);
+        box-shadow: inset 0px 0px 9px -3px var(--white);
         border-radius: 5px;
     }
 
@@ -1128,18 +1132,22 @@ textarea.primary-input {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: 72px;
+    height: 48px;
     border-radius: 0 0 20.8px 20.8px;
     background-color: var(--primary-normal);
 }
 
 .gameplay-box-bar i {
-    font-size: 36px;
+    font-size: 28px;
 }
 
     .gameplay-box-bar i:hover {
         cursor: pointer;
     }
+
+.likes-bar > i:first-child {
+    margin-right: 10px;
+}
 
 .outstanding-game-card {
     position: relative;
@@ -1196,6 +1204,14 @@ textarea.primary-input {
 
     .outstanding-game-details > div.outstanding-buttons > *:first-child {
         margin-right: 10px;
+    }
+
+    .gameplay-box-bar i {
+        font-size: 36px;
+    }
+
+    .gameplay-box-bar {
+        height: 64px;
     }
 }
 
