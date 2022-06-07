@@ -10,4 +10,12 @@ public class Game
     public string Category { get; set; } = "";
     public int Likes { get; set; }
     public int Dislikes { get; set; }
+    public LikeDecision UserLikeDecision { get; set; } = LikeDecision.None;
+}
+
+public enum LikeDecision
+{
+    None,
+    Like,
+    Dislike
 }

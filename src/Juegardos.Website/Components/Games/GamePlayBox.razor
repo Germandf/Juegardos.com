@@ -7,7 +7,10 @@
     <div class="gameplay-box-bar">
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
         <i class="material-icons-outlined">share</i>
-        <span class="likes-bar"><i class="material-icons-outlined">thumb_up</i><i class="material-icons-outlined">thumb_down</i></span>
+        <span class="likes-bar">
+            <i class="material-icons-outlined @(Game.UserLikeDecision == LikeDecision.Like ? "selected" : "")" @onclick="() => Game.UserLikeDecision = LikeDecision.Like">thumb_up</i>
+            <i class="material-icons-outlined @(Game.UserLikeDecision == LikeDecision.Dislike ? "selected" : "")" @onclick="() => Game.UserLikeDecision = LikeDecision.Dislike">thumb_down</i>
+        </span>
         <Star Game="Game" />
         <i class="material-icons">open_in_full</i>
     </div>
