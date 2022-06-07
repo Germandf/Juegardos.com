@@ -290,7 +290,6 @@ textarea.primary-input {
 @media (min-width: 768px) {
     .outstanding-button {
         height: 45px;
-        font-size: 32px;
     }
 
         .outstanding-button > i {
@@ -1091,6 +1090,7 @@ textarea.primary-input {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    max-width: 970px;
 }
 
     .game-with-ad > .ad {
@@ -1306,11 +1306,25 @@ textarea.primary-input {
 
     .game-modal .game-modal-info {
         padding: 1rem;
+        padding-top: 0;
     }
 
     .game-modal .video {
         position: relative;
         -webkit-mask-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 90%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    .game-modal .outstanding-button {
+        height: 45px;
+        background-color: var(--terciary-normal);
+    }
+
+    .game-modal .outstanding-button > i {
+        font-size: 36px;
+    }
+
+    .game-modal .outstanding-button > span {
+        font-size: 1.6rem;
     }
 
 @media (min-width: 768px) {
