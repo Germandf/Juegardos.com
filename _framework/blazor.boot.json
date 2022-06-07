@@ -7,8 +7,8 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Juegardos.Website.dll": "sha256-ho3GC\/+JqEUtRQ3Dx8JYBycSMYypvBEDkJBqteMcHHc=",
-      "Microsoft.AspNetCore.Components.dll": "sha256-Ko8tpt9pWh0t98sROOHPuxHplSkvPczNiOJI8Jh00PU=",
+      "Juegardos.Website.dll": "sha256-iZirsIGNSZT6JiKO2c6QR7eqQIV8\/em82ooScI0UJDQ=",
+      "Microsoft.AspNetCore.Components.dll": "sha256-oEjSyOshdJ7X2BAoGjbLkSd7xBWKo+BWNFBZmozSyHQ=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-G2IfYYH9gZYTOQTQeEHNy4bXqxbr3J34Mh6ia2MPix0=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-KjPmrQiHO\/5TTZ2PJWWcWFOAZu7zW+b5mpaHUdlEaAQ=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-GfKukqpxuFTOAXVlgpnp4rFEjmX33zFCgMytE9rvzeE=",
@@ -40,7 +40,7 @@
       "System.Private.Runtime.InteropServices.JavaScript.dll": "sha256-kNU+a4ueBkBK1RZ9HoaQnTkTn\/MDZyslXULHCPi\/wo0=",
       "System.Private.Uri.dll": "sha256-G+L1tFDpwHZechZX11ZW3+eXuq\/ZlMVCJu99Ka0QfDM=",
       "System.Runtime.CompilerServices.Unsafe.dll": "sha256-Vtux2eGFF4QYVPg9DLWK8fIv8khYOUf2a5aPczdq+O4=",
-      "System.Runtime.dll": "sha256-qASQOFgUQU6mL\/+GKMOYEO1auZwQd5B3LdTVY1EEPaQ=",
+      "System.Runtime.dll": "sha256-2EhmxI\/7ScOsMLdjaZC4yocJSvUos+XjHJRA2e18\/b4=",
       "System.Text.Encodings.Web.dll": "sha256-s\/oEg26\/wBNILW2bnAl9Qy7weHwi8bsYjClYUpDgmM0=",
       "System.Text.Json.dll": "sha256-jg7qVvA3uT8zKDooltYCUbwQwcPECAKwoiAyQ3gS54c=",
       "System.Text.RegularExpressions.dll": "sha256-YRCefcGQO438GdHvCvPMF3fDRVJ8yClKMs9dEstf310="
