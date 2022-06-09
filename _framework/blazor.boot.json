@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "Juegardos.Website.dll": "sha256-iZirsIGNSZT6JiKO2c6QR7eqQIV8\/em82ooScI0UJDQ=",
+      "Juegardos.Website.dll": "sha256-dsYoKL6cH+TEf8dpABdbwKlA3lE1yGOrtjJgfhI4XfY=",
       "Microsoft.AspNetCore.Components.dll": "sha256-oEjSyOshdJ7X2BAoGjbLkSd7xBWKo+BWNFBZmozSyHQ=",
       "Microsoft.AspNetCore.Components.Forms.dll": "sha256-G2IfYYH9gZYTOQTQeEHNy4bXqxbr3J34Mh6ia2MPix0=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-KjPmrQiHO\/5TTZ2PJWWcWFOAZu7zW+b5mpaHUdlEaAQ=",
