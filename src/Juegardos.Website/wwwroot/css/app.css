@@ -229,6 +229,10 @@ textarea.primary-input {
 /* BUTTON */
 
 .simple-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     width: auto;
     height: 38px;
     padding: 0 20px;
@@ -237,8 +241,29 @@ textarea.primary-input {
     font-size: 16px;
     color: var(--white);
     background-color: var(--secondary-light);
-    cursor:pointer;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
+
+    .simple-button:hover {
+        box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+    }
+
+    .simple-button:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient( 120deg, transparent, var(--secondary-normal), transparent );
+        transition: all 650ms;
+    }
+
+    .simple-button:hover:before {
+        left: 100%;
+    }
 
 .outstanding-button {
     display: flex;
@@ -377,15 +402,6 @@ textarea.primary-input {
         /*opacity: 1;*/
     }
 }
-
-/*@keyframes un-stared-animation {
-    0% {
-        transform: rotateY(20deg);
-    }
-    100% {
-        transform: rotateY(50deg);
-    }
-}*/
 
 /* LAYOUT */
 
@@ -1145,8 +1161,39 @@ textarea.primary-input {
         cursor: pointer;
     }
 
+
 .likes-bar > i:first-child {
     margin-right: 10px;
+}
+
+#like-btn, #dislike-btn {
+    display: none;
+}
+
+    #like-btn:checked + label > i.selected {
+        text-shadow: 0 0 0 whitesmoke;
+        animation: smoky-like 2s;
+    }
+
+    #dislike-btn:checked + label > i.selected {
+        text-shadow: 0 0 0 whitesmoke;
+        animation: smoky-dislike 2s;
+    }
+
+@keyframes smoky-like {
+    to {
+        transform: translate3d(0px, -80px, 0) rotate(-40deg) skewX(20deg) scale(1.5);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+    }
+}
+
+@keyframes smoky-dislike {
+    to {
+        transform: translate3d(0px, 80px, 0) rotate(-40deg) skewX(20deg) scale(1.5);
+        text-shadow: 0 0 20px whitesmoke;
+        opacity: 0;
+    }
 }
 
 .outstanding-game-card {

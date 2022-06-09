@@ -8,8 +8,22 @@
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
         <i class="material-icons-outlined">share</i>
         <span class="likes-bar">
-            <i class="material-icons-outlined @(Game.UserLikeDecision == LikeDecision.Like ? "selected" : "")" @onclick="() => Game.UserLikeDecision = LikeDecision.Like">thumb_up</i>
-            <i class="material-icons-outlined @(Game.UserLikeDecision == LikeDecision.Dislike ? "selected" : "")" @onclick="() => Game.UserLikeDecision = LikeDecision.Dislike">thumb_down</i>
+            <input type="checkbox" id="like-btn"/>
+            <label for="like-btn">
+                <i class="@(Game.UserLikeDecision == LikeDecision.Like ? "material-icons selected" : "material-icons-outlined")" @onclick="() =>
+{
+if (Game.UserLikeDecision == LikeDecision.Like)
+    Game.UserLikeDecision = LikeDecision.None;
+
+else 
+    Game.UserLikeDecision = LikeDecision.Like;
+}
+">thumb_up</i>            
+            </label>
+            <input type="checkbox" id="dislike-btn"/>
+            <label for="dislike-btn">
+                <i class="@(Game.UserLikeDecision == LikeDecision.Dislike ? "material-icons selected" : "material-icons-outlined")" @onclick="() => Game.UserLikeDecision = LikeDecision.Dislike">thumb_down</i>
+            </label>
         </span>
         <Star Game="Game" />
         <i class="material-icons">open_in_full</i>
