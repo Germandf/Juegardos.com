@@ -1166,19 +1166,15 @@ textarea.primary-input {
     margin-right: 10px;
 }
 
-#like-btn, #dislike-btn {
-    display: none;
+i.like.selected {
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky-like 2s;
 }
 
-    #like-btn:checked + label > i.selected {
-        text-shadow: 0 0 0 whitesmoke;
-        animation: smoky-like 2s;
-    }
-
-    #dislike-btn:checked + label > i.selected {
-        text-shadow: 0 0 0 whitesmoke;
-        animation: smoky-dislike 2s;
-    }
+i.dislike.selected {
+    text-shadow: 0 0 0 whitesmoke;
+    animation: smoky-dislike 2s;
+}
 
 @keyframes smoky-like {
     to {

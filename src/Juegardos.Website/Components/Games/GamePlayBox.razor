@@ -8,22 +8,8 @@
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
         <i class="material-icons-outlined">share</i>
         <span class="likes-bar">
-            <input type="checkbox" id="like-btn"/>
-            <label for="like-btn">
-                <i class="@(Game.UserLikeDecision == LikeDecision.Like ? "material-icons selected" : "material-icons-outlined")" @onclick="() =>
-{
-if (Game.UserLikeDecision == LikeDecision.Like)
-    Game.UserLikeDecision = LikeDecision.None;
-
-else 
-    Game.UserLikeDecision = LikeDecision.Like;
-}
-">thumb_up</i>            
-            </label>
-            <input type="checkbox" id="dislike-btn"/>
-            <label for="dislike-btn">
-                <i class="@(Game.UserLikeDecision == LikeDecision.Dislike ? "material-icons selected" : "material-icons-outlined")" @onclick="() => Game.UserLikeDecision = LikeDecision.Dislike">thumb_down</i>
-            </label>
+            <i class="@(Game.UserLikeDecision == LikeDecision.Like ? "material-icons like selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Like)">thumb_up</i>           
+            <i class="@(Game.UserLikeDecision == LikeDecision.Dislike ? "material-icons dislike selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Dislike)">thumb_down</i>
         </span>
         <Star Game="Game" />
         <i class="material-icons">open_in_full</i>
@@ -53,5 +39,13 @@ else
     public Game Game { get; set; } = null!;
 
     private Modal _howToPlayModal = new();
+
+    private void ChangeLike(LikeDecision newDecision)
+    {
+        if (Game.UserLikeDecision == newDecision)
+            Game.UserLikeDecision = LikeDecision.None;
+        else
+            Game.UserLikeDecision = newDecision;
+    }
 
 }
