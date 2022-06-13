@@ -1,0 +1,25 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+#board {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    width: 100%;
+}
+
+#chips {
+    display: block;
+    position: relative;
+    width: 100%;
+}
+
+#reset {
+    width: 100px;
+    height: 50px;
+    margin: 20px auto;
+    display: block;
+    cursor: pointer;
+}
