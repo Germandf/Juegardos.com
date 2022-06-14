@@ -3,36 +3,69 @@ const canvasGame = document.getElementById("chips");
 const reiniciarBtn = document.getElementById("reset")
 const ctx = tablero.getContext('2d');
 const ctxGame = canvasGame.getContext('2d');
-const dx=[ 1,-1, 0, 0, 1,-1, 1,-1];
-const dy=[ 0, 0, 1,-1,-1, 1, 1,-1];
+const dx = [ 1,-1, 0, 0, 1,-1, 1,-1];
+const dy = [ 0, 0, 1,-1,-1, 1, 1,-1];
 const celda = 100;
 const mitadCelda = celda / 2;
+const mode = document.getElementById("mode");
 
-var cantCeldasHorizontal = 7;
-var cantCeldasVertical = 6;
-var cantEnLinea = 4;
-
-tablero.height = celda * (cantCeldasVertical + 1);
-tablero.width = celda * cantCeldasHorizontal;
-canvasGame.height = celda * (cantCeldasVertical + 1);
-canvasGame.width = celda * cantCeldasHorizontal;
-var jugador = 1;
+var cantCeldasHorizontal;
+var cantCeldasVertical;
+var cantEnLinea;
+var jugador;
 var color;
-var matriz = [];
-for(var i = 0; i < cantCeldasHorizontal; i++){
-  matriz[i] = new Array(cantCeldasVertical);
-}
-var posWinners=[[0,0],[0,0],[0,0],[0,0]];
-var posi=0;
+var matriz;
+var posWinners;
+var posi;
 
-// Dibujar tablero
-ctx.fillStyle = "#3867d6";
-ctx.fillRect(0, celda, tablero.width, tablero.height);
-ctx.stroke();
-for (var y = 100; y < (cantCeldasVertical + 1) * 100; y += celda) {
-  for (var x = 0; x < cantCeldasHorizontal * 100; x += celda) {
-    clearCircle(x + mitadCelda, y + mitadCelda, 35);
+window.addEventListener('DOMContentLoaded', (event) => {
+  setGame();
+  reiniciarBtn.addEventListener('click', function () {
+    setGame();
+  });
+});
+
+function setGame() {
+  cantEnLinea = mode.value;
+  switch (cantEnLinea) {
+    case "4":
+      cantCeldasHorizontal = 7;
+      cantCeldasVertical = 6;
+      break;
+    case "5":
+      cantCeldasHorizontal = 8;
+      cantCeldasVertical = 7;
+      break;
+    case "6":
+      cantCeldasHorizontal = 9;
+      cantCeldasVertical = 8;
+      break;
+    default:
+      cantCeldasHorizontal = 7;
+      cantCeldasVertical = 6;
+      break;
   }
+  tablero.height = celda * (cantCeldasVertical + 1);
+  tablero.width = celda * cantCeldasHorizontal;
+  canvasGame.height = celda * (cantCeldasVertical + 1);
+  canvasGame.width = celda * cantCeldasHorizontal;
+  jugador = 1;
+  matriz = [];
+  for(var i = 0; i < cantCeldasHorizontal; i++){
+    matriz[i] = new Array(cantCeldasVertical);
+  }
+  posWinners = [[0,0],[0,0],[0,0],[0,0]];
+  posi = 0;
+  // Dibujar tablero
+  ctx.fillStyle = "#3867d6";
+  ctx.fillRect(0, celda, tablero.width, tablero.height);
+  ctx.stroke();
+  for (var y = 100; y < (cantCeldasVertical + 1) * 100; y += celda) {
+    for (var x = 0; x < cantCeldasHorizontal * 100; x += celda) {
+      clearCircle(x + mitadCelda, y + mitadCelda, 35);
+    }
+  }
+  tablero.style.pointerEvents = 'auto';
 }
 
 tablero.addEventListener('click', function (evt) {
@@ -58,11 +91,6 @@ tablero.addEventListener('click', function (evt) {
       }
     }
   }
-});
-
-// Reiniciar juego
-reiniciarBtn.addEventListener('click', function () {
-  location.reload();
 });
 
 // Poner agujeros en el tablero

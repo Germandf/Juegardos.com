@@ -17,9 +17,14 @@
 }
 
 #reset {
-    width: 100px;
     height: 50px;
-    margin: 20px auto;
-    display: block;
+    margin-top: 10px;
     cursor: pointer;
+}
+
+.options {
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    width: 100px;
 }
