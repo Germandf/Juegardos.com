@@ -1,15 +1,16 @@
-var tablero = document.getElementById("board");
-var canvasGame = document.getElementById("chips");
-var reiniciarBtn = document.getElementById("reset")
-var ctx = tablero.getContext('2d');
-var ctxGame = canvasGame.getContext('2d');
-var dx=[ 1,-1, 0, 0, 1,-1, 1,-1];
-var dy=[ 0, 0, 1,-1,-1, 1, 1,-1];
-var celda = 100;
-var mitadCelda = celda / 2;
+const tablero = document.getElementById("board");
+const canvasGame = document.getElementById("chips");
+const reiniciarBtn = document.getElementById("reset")
+const ctx = tablero.getContext('2d');
+const ctxGame = canvasGame.getContext('2d');
+const dx=[ 1,-1, 0, 0, 1,-1, 1,-1];
+const dy=[ 0, 0, 1,-1,-1, 1, 1,-1];
+const celda = 100;
+const mitadCelda = celda / 2;
 
 var cantCeldasHorizontal = 7;
 var cantCeldasVertical = 6;
+var cantEnLinea = 4;
 
 tablero.height = celda * (cantCeldasVertical + 1);
 tablero.width = celda * cantCeldasHorizontal;
@@ -116,7 +117,7 @@ function hayGanador(xFicha, yFicha){
   for(var i=0;i<8;i+=2){
     var lado1=fCount(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha);
     var lado2=fCount(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha);
-    if(lado1+lado2+1>=4){
+    if(lado1+lado2+1>=cantEnLinea){
       posi=0;
       fCount2(dx[i],dy[i],xFicha+dy[i],yFicha+dx[i],valorFicha,posi);
       fCount2(dx[i+1],dy[i+1],xFicha+dy[i+1],yFicha+dx[i+1],valorFicha,posi);
@@ -128,7 +129,7 @@ function hayGanador(xFicha, yFicha){
 }
 
 function colorearfichasGandoras(){
-  for(var i = 0; i<=3; i++){
+  for(var i = 0; i<=cantEnLinea-1; i++){
     var x=posWinners[i][0];
     var y=posWinners[i][1];
     ctx.beginPath();
