@@ -1,28 +1,9 @@
 var boardCanvas = document.getElementById("board");
 /** @type {boardCanvasRenderingContext2D} */
 var boardCtx = boardCanvas.getContext("2d");
-let xPos = 50;
-let yPos = 50;
-boardCtx.fillStyle = "blue";
-boardCtx.fillRect(0, 0, 640, 550);
 
-for (let i = 0; i < 7; i++){
-    yPos = 50;
-    for(let j = 0; j < 6; j++) {
-        drawCircle(boardCtx, xPos, yPos, "white");
-        yPos += 90;
-    }
-    xPos += 90;
-}
-
-function drawCircle(boardCtx, x, y, color){
-    boardCtx.fillStyle = color;
-    boardCtx.beginPath();
-    boardCtx.arc(x, y, 40, 0, 2 * Math.PI);
-    boardCtx.stroke();
-    boardCtx.fill();
-}
-
+let board = new Board(boardCanvas, boardCtx);
+board.drawBoard();
 
 let lastClickedChip = null;
 let isMouseDown = false;
