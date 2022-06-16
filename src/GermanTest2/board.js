@@ -7,7 +7,7 @@ class Board {
         this.boardCtx = boardCtx;
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
-        this.celda = boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
+        this.celda = this.boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
         this.lastClickedChip = null;
         this.isMouseDown = false;
         this.chips = [];
@@ -21,7 +21,7 @@ class Board {
         // add chips player 1
         for (let i = 0; i < 20; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.celda * 0.35 * 2) + this.celda * 0.35);
-            let randomY = Math.round(Math.random() * (boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
             let chip = new Chip(randomX, randomY, this.celda * 0.35, "yellow", boardCtx);
             this.chips.push(chip);
         }
@@ -31,9 +31,9 @@ class Board {
             
         }
 
-        boardCanvas.addEventListener('mousedown', this.onMouseDown, false);
-        boardCanvas.addEventListener('mouseup', this.onMouseUp, false);
-        boardCanvas.addEventListener('mousemove', this.onMouseMove, false);
+        this.boardCanvas.addEventListener('mousedown', (e) => this.onMouseDown(this, e), false);
+        this.boardCanvas.addEventListener('mouseup', (e) => this.onMouseUp(this, e), false);
+        this.boardCanvas.addEventListener('mousemove', (e) => this.onMouseMove(this, e), false);
     }
 
     drawBoard() {
@@ -73,28 +73,28 @@ class Board {
         }
     }
     
-    onMouseDown(e) {
-        this.isMouseDown = true;
-        if (this.lastClickedChip != null) {
-            this.lastClickedChip.setHighlighted(false);
-            this.lastClickedChip = null;
+    onMouseDown(board, e) {
+        board.isMouseDown = true;
+        if (board.lastClickedChip != null) {
+            board.lastClickedChip.setHighlighted(false);
+            board.lastClickedChip = null;
         }
-        let clickedChip = this.findClickedChip(e.offsetX, e.offsetY);
+        let clickedChip = board.findClickedChip(e.offsetX, e.offsetY);
         if (clickedChip != null) {
             clickedChip.setHighlighted(true);
-            this.lastClickedChip = clickedChip;
+            board.lastClickedChip = clickedChip;
         }
-        this.drawBoard();
+        board.drawBoard();
     }
     
-    onMouseUp(e) {
-        this.isMouseDown = false;
+    onMouseUp(board, e) {
+        board.isMouseDown = false;
     }
     
-    onMouseMove(e) {
-        if (this.isMouseDown && this.lastClickedChip != null) {
-            this.lastClickedChip.setPosition(e.offsetX, e.offsetY);
-            this.drawBoard();
+    onMouseMove(board, e) {
+        if (board.isMouseDown && board.lastClickedChip != null) {
+            board.lastClickedChip.setPosition(e.offsetX, e.offsetY);
+            board.drawBoard();
         }
     }
     
