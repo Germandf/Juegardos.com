@@ -75,6 +75,9 @@ class Board {
                     this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * 0.35, 0, Math.PI * 2, true);
                     this.boardCtx.fill();
                     this.boardCtx.closePath();
+                } else {
+                    this.matrix[column][row].setPosition(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2);
+                    this.matrix[column][row].draw();
                 }
             }
         }
@@ -117,8 +120,9 @@ class Board {
     
     onMouseUp(board, e) {
         board.isMouseDown = false;
-        board.addChip(e, this.lastClickedChip);
-        this.drawBoard();
+        if(board.addChip(e, this.lastClickedChip)){
+            // TODO check winner
+        }
         this.lastClickedChip = null;
     }
 
@@ -153,6 +157,7 @@ class Board {
                             this.chips.splice(index, 1);
                         }
                         this.matrix[column][row] = lastClickedChip;
+                        this.drawBoard();
                         return true;
                     }
                 }
