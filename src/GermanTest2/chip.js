@@ -19,7 +19,6 @@ class Chip {
             this.img = img;
             this.fill = "red";
         }
-
     }
 
     setFill(fill) {

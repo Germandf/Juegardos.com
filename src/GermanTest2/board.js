@@ -1,20 +1,26 @@
 const chipsContainerWidth = 300;
 
 class Board {
-    constructor(boardCanvas, boardCtx, horizontalChips, verticalChips) {
+    constructor(boardCanvas, boardCtx) {
         this.boardCanvas = boardCanvas;
         /** @type {CanvasRenderingContext2D} */
         this.boardCtx = boardCtx;
-        this.horizontalChips = horizontalChips;
-        this.verticalChips = verticalChips;
+        this.horizontalChips = 7;
+        this.verticalChips = 6;
         this.celda = this.boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
         this.lastClickedChip = null;
         this.isMouseDown = false;
         this.chips = [];
+        this.eventListenersAdded = false;
     }
 
-    setUpBoard() {
+    setUpBoard(horizontalChips, verticalChips) {
+        //reset chips
+        this.chips = [];
+
         // set sizes
+        this.horizontalChips = horizontalChips;
+        this.verticalChips = verticalChips;
         this.boardCanvas.height = this.celda * this.verticalChips;
         this.boardCanvas.width = this.celda * this.horizontalChips + chipsContainerWidth * 2;
 
@@ -34,9 +40,15 @@ class Board {
             this.chips.push(chip);
         }
 
-        this.boardCanvas.addEventListener('mousedown', (e) => this.onMouseDown(this, e), false);
-        this.boardCanvas.addEventListener('mouseup', (e) => this.onMouseUp(this, e), false);
-        this.boardCanvas.addEventListener('mousemove', (e) => this.onMouseMove(this, e), false);
+        // add event listeners
+        if (!this.eventListenersAdded) {
+            this.boardCanvas.addEventListener('mousedown', (e) => this.onMouseDown(this, e), false);
+            this.boardCanvas.addEventListener('mouseup', (e) => this.onMouseUp(this, e), false);
+            this.boardCanvas.addEventListener('mousemove', (e) => this.onMouseMove(this, e), false);
+            this.eventListenersAdded = true;
+        }
+        
+        this.drawBoard();
     }
 
     drawBoard() {

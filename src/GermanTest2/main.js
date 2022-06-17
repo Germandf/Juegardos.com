@@ -1,7 +1,22 @@
-var boardCanvas = document.getElementById("board");
+const boardCanvas = document.getElementById("board");
 /** @type {boardCanvasRenderingContext2D} */
-var boardCtx = boardCanvas.getContext("2d");
+const boardCtx = boardCanvas.getContext("2d");
+const mode = document.getElementById("mode");
+const resetBtn = document.getElementById("reset");
+const board = new Board(boardCanvas, boardCtx);
+board.setUpBoard(7, 6);
 
-let board = new Board(boardCanvas, boardCtx, 7, 6);
-board.setUpBoard();
-board.drawBoard();
+resetBtn.addEventListener('click', function () {
+    modeSelected = mode.value;
+    switch (modeSelected) {
+        case "5":
+            board.setUpBoard(8, 7);
+        break;
+        case "6":
+            board.setUpBoard(9, 8);
+        break;
+        default:
+            board.setUpBoard(7, 6);
+        break;
+    }
+});
