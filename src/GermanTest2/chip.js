@@ -1,13 +1,25 @@
 class Chip {
-    constructor(x, y, radius, fill, ctx) {
+    constructor(x, y, radius, player, ctx) {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.fill = fill;
         /** @type {CanvasRenderingContext2D} */
         this.ctx = ctx;
         this.highlighted = false;
-        this.highlightedStyle = "red";
+        this.highlightedStyle = "black";
+        const img = new Image();
+        this.loadedImg = false;
+        this.player = player;
+        if (this.player === 1){
+            img.src = "./chip1.png";
+            this.img = img;
+            this.fill = "yellow";
+        } else {
+            img.src = "./chip2.png";
+            this.img = img;
+            this.fill = "red";
+        }
+
     }
 
     setFill(fill) {
@@ -41,6 +53,15 @@ class Chip {
             this.ctx.stroke();
         }
         this.ctx.closePath();
+        if (this.loadedImg) {
+            this.ctx.drawImage(this.img, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+        }
+        else {
+            this.img.onload = () => {
+                this.ctx.drawImage(this.img, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+            }
+            this.loadedImg = true;
+        }
     }
 
     getRadius() {

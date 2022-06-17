@@ -22,13 +22,16 @@ class Board {
         for (let i = 0; i < 20; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.celda * 0.35 * 2) + this.celda * 0.35);
             let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
-            let chip = new Chip(randomX, randomY, this.celda * 0.35, "yellow", boardCtx);
+            let chip = new Chip(randomX, randomY, this.celda * 0.35, 1, boardCtx);
             this.chips.push(chip);
         }
 
         // add chips player 2
         for (let i = 0; i < 20; i++){
-            
+            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.celda * 0.35 * 2) + this.celda * 0.35 + this.boardCanvas.width - chipsContainerWidth);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
+            let chip = new Chip(randomX, randomY, this.celda * 0.35, 2, boardCtx);
+            this.chips.push(chip);
         }
 
         this.boardCanvas.addEventListener('mousedown', (e) => this.onMouseDown(this, e), false);
