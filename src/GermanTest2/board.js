@@ -7,7 +7,7 @@ class Board {
         this.boardCtx = boardCtx;
         this.horizontalChips = 7;
         this.verticalChips = 6;
-        this.celda = this.boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
+        this.cell = this.boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
         this.lastClickedChip = null;
         this.isMouseDown = false;
         this.chips = [];
@@ -19,8 +19,8 @@ class Board {
         // set sizes
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
-        this.boardCanvas.height = this.celda * this.verticalChips;
-        this.boardCanvas.width = this.celda * this.horizontalChips + chipsContainerWidth * 2;
+        this.boardCanvas.height = this.cell * this.verticalChips;
+        this.boardCanvas.width = this.cell * this.horizontalChips + chipsContainerWidth * 2;
 
         //reset chips
         this.chips = [];
@@ -30,17 +30,17 @@ class Board {
 
         // add chips player 1
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
-            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.celda * 0.35 * 2) + this.celda * 0.35);
-            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
-            let chip = new Chip(randomX, randomY, this.celda * 0.35, 1, boardCtx);
+            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+            let chip = new Chip(randomX, randomY, this.cell * 0.35, 1, boardCtx);
             this.chips.push(chip);
         }
 
         // add chips player 2
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
-            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.celda * 0.35 * 2) + this.celda * 0.35 + this.boardCanvas.width - chipsContainerWidth);
-            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.celda * 0.35 * 2) + this.celda * 0.35);
-            let chip = new Chip(randomX, randomY, this.celda * 0.35, 2, boardCtx);
+            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+            let chip = new Chip(randomX, randomY, this.cell * 0.35, 2, boardCtx);
             this.chips.push(chip);
         }
 
@@ -68,13 +68,15 @@ class Board {
         this.boardCtx.stroke();
 
         // draw board holes
-        this.boardCtx.fillStyle = "white";
-        for (var y = 0; y < this.verticalChips * this.celda; y += this.celda) {
-          for (var x = chipsContainerWidth; x < this.horizontalChips * this.celda + chipsContainerWidth; x += this.celda) {
-            this.boardCtx.arc(x + this.celda / 2, y + this.celda / 2, this.celda * 0.35, 0, Math.PI * 2, true);
-            this.boardCtx.fill();
-            this.boardCtx.closePath();
-          }
+        for (let column = 0; column < this.matrix.length; column++) {
+            for (let row = 0; row < this.matrix[column].length; row++) {
+                if (this.matrix[column][row] === null){
+                    this.boardCtx.fillStyle = "white";
+                    this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * 0.35, 0, Math.PI * 2, true);
+                    this.boardCtx.fill();
+                    this.boardCtx.closePath();
+                }
+            }
         }
 
         // drawChips
@@ -105,18 +107,19 @@ class Board {
         }
         board.drawBoard();
     }
-    
-    onMouseUp(board, e) {
-        board.isMouseDown = false;
-        board.addChip(e, this.lastClickedChip);
-        this.drawBoard();
-    }
-    
+
     onMouseMove(board, e) {
         if (board.isMouseDown && board.lastClickedChip != null) {
             board.lastClickedChip.setPosition(e.offsetX, e.offsetY);
             board.drawBoard();
         }
+    }
+    
+    onMouseUp(board, e) {
+        board.isMouseDown = false;
+        board.addChip(e, this.lastClickedChip);
+        this.drawBoard();
+        this.lastClickedChip = null;
     }
 
     initializeMatrix() {
@@ -129,10 +132,10 @@ class Board {
     }
 
     getColumnSelected(x, y) {
-        if (y > this.celda)
+        if (y > this.cell)
             return null;
         for (let column = 0; column < this.horizontalChips; column++) {
-            if (x >= column * this.celda & x < column * this.celda + this.celda + chipsContainerWidth) {
+            if (x >= column * this.cell + chipsContainerWidth && x < column * this.cell + this.cell + chipsContainerWidth) {
                 return column;
             }
         }
@@ -141,7 +144,7 @@ class Board {
 
     addChip(e, lastClickedChip) {
         if (lastClickedChip != null) {
-            let column = this.getColumnSelected(e.layerX, e.layerY);
+            let column = this.getColumnSelected(e.offsetX, e.offsetY);
             if (column != null) {
                 for (let row = 0; row < this.verticalChips; row++) {
                     if (this.matrix[column][row] === null) {
