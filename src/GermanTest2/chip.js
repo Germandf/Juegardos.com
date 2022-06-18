@@ -51,7 +51,7 @@ class Chip {
             this.ctx.lineWidth = 2;
             this.ctx.stroke();
         }
-        this.ctx.closePath();
+        //this.ctx.closePath(); maybe commenting this improve performance?
         if (this.loadedImg) {
             this.ctx.drawImage(this.img, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
         }

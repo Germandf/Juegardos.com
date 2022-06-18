@@ -105,16 +105,11 @@ class Board {
     
     onMouseDown(board, e) {
         board.isMouseDown = true;
-        if (board.lastClickedChip != null) {
-            board.lastClickedChip.setHighlighted(false);
+        if (board.lastClickedChip != null)
             board.lastClickedChip = null;
-        }
         let clickedChip = board.findClickedChip(e.offsetX, e.offsetY);
-        if (clickedChip != null && clickedChip.getPlayer() === this.playerTurn) {
-            clickedChip.setHighlighted(true);
+        if (clickedChip != null && clickedChip.getPlayer() === this.playerTurn)
             board.lastClickedChip = clickedChip;
-        }
-        board.drawBoard();
     }
 
     onMouseMove(board, e) {
@@ -137,6 +132,7 @@ class Board {
     }
 
     initializeMatrix() {
+        this.matrix = [];
         for (let x = 0; x < this.horizontalChips; x++) {
             this.matrix[x] = [];
             for (let y = 0; y < this.verticalChips; y++) {
