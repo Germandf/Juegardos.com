@@ -42,8 +42,8 @@ class Chip {
     }
 
     draw() {
-        this.ctx.fillStyle = this.fill;
         this.ctx.beginPath();
+        this.ctx.fillStyle = this.fill;
         this.ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
         this.ctx.fill();
         if (this.highlighted === true) {
@@ -51,7 +51,6 @@ class Chip {
             this.ctx.lineWidth = 2;
             this.ctx.stroke();
         }
-        //this.ctx.closePath(); maybe commenting this improve performance?
         if (this.loadedImg) {
             this.ctx.drawImage(this.img, this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
         }
@@ -61,6 +60,7 @@ class Chip {
             }
             this.loadedImg = true;
         }
+        this.ctx.closePath();
     }
 
     getRadius() {

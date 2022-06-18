@@ -18,37 +18,27 @@ class Board {
     }
 
     setUpBoard(horizontalChips, verticalChips) {
-        // set sizes
+        // set sizes, reset properties
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
         this.boardCanvas.height = this.cell * this.verticalChips;
         this.boardCanvas.width = this.cell * this.horizontalChips + chipsContainerWidth * 2;
-
-        //reset chips
         this.chips = [];
-
-        // reset matrix
         this.initializeMatrix();
-
-        // reset turn
         this.playerTurn = 1;
-
-        // add chips player 1
+        // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
             let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
             let chip = new Chip(randomX, randomY, this.cell * 0.35, 1, boardCtx);
             this.chips.push(chip);
         }
-
-        // add chips player 2
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
             let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
             let chip = new Chip(randomX, randomY, this.cell * 0.35, 2, boardCtx);
             this.chips.push(chip);
         }
-
         // add event listeners
         if (!this.eventListenersAdded) {
             this.boardCanvas.addEventListener('mousedown', (e) => this.onMouseDown(this, e), false);
@@ -56,7 +46,7 @@ class Board {
             this.boardCanvas.addEventListener('mousemove', (e) => this.onMouseMove(this, e), false);
             this.eventListenersAdded = true;
         }
-        
+        // redraw
         this.drawBoard();
         this.renderPlayerTurn();
     }
@@ -65,18 +55,15 @@ class Board {
         // draw board background
         this.boardCtx.fillStyle = "#3867d6";
         this.boardCtx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
-        this.boardCtx.stroke();
-
         // draw chips containers
         this.boardCtx.fillStyle = "gray";
         this.boardCtx.fillRect(0, 0, chipsContainerWidth, boardCanvas.height);
         this.boardCtx.fillRect(boardCanvas.width - chipsContainerWidth, 0, boardCanvas.width, boardCanvas.height);
-        this.boardCtx.stroke();
-
         // draw board holes
         for (let column = 0; column < this.matrix.length; column++) {
             for (let row = 0; row < this.matrix[column].length; row++) {
                 if (this.matrix[column][row] === null){
+                    this.boardCtx.beginPath();
                     this.boardCtx.fillStyle = "white";
                     this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * 0.35, 0, Math.PI * 2, true);
                     this.boardCtx.fill();
@@ -87,7 +74,6 @@ class Board {
                 }
             }
         }
-
         // drawChips
         for (let i = 0; i < this.chips.length; i++) {
             this.chips[i].draw();
