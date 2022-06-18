@@ -3,7 +3,9 @@ const boardCanvas = document.getElementById("board");
 const boardCtx = boardCanvas.getContext("2d");
 const mode = document.getElementById("mode");
 const resetBtn = document.getElementById("reset");
-const board = new Board(boardCanvas, boardCtx);
+const playerTurnElement = document.getElementById("playerTurn");
+const board = new Board(boardCanvas, boardCtx, playerTurnElement);
+
 board.setUpBoard(7, 6);
 
 resetBtn.addEventListener('click', function () {

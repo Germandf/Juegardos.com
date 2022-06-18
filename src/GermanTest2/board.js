@@ -1,10 +1,11 @@
 const chipsContainerWidth = 300;
 
 class Board {
-    constructor(boardCanvas, boardCtx) {
+    constructor(boardCanvas, boardCtx, playerTurnElement) {
         this.boardCanvas = boardCanvas;
         /** @type {CanvasRenderingContext2D} */
         this.boardCtx = boardCtx;
+        this.playerTurnElement = playerTurnElement;
         this.horizontalChips = 7;
         this.verticalChips = 6;
         this.cell = this.boardCanvas.width / ((this.horizontalChips + this.verticalChips) / 2);
@@ -13,6 +14,7 @@ class Board {
         this.chips = [];
         this.eventListenersAdded = false;
         this.matrix = [];
+        this.playerTurn = 1;
     }
 
     setUpBoard(horizontalChips, verticalChips) {
@@ -27,6 +29,9 @@ class Board {
 
         // reset matrix
         this.initializeMatrix();
+
+        // reset turn
+        this.playerTurn = 1;
 
         // add chips player 1
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
@@ -53,6 +58,7 @@ class Board {
         }
         
         this.drawBoard();
+        this.renderPlayerTurn();
     }
 
     drawBoard() {
@@ -104,7 +110,7 @@ class Board {
             board.lastClickedChip = null;
         }
         let clickedChip = board.findClickedChip(e.offsetX, e.offsetY);
-        if (clickedChip != null) {
+        if (clickedChip != null && clickedChip.getPlayer() === this.playerTurn) {
             clickedChip.setHighlighted(true);
             board.lastClickedChip = clickedChip;
         }
@@ -122,8 +128,12 @@ class Board {
         board.isMouseDown = false;
         if(board.addChip(e, this.lastClickedChip)){
             // TODO check winner
+            if (this.playerTurn === 1) this.playerTurn = 2;
+            else this.playerTurn = 1;
         }
         this.lastClickedChip = null;
+        this.drawBoard();
+        this.renderPlayerTurn();
     }
 
     initializeMatrix() {
@@ -157,12 +167,19 @@ class Board {
                             this.chips.splice(index, 1);
                         }
                         this.matrix[column][row] = lastClickedChip;
-                        this.drawBoard();
                         return true;
                     }
                 }
             }
         }
         return false;
+    }
+
+    renderPlayerTurn() {
+        this.playerTurnElement.innerHTML = "Turno jugador " + this.playerTurn;
+        if (this.playerTurn === 1)
+            this.playerTurnElement.style.color = "yellow";
+        else
+            this.playerTurnElement.style.color = "red";
     }
 }

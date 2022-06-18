@@ -77,4 +77,8 @@ class Chip {
         let sqrt = Math.sqrt(_x * _x + _y * _y);
         return sqrt < this.radius;
     }
+
+    getPlayer(){
+        return this.player;
+    }
 }
