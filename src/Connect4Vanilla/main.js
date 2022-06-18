@@ -12,6 +12,9 @@ board.setUpBoard(7, 6, 5 * 60);
 resetBtn.addEventListener('click', function () {
     modeSelected = mode.value;
     switch (modeSelected) {
+        case "3":
+            board.setUpBoard(6, 5, 5 * 60);
+        break;
         case "5":
             board.setUpBoard(8, 7, 5 * 60);
         break;
