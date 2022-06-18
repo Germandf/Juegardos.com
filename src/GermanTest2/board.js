@@ -18,7 +18,7 @@ class Board {
         this.timer = new Timer(timerElement);
     }
 
-    setUpBoard(horizontalChips, verticalChips, minutes) {
+    setUpBoard(horizontalChips, verticalChips, seconds) {
         // set sizes, reset properties
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
@@ -26,7 +26,8 @@ class Board {
         this.boardCanvas.width = this.cell * this.horizontalChips + chipsContainerWidth * 2;
         this.chips = [];
         this.initializeMatrix();
-        this.playerTurn = 1;        
+        this.playerTurn = 1;
+        this.timer.setUpTimer(seconds, () => this.endGame(0));       
         // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
@@ -51,7 +52,7 @@ class Board {
         this.drawBoard();
         this.renderPlayerTurn();
         // set timer
-        this.timer.setUpTimer(minutes, () => this.endGame(0));
+        
     }
 
     drawBoard() {

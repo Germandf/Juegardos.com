@@ -5,14 +5,15 @@ class Timer {
         this.remainingSeconds = 0;
     }
 
-    setUpTimer(minutesToAdd, callback) {
+    setUpTimer(seconds, callback) {
         this.stopTimer();
-        this.remainingSeconds = minutesToAdd * 60;
+        this.remainingSeconds = seconds;
+        let timeParsed = this.getTimeParsed();
+        this.timerElement.innerHTML = timeParsed.minutes + ":" + timeParsed.seconds;
         this.time = setInterval(() => {
             this.remainingSeconds--;
-            let minutes = Math.floor(this.remainingSeconds / 60);
-            let seconds = this.remainingSeconds - minutes * 60;
-            this.timerElement.innerHTML = minutes + ":" + seconds;
+            let timeParsed = this.getTimeParsed();
+            this.timerElement.innerHTML = timeParsed.minutes + ":" + timeParsed.seconds;
             if (this.remainingSeconds <= 0) {
                 this.stopTimer();
                 callback();
@@ -28,5 +29,15 @@ class Timer {
         if (this.remainingSeconds > 0)
             return false;
         return true;
+    }
+
+    getTimeParsed() {
+        let minutes = Math.floor(this.remainingSeconds / 60);
+        let seconds = this.remainingSeconds - minutes * 60;
+        if (minutes < 10) minutes = "0" + minutes;
+        if (seconds < 10) seconds = "0" + seconds;
+        return {
+            minutes, seconds
+        }
     }
 }
