@@ -17,7 +17,7 @@
     margin: auto;
 }
 
-#playerTurn {
+#playerTurn, #timer {
     text-align: center;
     background-color: gainsboro;
     padding: 15px;

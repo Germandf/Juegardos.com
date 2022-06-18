@@ -1,7 +1,7 @@
 const chipsContainerWidth = 300;
 
 class Board {
-    constructor(boardCanvas, boardCtx, playerTurnElement) {
+    constructor(boardCanvas, boardCtx, playerTurnElement, timerElement) {
         this.boardCanvas = boardCanvas;
         /** @type {CanvasRenderingContext2D} */
         this.boardCtx = boardCtx;
@@ -15,9 +15,10 @@ class Board {
         this.eventListenersAdded = false;
         this.matrix = [];
         this.playerTurn = 1;
+        this.timer = new Timer(timerElement);
     }
 
-    setUpBoard(horizontalChips, verticalChips) {
+    setUpBoard(horizontalChips, verticalChips, minutes) {
         // set sizes, reset properties
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
@@ -25,7 +26,7 @@ class Board {
         this.boardCanvas.width = this.cell * this.horizontalChips + chipsContainerWidth * 2;
         this.chips = [];
         this.initializeMatrix();
-        this.playerTurn = 1;
+        this.playerTurn = 1;        
         // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
@@ -49,6 +50,8 @@ class Board {
         // redraw
         this.drawBoard();
         this.renderPlayerTurn();
+        // set timer
+        this.timer.setUpTimer(minutes, () => this.endGame(0));
     }
 
     drawBoard() {
@@ -179,5 +182,27 @@ class Board {
             this.playerTurnElement.style.color = "yellow";
         else
             this.playerTurnElement.style.color = "red";
+    }
+
+    endGame(endCase) {
+        let text = "";
+        this.timer.stopTimer();
+        switch (endCase) {
+            case 0:
+                text = "Se acabó el tiempo";
+            break;
+            case 1:
+                text = "Ganó el jugador 1";
+            break;
+            case 2:
+                text = "Ganó el jugador 2";
+            break;
+            case 3:
+                text = "Empate";
+            break;
+            default:
+                text = "Desconocido";
+            break;
+        }
     }
 }
