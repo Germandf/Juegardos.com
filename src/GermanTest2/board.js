@@ -150,7 +150,7 @@ class Board {
         if (lastClickedChip != null) {
             let column = this.getColumnSelected(e.offsetX, e.offsetY);
             if (column != null) {
-                for (let row = 0; row < this.verticalChips; row++) {
+                for (let row = this.matrix[column].length - 1; row >= 0; row--) {
                     if (this.matrix[column][row] === null) {
                         let index = this.chips.indexOf(lastClickedChip);
                         if (index > -1) {
