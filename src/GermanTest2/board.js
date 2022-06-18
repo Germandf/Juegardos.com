@@ -145,7 +145,10 @@ class Board {
         }
     }
 
+    // returns -1 if chip is outside board, null if it's inside but not on top and column's number if it's inserted correctly
     getColumnSelected(x, y) {
+        if (x < chipsContainerWidth || x > this.boardCanvas.width - chipsContainerWidth)
+            return -1;
         if (y > this.cell)
             return null;
         for (let column = 0; column < this.horizontalChips; column++) {
@@ -156,10 +159,11 @@ class Board {
         return null;
     }
 
+    // adds chip inside board's selected column, move chip to random position in it's chip's container if it's outside it and couldn't insert
     addChip(e, lastClickedChip) {
         if (lastClickedChip != null) {
             let column = this.getColumnSelected(e.offsetX, e.offsetY);
-            if (column != null) {
+            if (column !== null && column !== -1) {
                 for (let row = this.matrix[column].length - 1; row >= 0; row--) {
                     if (this.matrix[column][row] === null) {
                         let index = this.chips.indexOf(lastClickedChip);
@@ -169,6 +173,18 @@ class Board {
                         this.matrix[column][row] = lastClickedChip;
                         return true;
                     }
+                }
+            }
+            if (column === null || column !== -1) {
+                if (this.playerTurn === 1){
+                    var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
+                    let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                    lastClickedChip.setPosition(randomX, randomY)
+                }
+                else {
+                    var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
+                    let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                    lastClickedChip.setPosition(randomX, randomY)
                 }
             }
         }
