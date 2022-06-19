@@ -133,15 +133,15 @@ class Board {
     }
 
     searchHorizontal(row) {        
-        let chipsInLine = 0;       
+        let chipsInLine = 0;     
         for (let column = 0; column < this.horizontalChips; column++) {
-            console.log(this.matrix[column][row]);
-            if (this.matrix[column][row] !== null) {
-                let chipPlayer = this.matrix[column][row].getPlayer();
-                if (chipPlayer == this.playerTurn) 
+            let actualChip = this.matrix[column][row];
+            console.log(actualChip);
+            if (actualChip !== null) {                
+                if (actualChip.getPlayer() == this.playerTurn)
                     chipsInLine++;
                 else
-                    chipsInLine = 0;
+                    chipsInLine = 0;                
                 if (chipsInLine == this.chipsToWin)
                     return true; 
             }               
@@ -152,9 +152,9 @@ class Board {
     searchVertical(column) {
         let chipsInLine = 0;
         for (let row = 0; row < this.verticalChips; row++) {
-            if (this.matrix[column][row] !== null) {
-                let chipPlayer = this.matrix[column][row].getPlayer();
-                if (chipPlayer == this.playerTurn)
+            let actualChip = this.matrix[column][row];
+            if (actualChip !== null) {            
+                if (actualChip.getPlayer() == this.playerTurn)
                     chipsInLine++;
                 else
                     chipsInLine = 0;
@@ -249,5 +249,6 @@ class Board {
                 text = "Desconocido";
             break;
         }
+        alert(text);
     }
 }
