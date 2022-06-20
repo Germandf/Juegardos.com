@@ -2,13 +2,14 @@ const boardCanvas = document.getElementById("board");
 /** @type {boardCanvasRenderingContext2D} */
 const boardCtx = boardCanvas.getContext("2d");
 const mode = document.getElementById("mode");
-const resetBtn = document.getElementById("reset");
 const playerTurnElement = document.getElementById("playerTurn");
 const timerElement  = document.getElementById("timer");
-const board = new Board(boardCanvas, boardCtx, playerTurnElement, timerElement);
+const resultElement  = document.getElementById("result");
+const board = new Board(boardCanvas, boardCtx, playerTurnElement, timerElement, resultElement);
 
 board.setUpBoard(7, 6, 4, 5 * 60);
 
+const resetBtn = document.getElementById("reset");
 resetBtn.addEventListener('click', function () {
     modeSelected = mode.value;
     switch (modeSelected) {

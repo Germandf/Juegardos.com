@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connect 4</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="timer"></div>
-    <div id="playerTurn"></div>
-    <canvas id="board" height="600" width="700"></canvas>
-    <div class="options">
+    <div class="info">
+        <span id="timer"></span>
+        <span id="playerTurn"></span>
         <select id="mode">
             <option value="3">3 en línea</option>
             <option value="4" selected>4 en línea</option>
@@ -19,6 +18,10 @@
             <option value="6">6 en línea</option>
         </select>
         <button id="reset">Reset</button>
+    </div>
+    <div class="game-container">
+        <canvas id="board" height="600" width="700"></canvas>
+        <div id="result"></div>
     </div>
     <script src="timer.js"></script>
     <script src="chip.js"></script>
