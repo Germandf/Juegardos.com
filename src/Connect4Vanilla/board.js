@@ -129,10 +129,6 @@ class Board {
             }            
             if (this.playerTurn === 1) this.playerTurn = 2;
             else this.playerTurn = 1;
-            this.showDropZone = false;
-        }
-        else if (this.lastClickedChip !== null) {
-            this.showDropZone = true;
         }
         this.lastClickedChip = null;
         this.drawBoard();
@@ -181,10 +177,12 @@ class Board {
         }
     }
 
-    // returns -1 if chip is outside board, null if it's inside but not on top and column's number if it's inserted correctly
+    // returns -1 if chip is in player 1's chip contanier, -2 if chip is in player 2 chip's container, null if it's inside board but not on valid drop zone and column's number if it's inserted correctly
     getColumnSelected(x, y) {
-        if (x < chipsContainerWidth || x > this.boardCanvas.width - chipsContainerWidth)
+        if (x < chipsContainerWidth)
             return -1;
+        if (x > this.boardCanvas.width - chipsContainerWidth)
+            return -2;
         if (y > this.cell)
             return null;
         for (let column = 0; column < this.horizontalChips; column++) {
@@ -199,7 +197,7 @@ class Board {
     addChip(e, lastClickedChip) {
         if (lastClickedChip != null) {
             let column = this.getColumnSelected(e.offsetX, e.offsetY);
-            if (column !== null && column !== -1) {
+            if (column !== null && column >= 0) {
                 for (let row = this.matrix[column].length - 1; row >= 0; row--) {
                     if (this.matrix[column][row] === null) {
                         let index = this.chips.indexOf(lastClickedChip);
@@ -207,21 +205,22 @@ class Board {
                             this.chips.splice(index, 1);
                         }
                         this.matrix[column][row] = lastClickedChip;
+                        this.showDropZone = false;
                         return true;
                     }
                 }
             }
-            if (column === null || column !== -1) {
-                if (this.playerTurn === 1){
-                    var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
-                    let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-                    lastClickedChip.setPosition(randomX, randomY)
-                }
-                else {
-                    var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
-                    let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-                    lastClickedChip.setPosition(randomX, randomY)
-                }
+            if (this.playerTurn === 1 && column !== -1){
+                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
+                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                lastClickedChip.setPosition(randomX, randomY);
+                this.showDropZone = true;
+            }
+            else if (this.playerTurn === 2 && column !== -2) {
+                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
+                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                lastClickedChip.setPosition(randomX, randomY);
+                this.showDropZone = true;
             }
         }
         return false;
