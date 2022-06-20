@@ -17,6 +17,7 @@ class Board {
         this.matrix = [];
         this.playerTurn = 1;
         this.timer = new Timer(timerElement);
+        this.showDropZone = false;
     }
 
     setUpBoard(horizontalChips, verticalChips, chipsToWin, seconds) {
@@ -29,7 +30,7 @@ class Board {
         this.chips = [];
         this.initializeMatrix();
         this.playerTurn = 1;
-               
+        this.showDropZone = false;
         // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
@@ -54,13 +55,17 @@ class Board {
         this.drawBoard();
         this.renderPlayerTurn();
         this.timer.setUpTimer(seconds, () => this.endGame(0));
-        
     }
 
     drawBoard() {
         // draw board background
         this.boardCtx.fillStyle = "#3867d6";
         this.boardCtx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
+        // show drop zone if player dragged chip incorrectly
+        if (this.showDropZone) {
+            this.boardCtx.fillStyle = "lightblue";
+            this.boardCtx.fillRect(chipsContainerWidth, 0, this.boardCanvas.width - chipsContainerWidth, this.cell);
+        }
         // draw chips containers
         this.boardCtx.fillStyle = "gray";
         this.boardCtx.fillRect(0, 0, chipsContainerWidth, boardCanvas.height);
@@ -114,8 +119,6 @@ class Board {
     onMouseUp(board, e) {
         board.isMouseDown = false;
         if (board.addChip(e, this.lastClickedChip)){
-            // TODO check winner
-            // search winner horizontal            
             for (let row = this.verticalChips - 1; row >= 0 ; row--) {
                 if (this.searchHorizontal(row))
                     this.endGame(this.playerTurn);
@@ -126,6 +129,10 @@ class Board {
             }            
             if (this.playerTurn === 1) this.playerTurn = 2;
             else this.playerTurn = 1;
+            this.showDropZone = false;
+        }
+        else if (this.lastClickedChip !== null) {
+            this.showDropZone = true;
         }
         this.lastClickedChip = null;
         this.drawBoard();
@@ -136,7 +143,6 @@ class Board {
         let chipsInLine = 0;     
         for (let column = 0; column < this.horizontalChips; column++) {
             let actualChip = this.matrix[column][row];
-            console.log(actualChip);
             if (actualChip !== null) {                
                 if (actualChip.getPlayer() == this.playerTurn)
                     chipsInLine++;
