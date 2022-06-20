@@ -27,3 +27,18 @@
 .info > button {
     cursor: pointer;
 }
+
+#result {
+    background-color: rgba(1, 1, 1, 0.70);
+    font-weight: bolder;
+    padding: 2em 0 2em 0;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    text-align: center;
+    color: wheat;
+}
+
+.game-container {
+    position: relative;
+}

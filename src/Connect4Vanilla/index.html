@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Connect 4</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,7 +19,10 @@
         </select>
         <button id="reset">Reset</button>
     </div>
-    <canvas id="board" height="600" width="700"></canvas>
+    <div class="game-container">
+        <canvas id="board" height="600" width="700"></canvas>
+        <div id="result"></div>
+    </div>
     <script src="timer.js"></script>
     <script src="chip.js"></script>
     <script src="board.js"></script>

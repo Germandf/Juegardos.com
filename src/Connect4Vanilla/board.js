@@ -1,7 +1,7 @@
 const chipsContainerWidth = 300;
 
 class Board {
-    constructor(boardCanvas, boardCtx, playerTurnElement, timerElement) {
+    constructor(boardCanvas, boardCtx, playerTurnElement, timerElement, resultElement) {
         this.boardCanvas = boardCanvas;
         /** @type {CanvasRenderingContext2D} */
         this.boardCtx = boardCtx;
@@ -18,6 +18,8 @@ class Board {
         this.playerTurn = 1;
         this.timer = new Timer(timerElement);
         this.showDropZone = false;
+        this.resultElement = resultElement;
+        this.gameFinished = false;
     }
 
     setUpBoard(horizontalChips, verticalChips, chipsToWin, seconds) {
@@ -31,6 +33,12 @@ class Board {
         this.initializeMatrix();
         this.playerTurn = 1;
         this.showDropZone = false;
+        this.gameFinished = false;
+        // hide result
+        this.resultElement.style.visibility = "hidden";
+        while (this.resultElement.firstChild) {
+            this.resultElement.removeChild(this.resultElement.firstChild);
+        }
         // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
@@ -101,12 +109,14 @@ class Board {
     }
     
     onMouseDown(board, e) {
-        board.isMouseDown = true;
-        if (board.lastClickedChip != null)
-            board.lastClickedChip = null;
-        let clickedChip = board.findClickedChip(e.offsetX, e.offsetY);
-        if (clickedChip != null && clickedChip.getPlayer() === this.playerTurn)
-            board.lastClickedChip = clickedChip;
+        if (this.gameFinished === false) {
+            board.isMouseDown = true;
+            if (board.lastClickedChip != null)
+                board.lastClickedChip = null;
+            let clickedChip = board.findClickedChip(e.offsetX, e.offsetY);
+            if (clickedChip != null && clickedChip.getPlayer() === this.playerTurn)
+                board.lastClickedChip = clickedChip;
+        }
     }
 
     onMouseMove(board, e) {
@@ -235,6 +245,7 @@ class Board {
     }
 
     endGame(endCase) {
+        this.gameFinished = true;
         let text = "";
         this.timer.stopTimer();
         switch (endCase) {
@@ -254,6 +265,10 @@ class Board {
                 text = "Desconocido";
             break;
         }
-        alert(text);
+        const title = document.createElement("h2");
+        const textElement = document.createTextNode(text);
+        title.appendChild(textElement);
+        this.resultElement.appendChild(title);
+        this.resultElement.style.visibility = "initial";
     }
 }
