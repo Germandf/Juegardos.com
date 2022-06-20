@@ -202,6 +202,8 @@ class Board {
                         chipsInLine = 0;
                     if (chipsInLine == this.chipsToWin)
                         return true;
+                } else {
+                    chipsInLine = 0;
                 }
                 row--;
                 column++;
@@ -230,6 +232,8 @@ class Board {
                         chipsInLine = 0;
                     if (chipsInLine == this.chipsToWin)
                         return true;
+                } else {
+                    chipsInLine = 0;
                 }
                 row--;
                 column--;
