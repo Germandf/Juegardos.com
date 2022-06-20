@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="timer"></div>
-    <div id="playerTurn"></div>
-    <canvas id="board" height="600" width="700"></canvas>
-    <div class="options">
+    <div class="info">
+        <span id="timer"></span>
+        <span id="playerTurn"></span>
         <select id="mode">
             <option value="3">3 en línea</option>
             <option value="4" selected>4 en línea</option>
@@ -20,6 +19,7 @@
         </select>
         <button id="reset">Reset</button>
     </div>
+    <canvas id="board" height="600" width="700"></canvas>
     <script src="timer.js"></script>
     <script src="chip.js"></script>
     <script src="board.js"></script>
