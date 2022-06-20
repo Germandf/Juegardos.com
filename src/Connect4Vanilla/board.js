@@ -113,30 +113,49 @@ class Board {
     
     onMouseUp(board, e) {
         board.isMouseDown = false;
+        let hasWinner = false;
         if (board.addChip(e, this.lastClickedChip)){
-            // TODO check winner
             // search winner horizontal            
             for (let row = this.verticalChips - 1; row >= 0 ; row--) {
-                if (this.searchHorizontal(row))
-                    this.endGame(this.playerTurn);
+                if (this.searchHorizontal(row)) {
+                    hasWinner = true;
+                    break;
+                }
             }
-            for (let column = 0; column < this.horizontalChips; column++) {
-                if (this.searchVertical(column))
+            // search winner vertical
+            if (!hasWinner)
+                for (let column = 0; column < this.horizontalChips; column++) {
+                    if (this.searchVertical(column)) {
+                        hasWinner = true;
+                        break;
+                    }
+                }
+            // search winner diagonal left
+            if (!hasWinner)
+                if (this.searchDiagonalLeft(0, this.verticalChips - this.chipsToWin + 1)) {
+                    hasWinner = true;                                       
+                }
+            // search winner diagonal right
+            if (!hasWinner)
+                if (this.searchDiagonalRight(this.horizontalChips - 1, this.verticalChips - this.chipsToWin + 1)) {
+                    hasWinner = true;
+                }
+                this.drawBoard();
+                if (hasWinner) {
                     this.endGame(this.playerTurn);
-            }            
-            if (this.playerTurn === 1) this.playerTurn = 2;
-            else this.playerTurn = 1;
+                } else {
+                    this.lastClickedChip = null;
+                    if (this.playerTurn === 1) this.playerTurn = 2;
+                    else this.playerTurn = 1;
+                    this.renderPlayerTurn();
+                }
         }
-        this.lastClickedChip = null;
-        this.drawBoard();
-        this.renderPlayerTurn();
     }
 
     searchHorizontal(row) {        
         let chipsInLine = 0;     
         for (let column = 0; column < this.horizontalChips; column++) {
             let actualChip = this.matrix[column][row];
-            console.log(actualChip);
             if (actualChip !== null) {                
                 if (actualChip.getPlayer() == this.playerTurn)
                     chipsInLine++;
@@ -151,7 +170,7 @@ class Board {
 
     searchVertical(column) {
         let chipsInLine = 0;
-        for (let row = 0; row < this.verticalChips; row++) {
+        for (let row = this.verticalChips - 1; row >= 0; row--) {
             let actualChip = this.matrix[column][row];
             if (actualChip !== null) {            
                 if (actualChip.getPlayer() == this.playerTurn)
@@ -161,6 +180,62 @@ class Board {
                 if (chipsInLine == this.chipsToWin)
                     return true;
             }
+        }
+        return false;
+    }
+
+    searchDiagonalLeft(column, startRow) {
+        let chipsInLine = 0;
+        let startColumn = column;
+        let row = startRow;
+        while (row < this.verticalChips) {           
+            while (column < this.horizontalChips && row >= 0) {
+                let actualChip = this.matrix[column][row];
+                if (actualChip !== null) {
+                    if (actualChip.getPlayer() == this.playerTurn)
+                        chipsInLine++;
+                    else
+                        chipsInLine = 0;
+                    if (chipsInLine == this.chipsToWin)
+                        return true;
+                }
+                row--;
+                column++;
+            }
+            row = ++startRow;
+            if (row == this.verticalChips && startColumn < this.horizontalChips - this.chipsToWin + 1) {
+                return this.searchDiagonalLeft(++startColumn, this.verticalChips - 1);
+            }
+            column = 0;            
+            chipsInLine = 0;
+        }
+        return false;
+    }
+
+    searchDiagonalRight(column, startRow) {
+        let chipsInLine = 0;
+        let startColumn = column;
+        let row = startRow;
+        while (row < this.verticalChips) {
+            while (column >= 0 && row >= 0) {
+                let actualChip = this.matrix[column][row];
+                if (actualChip !== null) {
+                    if (actualChip.getPlayer() == this.playerTurn)
+                        chipsInLine++;
+                    else
+                        chipsInLine = 0;
+                    if (chipsInLine == this.chipsToWin)
+                        return true;
+                }
+                row--;
+                column--;
+            }
+            row = ++startRow;
+            if (row == this.verticalChips && startColumn > this.horizontalChips - this.chipsToWin + 1) {
+                return this.searchDiagonalRight(--startColumn, this.verticalChips - 1);
+            }
+            column = 0;
+            chipsInLine = 0;
         }
         return false;
     }
@@ -249,6 +324,6 @@ class Board {
                 text = "Desconocido";
             break;
         }
-        alert(text);
+        alert(text);        
     }
 }
