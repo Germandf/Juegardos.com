@@ -137,10 +137,10 @@ class Board {
                 if (this.searchVertical(column))
                     this.endGame(this.playerTurn);
             }
-            if (this.searchDiagonalLeft(0, this.verticalChips - this.chipsToWin + 1)) {
+            if (this.searchDiagonalLeft(0, this.chipsToWin - 1)) {
                 this.endGame(this.playerTurn);
             }
-            if (this.searchDiagonalRight(this.horizontalChips - 1, this.verticalChips - this.chipsToWin + 1)) {
+            if (this.searchDiagonalRight(this.horizontalChips - 1, this.chipsToWin - 1)) {
                 this.endGame(this.playerTurn);
             }
             if (this.chips.length === 0){
@@ -242,7 +242,7 @@ class Board {
             if (row == this.verticalChips && startColumn > this.horizontalChips - this.chipsToWin + 1) {
                 return this.searchDiagonalRight(--startColumn, this.verticalChips - 1);
             }
-            column = 0;
+            column = startColumn;
             chipsInLine = 0;
         }
         return false;
