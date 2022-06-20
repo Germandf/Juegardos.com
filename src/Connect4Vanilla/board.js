@@ -128,43 +128,30 @@ class Board {
     
     onMouseUp(board, e) {
         board.isMouseDown = false;
-        let hasWinner = false;
         if (board.addChip(e, this.lastClickedChip)){
-            // search winner horizontal            
             for (let row = this.verticalChips - 1; row >= 0 ; row--) {
-                if (this.searchHorizontal(row)) {
-                    hasWinner = true;
-                    break;
-                }
-            }
-            // search winner vertical
-            if (!hasWinner)
-                for (let column = 0; column < this.horizontalChips; column++) {
-                    if (this.searchVertical(column)) {
-                        hasWinner = true;
-                        break;
-                    }
-                }
-            // search winner diagonal left
-            if (!hasWinner)
-                if (this.searchDiagonalLeft(0, this.verticalChips - this.chipsToWin + 1)) {
-                    hasWinner = true;                                       
-                }
-            // search winner diagonal right
-            if (!hasWinner)
-                if (this.searchDiagonalRight(this.horizontalChips - 1, this.verticalChips - this.chipsToWin + 1)) {
-                    hasWinner = true;
-                }
-                this.drawBoard();
-                if (hasWinner) {
+                if (this.searchHorizontal(row))
                     this.endGame(this.playerTurn);
-                } else {
-                    this.lastClickedChip = null;
-                    if (this.playerTurn === 1) this.playerTurn = 2;
-                    else this.playerTurn = 1;
-                    this.renderPlayerTurn();
-                }
+            }
+            for (let column = 0; column < this.horizontalChips; column++) {
+                if (this.searchVertical(column))
+                    this.endGame(this.playerTurn);
+            }
+            if (this.searchDiagonalLeft(0, this.verticalChips - this.chipsToWin + 1)) {
+                this.endGame(this.playerTurn);
+            }
+            if (this.searchDiagonalRight(this.horizontalChips - 1, this.verticalChips - this.chipsToWin + 1)) {
+                this.endGame(this.playerTurn);
+            }
+            if (this.chips.length === 0){
+                this.endGame(3);
+            }
+            if (this.playerTurn === 1) this.playerTurn = 2;
+            else this.playerTurn = 1;
         }
+        this.lastClickedChip = null;
+        this.drawBoard();
+        this.renderPlayerTurn();
     }
 
     searchHorizontal(row) {        
@@ -342,8 +329,7 @@ class Board {
             default:
                 text = "Desconocido";
             break;
-        }
-        alert(text);        
+        }     
         const title = document.createElement("h2");
         const textElement = document.createTextNode(text);
         title.appendChild(textElement);
