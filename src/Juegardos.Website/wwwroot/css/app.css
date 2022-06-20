@@ -1572,3 +1572,46 @@ i.dislike.selected {
     background-image: url('https://uploaddeimagens.com.br/images/000/955/232/full/side.jpg?1497835464');
     transform: translateZ(50px);
 }
+
+/* CONNECT 4 */
+
+.gameplay-box #board {
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
+.gameplay-box .info {
+    text-align: center;
+    background-color: gainsboro;
+    padding: 15px;
+    font-size: 24px;
+    text-shadow: 0 0 1.5px black, 0 0 1.5px black, 0 0 1.5px black, 0 0 1.5px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .gameplay-box .info > * {
+        height: 24px;
+        margin: 0 10px;
+    }
+
+    .gameplay-box .info > button {
+        cursor: pointer;
+    }
+
+.gameplay-box #result {
+    background-color: rgba(1, 1, 1, 0.70);
+    font-weight: bolder;
+    padding: 2em 0 2em 0;
+    width: 100%;
+    position: absolute;
+    top: 40%;
+    text-align: center;
+    color: wheat;
+}
+
+.gameplay-box .game-container {
+    position: relative;
+}

@@ -2,7 +2,14 @@
 
 <div class="gameplay-container">
     <div class="gameplay-box">
-        <img src="@Game.Image" />
+        @if (_hardcodedGame == HardcodedGame.Connect4)
+        {
+            <Connect4 />
+        }
+        else
+        {
+            <img src="@Game.Image" />
+        }
     </div>
     <div class="gameplay-box-bar">
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
@@ -39,6 +46,15 @@
     public Game Game { get; set; } = null!;
 
     private Modal _howToPlayModal = new();
+    private HardcodedGame _hardcodedGame = HardcodedGame.None;
+
+    protected override void OnParametersSet()
+    {
+        if (StringHelper.FormatToUrlName(Game.Name) == "4-en-linea")
+            _hardcodedGame = HardcodedGame.Connect4;
+        else
+            _hardcodedGame = HardcodedGame.None;
+    }
 
     private void ChangeLike(LikeDecision newDecision)
     {
@@ -46,6 +62,12 @@
             Game.UserLikeDecision = LikeDecision.None;
         else
             Game.UserLikeDecision = newDecision;
+    }
+
+    public enum HardcodedGame
+    {
+        None,
+        Connect4
     }
 
 }
