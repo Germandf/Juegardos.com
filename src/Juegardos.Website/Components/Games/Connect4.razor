@@ -22,10 +22,7 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
-        {
-            var myScript = await _js.InvokeAsync<IJSObjectReference>("import", "/js/connect4/main.js");
-            //await _js.InvokeVoidAsync("startConnect4");
-        }
+            await _js.InvokeVoidAsync("startConnect4");
     }
 
 }
