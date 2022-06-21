@@ -1,4 +1,5 @@
-const chipsContainerWidth = 300;
+const chipsContainerWidth = 200;
+const chipsCellMultiplier = 0.30;
 
 class Board {
     constructor(boardCanvas, boardCtx, playerTurnElement, timerElement, resultElement) {
@@ -41,15 +42,15 @@ class Board {
         }
         // add players' chips
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
-            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
-            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-            let chip = new Chip(randomX, randomY, this.cell * 0.35, 1, this.boardCtx);
+            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
+            let chip = new Chip(randomX, randomY, this.cell * chipsCellMultiplier, 1, this.boardCtx);
             this.chips.push(chip);
         }
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
-            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
-            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-            let chip = new Chip(randomX, randomY, this.cell * 0.35, 2, this.boardCtx);
+            var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier + this.boardCanvas.width - chipsContainerWidth);
+            let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
+            let chip = new Chip(randomX, randomY, this.cell * chipsCellMultiplier, 2, this.boardCtx);
             this.chips.push(chip);
         }
         // add event listeners
@@ -84,7 +85,7 @@ class Board {
                 if (this.matrix[column][row] === null){
                     this.boardCtx.beginPath();
                     this.boardCtx.fillStyle = "white";
-                    this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * 0.35, 0, Math.PI * 2, true);
+                    this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * chipsCellMultiplier, 0, Math.PI * 2, true);
                     this.boardCtx.fill();
                     this.boardCtx.closePath();
                 } else {
@@ -292,14 +293,14 @@ class Board {
                 }
             }
             if (this.playerTurn === 1 && column !== -1){
-                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
-                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
+                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
                 lastClickedChip.setPosition(randomX, randomY);
                 this.showDropZone = true;
             }
             else if (this.playerTurn === 2 && column !== -2) {
-                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
-                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
+                var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier + this.boardCanvas.width - chipsContainerWidth);
+                let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * chipsCellMultiplier * 2) + this.cell * chipsCellMultiplier);
                 lastClickedChip.setPosition(randomX, randomY);
                 this.showDropZone = true;
             }
