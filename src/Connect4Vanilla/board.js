@@ -43,13 +43,13 @@ class Board {
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35);
             let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-            let chip = new Chip(randomX, randomY, this.cell * 0.35, 1, boardCtx);
+            let chip = new Chip(randomX, randomY, this.cell * 0.35, 1, this.boardCtx);
             this.chips.push(chip);
         }
         for (let i = 0; i < this.horizontalChips * this.verticalChips / 2; i++){
             var randomX = Math.round(Math.random() * (chipsContainerWidth - this.cell * 0.35 * 2) + this.cell * 0.35 + this.boardCanvas.width - chipsContainerWidth);
             let randomY = Math.round(Math.random() * (this.boardCanvas.height - this.cell * 0.35 * 2) + this.cell * 0.35);
-            let chip = new Chip(randomX, randomY, this.cell * 0.35, 2, boardCtx);
+            let chip = new Chip(randomX, randomY, this.cell * 0.35, 2, this.boardCtx);
             this.chips.push(chip);
         }
         // add event listeners
@@ -68,7 +68,7 @@ class Board {
     drawBoard() {
         // draw board background
         this.boardCtx.fillStyle = "#3867d6";
-        this.boardCtx.fillRect(0, 0, boardCanvas.width, boardCanvas.height);
+        this.boardCtx.fillRect(0, 0, this.boardCanvas.width, this.boardCanvas.height);
         // show drop zone if player dragged chip incorrectly
         if (this.showDropZone) {
             this.boardCtx.fillStyle = "lightblue";
@@ -76,8 +76,8 @@ class Board {
         }
         // draw chips containers
         this.boardCtx.fillStyle = "gray";
-        this.boardCtx.fillRect(0, 0, chipsContainerWidth, boardCanvas.height);
-        this.boardCtx.fillRect(boardCanvas.width - chipsContainerWidth, 0, boardCanvas.width, boardCanvas.height);
+        this.boardCtx.fillRect(0, 0, chipsContainerWidth, this.boardCanvas.height);
+        this.boardCtx.fillRect(this.boardCanvas.width - chipsContainerWidth, 0, this.boardCanvas.width, this.boardCanvas.height);
         // draw board holes
         for (let column = 0; column < this.matrix.length; column++) {
             for (let row = 0; row < this.matrix[column].length; row++) {

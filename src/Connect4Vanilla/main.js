@@ -11,7 +11,7 @@ board.setUpBoard(7, 6, 4, 5 * 60);
 
 const resetBtn = document.getElementById("reset");
 resetBtn.addEventListener('click', function () {
-    modeSelected = mode.value;
+    let modeSelected = mode.value;
     switch (modeSelected) {
         case "3":
             board.setUpBoard(6, 5, 3, 5 * 60);

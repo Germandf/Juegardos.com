@@ -1110,7 +1110,7 @@ textarea.primary-input {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    max-width: 970px;
+    /*max-width: 970px;*/
 }
 
     .game-with-ad > .ad {

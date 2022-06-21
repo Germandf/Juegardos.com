@@ -19,11 +19,12 @@
 
 @code {
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            _js.InvokeVoidAsync("startConnect4");
+            var myScript = await _js.InvokeAsync<IJSObjectReference>("import", "/js/connect4/main.js");
+            //await _js.InvokeVoidAsync("startConnect4");
         }
     }
 

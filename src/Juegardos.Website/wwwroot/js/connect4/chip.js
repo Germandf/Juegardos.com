@@ -11,11 +11,11 @@ class Chip {
         this.loadedImg = false;
         this.player = player;
         if (this.player === 1){
-            img.src = "./chip1.png";
+            img.src = "./images/connect4/chip1.png";
             this.img = img;
             this.fill = "yellow";
         } else {
-            img.src = "./chip2.png";
+            img.src = "./images/connect4/chip2.png";
             this.img = img;
             this.fill = "red";
         }
