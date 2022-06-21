@@ -11,6 +11,8 @@ public class Game
     public int Likes { get; set; }
     public int Dislikes { get; set; }
     public LikeDecision UserLikeDecision { get; set; } = LikeDecision.None;
+    public string HowToPlay { get; set; } = "Tu misión es infiltrarte en las tropas enemigas y eliminar tantos soldados como sea posible. Contás con munición limitada, pero podés conseguir más comprando en la tienda cada vez que el juego así lo permita.";
+    public List<string> Controls { get; set; } = new() { "WASD - Moverse", "Click izquierdo - Disparar", "Click derecho - Apuntar", "R - Recargar", "Espacio - Saltar", "Q - Cambio de arma" };
 }
 
 public enum LikeDecision
