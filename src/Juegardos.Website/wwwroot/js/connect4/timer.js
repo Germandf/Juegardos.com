@@ -5,6 +5,7 @@ class Timer {
         this.remainingSeconds = 0;
     }
 
+    // prepares timer to call a callback method when seconds equals zero
     setUpTimer(seconds, callback) {
         this.stopTimer();
         this.remainingSeconds = seconds;
@@ -21,16 +22,12 @@ class Timer {
         }, 1000);
     }
 
+    // stops timer counting
     stopTimer() {
         clearInterval(this.time);
     }
 
-    isTimeOver(){
-        if (this.remainingSeconds > 0)
-            return false;
-        return true;
-    }
-
+    // gets time parsed correctly for both checking time remaining and update timerElement's innerHtml
     getTimeParsed() {
         let minutes = Math.floor(this.remainingSeconds / 60);
         let seconds = this.remainingSeconds - minutes * 60;

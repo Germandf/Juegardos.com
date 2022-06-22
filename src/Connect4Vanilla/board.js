@@ -23,6 +23,7 @@ class Board {
         this.gameFinished = false;
     }
 
+    // prepare board for playing, only called at beginning or at changing game mode
     setUpBoard(horizontalChips, verticalChips, chipsToWin, seconds) {
         // set sizes, reset properties
         this.horizontalChips = horizontalChips;
@@ -69,17 +70,16 @@ class Board {
         setTimeout(() => this.drawBoard(), 40);
     }
 
+    // redraw entire board's canvas
     drawBoard() {
         // draw board background
         this.boardCtx.fillStyle = "#3867d6";
         this.boardCtx.fillRect(0, this.cell, this.boardCanvas.width, this.boardCanvas.height);
         // show drop zone if player dragged chip incorrectly
-        if (this.showDropZone) {
+        if (this.showDropZone)
             this.boardCtx.fillStyle = "lightblue";
-        }
-        else {
+        else
             this.boardCtx.fillStyle = "gray";
-        }
         this.boardCtx.fillRect(chipsContainerWidth, 0, this.boardCanvas.width - chipsContainerWidth, this.cell);
         // draw arrows
         this.boardCtx.fillStyle = "black";
@@ -115,16 +115,8 @@ class Board {
             this.chips[i].draw();
         }
     }
-
-    findClickedChip(x, y) {
-        for (let i = 0; i < this.chips.length; i++) {
-            const element = this.chips[i];
-            if (element.isMouseOn(x, y)) {
-                return element;
-            }
-        }
-    }
     
+    // if game is not finished, sets isMouseDown to true and gets clicked chip
     onMouseDown(board, e) {
         if (this.gameFinished === false) {
             board.isMouseDown = true;
@@ -136,6 +128,7 @@ class Board {
         }
     }
 
+    // set lastCLickedChip's new position and redraw board each time it's called
     onMouseMove(board, e) {
         if (board.isMouseDown && board.lastClickedChip != null) {
             board.lastClickedChip.setPosition(e.offsetX, e.offsetY);
@@ -143,6 +136,7 @@ class Board {
         }
     }
     
+    // sets isMouseDown to false, tries to add chip, if added successfully searchs for winner, changes player turn and redraw
     onMouseUp(board, e) {
         board.isMouseDown = false;
         if (board.addChip(e, this.lastClickedChip)){
@@ -171,6 +165,7 @@ class Board {
         this.renderPlayerTurn();
     }
 
+    // returns true if there is a winner, false if not
     searchHorizontal(row) {        
         let chipsInLine = 0;     
         for (let column = 0; column < this.horizontalChips; column++) {
@@ -189,6 +184,7 @@ class Board {
         return false;
     }
 
+    // returns true if there is a winner, false if not
     searchVertical(column) {
         let chipsInLine = 0;
         for (let row = this.verticalChips - 1; row >= 0; row--) {
@@ -205,6 +201,7 @@ class Board {
         return false;
     }
 
+    // returns true if there is a winner, false if not
     searchDiagonalLeft(column, startRow) {
         let chipsInLine = 0;
         let startColumn = column;
@@ -235,6 +232,7 @@ class Board {
         return false;
     }
 
+    // returns true if there is a winner, false if not
     searchDiagonalRight(column, startRow) {
         let chipsInLine = 0;
         let startColumn = column;
@@ -265,12 +263,23 @@ class Board {
         return false;
     }
 
+    // initialize matrix based on horizontal and vertical chips' properties' quantities
     initializeMatrix() {
         this.matrix = [];
         for (let x = 0; x < this.horizontalChips; x++) {
             this.matrix[x] = [];
             for (let y = 0; y < this.verticalChips; y++) {
                 this.matrix[x][y] = null;
+            }
+        }
+    }
+
+    // returns chip object on mouse's position
+    findClickedChip(x, y) {
+        for (let i = 0; i < this.chips.length; i++) {
+            const element = this.chips[i];
+            if (element.isMouseOn(x, y)) {
+                return element;
             }
         }
     }
@@ -324,6 +333,7 @@ class Board {
         return false;
     }
 
+    // render player turn element, changing its inner html and color based on player turn
     renderPlayerTurn() {
         this.playerTurnElement.innerHTML = "Turno jugador " + this.playerTurn;
         if (this.playerTurn === 1)
@@ -332,6 +342,7 @@ class Board {
             this.playerTurnElement.style.color = "red";
     }
 
+    // shows game result element, stops timer and sets gameFinished property to true
     endGame(endCase) {
         this.gameFinished = true;
         let text = "";
