@@ -1137,6 +1137,8 @@ textarea.primary-input {
 
 .gameplay-container {
     width: 100%;
+    border: 5px var(--primary-normal) solid;
+    border-radius: 5px 5px 30px 30px;
 }
 
 .gameplay-box > img {
