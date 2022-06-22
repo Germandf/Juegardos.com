@@ -64,6 +64,9 @@ class Board {
         this.drawBoard();
         this.renderPlayerTurn();
         this.timer.setUpTimer(seconds, () => this.endGame(0));
+        // to avoid rendering bug
+        setTimeout(() => this.drawBoard(), 20);
+        setTimeout(() => this.drawBoard(), 40);
     }
 
     drawBoard() {
