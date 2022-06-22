@@ -28,7 +28,7 @@ class Board {
         this.horizontalChips = horizontalChips;
         this.verticalChips = verticalChips;
         this.chipsToWin = chipsToWin;
-        this.boardCanvas.height = this.cell * this.verticalChips;
+        this.boardCanvas.height = this.cell * (this.verticalChips + 1);
         this.boardCanvas.width = this.cell * this.horizontalChips + chipsContainerWidth * 2;
         this.chips = [];
         this.initializeMatrix();
@@ -64,16 +64,32 @@ class Board {
         this.drawBoard();
         this.renderPlayerTurn();
         this.timer.setUpTimer(seconds, () => this.endGame(0));
+        // to avoid rendering bug
+        setTimeout(() => this.drawBoard(), 20);
+        setTimeout(() => this.drawBoard(), 40);
     }
 
     drawBoard() {
         // draw board background
         this.boardCtx.fillStyle = "#3867d6";
-        this.boardCtx.fillRect(0, 0, this.boardCanvas.width, this.boardCanvas.height);
+        this.boardCtx.fillRect(0, this.cell, this.boardCanvas.width, this.boardCanvas.height);
         // show drop zone if player dragged chip incorrectly
         if (this.showDropZone) {
             this.boardCtx.fillStyle = "lightblue";
-            this.boardCtx.fillRect(chipsContainerWidth, 0, this.boardCanvas.width - chipsContainerWidth, this.cell);
+        }
+        else {
+            this.boardCtx.fillStyle = "gray";
+        }
+        this.boardCtx.fillRect(chipsContainerWidth, 0, this.boardCanvas.width - chipsContainerWidth, this.cell);
+        // draw arrows
+        this.boardCtx.fillStyle = "black";
+        for (let column = 0; column < this.matrix.length; column++) {
+            boardCtx.beginPath();
+            boardCtx.moveTo(chipsContainerWidth + column * this.cell + 34, this.cell / 2);
+            boardCtx.lineTo(chipsContainerWidth + column * this.cell + 54, this.cell / 2 + 20);
+            boardCtx.lineTo(chipsContainerWidth + column * this.cell + 74, this.cell / 2);
+            boardCtx.fill();
+            boardCtx.closePath();
         }
         // draw chips containers
         this.boardCtx.fillStyle = "gray";
@@ -85,11 +101,11 @@ class Board {
                 if (this.matrix[column][row] === null){
                     this.boardCtx.beginPath();
                     this.boardCtx.fillStyle = "white";
-                    this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2, this.cell * chipsCellMultiplier, 0, Math.PI * 2, true);
+                    this.boardCtx.arc(chipsContainerWidth + column * this.cell + this.cell / 2, (row + 1) * this.cell + this.cell / 2, this.cell * chipsCellMultiplier, 0, Math.PI * 2, true);
                     this.boardCtx.fill();
                     this.boardCtx.closePath();
                 } else {
-                    this.matrix[column][row].setPosition(chipsContainerWidth + column * this.cell + this.cell / 2, row * this.cell + this.cell / 2);
+                    this.matrix[column][row].setPosition(chipsContainerWidth + column * this.cell + this.cell / 2, (row + 1) * this.cell + this.cell / 2);
                     this.matrix[column][row].draw();
                 }
             }
