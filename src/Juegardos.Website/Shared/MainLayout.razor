@@ -15,7 +15,7 @@
         <div class="game-modal">
             <div class="game-modal-video">
                 <div class="video">
-                    <video src="videos/dead-cells-trailer.mp4" autoplay loop muted style="width: 100%;"></video>
+                    <video src="videos/@_videoUrl" autoplay loop muted style="width: 100%;"></video>
                 </div>
                 <i class="material-icons" @onclick="_gameModal.Close">close</i>
             </div>
@@ -47,21 +47,27 @@
 @code {
 
     private Modal _gameModal = new();
+    private string _videoUrl = "";
 
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)
         {
             _appState.GameModal = _gameModal;
-            _appState.StateHasChangedInModal = new EventCallback(this, StateHasChanged);
+            _appState.StateHasChangedInModal = new EventCallback(this, () =>  ChangeGameModal());
         }
-        
     }
 
     private void GoToGame()
     {
         _navigationManager.NavigateTo($"jugar/{StringHelper.FormatToUrlName(_appState.GameToShow.Name)}");
         _gameModal.Close();
+    }
+
+    private void ChangeGameModal()
+    {
+        _videoUrl = _appState.GameToShow.Video;
+        StateHasChanged();
     }
 
 }
