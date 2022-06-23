@@ -1,20 +1,22 @@
 ﻿@namespace Juegardos.Website.Components
 @inject IJSRuntime _js
 
-<div class="info">
-    <span id="timer"></span>
-    <span id="playerTurn"></span>
-    <select id="mode">
-        <option value="3">3 en línea</option>
-        <option value="4" selected>4 en línea</option>
-        <option value="5">5 en línea</option>
-        <option value="6">6 en línea</option>
-    </select>
-    <button id="reset">Reset</button>
-</div>
-<div class="game-container">
-    <canvas id="board" height="600" width="700"></canvas>
-    <div id="result"></div>
+<div class="connect4">
+    <div class="info">
+        <span id="timer"></span>
+        <span id="playerTurn"></span>
+        <select id="mode">
+            <option value="3">3 en línea</option>
+            <option value="4" selected>4 en línea</option>
+            <option value="5">5 en línea</option>
+            <option value="6">6 en línea</option>
+        </select>
+         <button id="reset">Comenzar</button>
+    </div>
+    <div class="game-container">
+        <canvas id="board" height="600" width="700"></canvas>
+        <div id="result"></div>
+    </div>
 </div>
 
 @code {
