@@ -68,6 +68,9 @@ class Board {
         // to avoid rendering bug
         setTimeout(() => this.drawBoard(), 20);
         setTimeout(() => this.drawBoard(), 40);
+        setTimeout(() => this.drawBoard(), 80);
+        setTimeout(() => this.drawBoard(), 160);
+        setTimeout(() => this.drawBoard(), 320);
     }
 
     // redraw entire board's canvas
