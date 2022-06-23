@@ -84,12 +84,12 @@ class Board {
         // draw arrows
         this.boardCtx.fillStyle = "black";
         for (let column = 0; column < this.matrix.length; column++) {
-            boardCtx.beginPath();
-            boardCtx.moveTo(chipsContainerWidth + column * this.cell + 34, this.cell / 2);
-            boardCtx.lineTo(chipsContainerWidth + column * this.cell + 54, this.cell / 2 + 20);
-            boardCtx.lineTo(chipsContainerWidth + column * this.cell + 74, this.cell / 2);
-            boardCtx.fill();
-            boardCtx.closePath();
+            this.boardCtx.beginPath();
+            this.boardCtx.moveTo(chipsContainerWidth + column * this.cell + 34, this.cell / 2);
+            this.boardCtx.lineTo(chipsContainerWidth + column * this.cell + 54, this.cell / 2 + 20);
+            this.boardCtx.lineTo(chipsContainerWidth + column * this.cell + 74, this.cell / 2);
+            this.boardCtx.fill();
+            this.boardCtx.closePath();
         }
         // draw chips containers
         this.boardCtx.fillStyle = "gray";
