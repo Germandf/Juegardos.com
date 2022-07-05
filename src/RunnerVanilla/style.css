@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+}
+
+@keyframes scroll {
+    0% {background-position-x: 0px;}
+    100% {background-position-x: -928px;}
+}
+
+.runner-container {
+    position: relative;
+    margin: 0 auto;
+    width: 928px;
+    height: 793px;
+}
+
+.layer {
+    width: 928px;
+    height: 793px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.layer-09 {      
+    background-image: url("images/layer09.png");   
+    animation: scroll 20s infinite linear;
+}
+
+.layer-08 {      
+    background-image: url("images/layer08.png");   
+    animation: scroll 20s infinite linear;
+}
+
+.layer-07 {        
+    background-image: url("images/layer07.png");     
+    animation: scroll 15s infinite linear;
+}
+
+.layer-06 {        
+    background-image: url("images/layer06.png");     
+    animation: scroll 15s infinite linear;
+}
+
+.layer-05 {        
+    background-image: url("images/layer05.png");     
+    animation: scroll 14s infinite linear;
+}
+
+.layer-04 {        
+    background-image: url("images/layer04.png");     
+    animation: scroll 14s infinite linear;
+}
+
+.layer-03 {        
+    background-image: url("images/layer03.png");     
+    animation: scroll 8s infinite linear;
+}
+
+.layer-02 {        
+    background-image: url("images/layer02.png");     
+    animation: scroll 8s infinite linear;
+}
+
+.layer-01 {        
+    background-image: url("images/layer01.png");     
+    animation: scroll 5s infinite linear;
+}
+
+.layer-00 {        
+    background-image: url("images/layer00.png");     
+    animation: scroll 4s infinite linear;
+}
