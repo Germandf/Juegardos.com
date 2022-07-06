@@ -112,6 +112,18 @@
     transform: scale(1.4);
 }
 
+#claw {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    bottom: 216px;
+    right: 248px;
+    background: url("images/claw.png");
+    animation: claw-idle 2s infinite linear;
+    image-rendering: pixelated;
+    transform: scale(1.4);
+}
+
 @keyframes character-run {
     0% { background-position: 0 }
     100% { background-position: -1600px }
@@ -127,3 +139,8 @@
     100% { background-position: -576px }
 }
 
+@keyframes claw-idle {
+    0% { transform: scale(1.4);filter: initial; }
+    50% { transform: scale(1.8);filter: saturate(4.5); }
+    100% { transform: scale(1.4);filter: initial; }
+}
