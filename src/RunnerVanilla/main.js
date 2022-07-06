@@ -5,7 +5,8 @@ let claw = document.getElementById("claw");
 let jumping = false;
 
 character.style.bottom = "0px";
-skull.style.right = "96px";
+character.style.right = "700px";
+skull.style.right = "496px";
 horse.style.right = "96px";
 
 window.addEventListener("keydown", (event) => {
@@ -15,7 +16,7 @@ window.addEventListener("keydown", (event) => {
         setTimeout(() => {
             character.className = "running";
             jumping = false;
-        }, 1000)
+        }, 1125)
     } else if (event.key === "ArrowLeft") {
         character.className = "taking-damage";
     } else if (event.key === "ArrowRight") {
@@ -25,15 +26,14 @@ window.addEventListener("keydown", (event) => {
 
 let intervalId = setInterval(function() 
 {
-    var right = parseInt(skull.style.right);
-    skull.style.right = (right + 10) + "px";
-    horse.style.right = (right + 10) + "px";
-    /*
-    if (character.offsetLeft == skull.offsetLeft - character.clientWidth + skull.clientWidth){
-        clearInterval(intervalId);
-    }
-    */
-    if (character.offsetLeft == horse.offsetLeft - character.clientWidth + horse.clientWidth){
+    var skullRight = parseInt(skull.style.right);
+    var horseRight = parseInt(horse.style.right);
+    skull.style.right = (skullRight + 15) + "px";
+    horse.style.right = (horseRight + 15) + "px";
+    var disBtwCharAndSkull = parseInt(character.style.right) - parseInt(skull.style.right);
+    var disBtwCharAndHorse = parseInt(character.style.right) - parseInt(horse.style.right);
+    if (((disBtwCharAndSkull > -50 && disBtwCharAndSkull < 20) && jumping) ||
+        ((disBtwCharAndHorse > -80 && disBtwCharAndHorse < 70) && !jumping)){
         clearInterval(intervalId);
     }
 }, 50);

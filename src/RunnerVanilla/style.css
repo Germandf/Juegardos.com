@@ -82,6 +82,7 @@
     image-rendering: pixelated;
     transform: scale(2);
     border: 1px solid green;
+    right: 700px;
 }
 
 #character.running {
@@ -91,7 +92,7 @@
 
 #character.jumping {
     background: url("images/character-jumping-full.png");
-    animation: character-jumping 1s steps(36) forwards;
+    animation: character-jumping 1.125s steps(36) forwards;
 }
 
 #character.taking-damage {
@@ -114,7 +115,7 @@
     24.9% { background-position: 0px; }
     25% { background-position: -200px; }
     49.9% { background-position: -200px; }
-    50% { background-position: -400px; bottom: 150px; }
+    50% { background-position: -400px; bottom: 180px; }
     74.9% { background-position: -400px; }
     75% { background-position: -600px; }
     99.9% { background-position: -600px; }
@@ -136,7 +137,7 @@
     height: 96px;
     position: absolute;
     bottom: 200px;
-    right: 96px;
+    right: 296px;
     background: url("images/skull.png");
     animation: skull-run 1s steps(8) infinite;
     image-rendering: pixelated;
