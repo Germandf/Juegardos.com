@@ -83,9 +83,44 @@
     transform: scale(2);
 }
 
-#character.run {
-    background: url("images/character-run.png");
-    animation: character-run .8s steps(8) infinite;
+#character.running {
+    background: url("images/character-running.png");
+    animation: character-running .8s steps(8) infinite;
+}
+
+#character.jumping {
+    background: url("images/character-jumping-full.png");
+    animation: character-jumping .8s steps(3) forwards;
+}
+
+#character.taking-damage {
+    background: url("images/character-taking-damage.png");
+    animation: character-taking-damage .2s steps(3) forwards;
+}
+
+#character.dying {
+    background: url("images/character-dying.png");
+    animation: character-dying .8s steps(5) forwards;
+}
+
+@keyframes character-running {
+    0% { background-position: 0 }
+    100% { background-position: -1600px }
+}
+
+@keyframes character-jumping {
+    0% { background-position: 0 }
+    100% { background-position: -600px }
+}
+
+@keyframes character-taking-damage {
+    0% { background-position: 0 }
+    100% { background-position: -600px }
+}
+
+@keyframes character-dying {
+    0% { background-position: 0 }
+    100% { background-position: -1000px }
 }
 
 #skull {
@@ -122,11 +157,6 @@
     animation: claw-idle 2s infinite linear;
     image-rendering: pixelated;
     transform: scale(1.4);
-}
-
-@keyframes character-run {
-    0% { background-position: 0 }
-    100% { background-position: -1600px }
 }
 
 @keyframes skull-run {
