@@ -11,12 +11,12 @@
     position: relative;
     margin: 0 auto;
     width: 928px;
-    height: 793px;
+    height: 640px;
 }
 
 .layer {
     width: 928px;
-    height: 793px;
+    height: 640px;
     position: absolute;
     top: 0;
     left: 0;
@@ -78,17 +78,52 @@
     width: 200px;
     height: 200px;
     position: absolute;
-    bottom: 155px;
+    bottom: 0px;
     image-rendering: pixelated;
     transform: scale(2);
 }
 
 #character.run {
     background: url("images/character-run.png");
-    animation: run .8s steps(8) infinite;
+    animation: character-run .8s steps(8) infinite;
 }
 
-@keyframes run {
+#skull {
+    width: 96px;
+    height: 96px;
+    position: absolute;
+    bottom: 200px;
+    right: 96px;
+    background: url("images/skull.png");
+    animation: skull-run 1s steps(8) infinite;
+    image-rendering: pixelated;
+    transform: scale(1.4);
+}
+
+#horse {
+    width: 144px;
+    height: 96px;
+    position: absolute;
+    bottom: 78px;
+    right: 46px;
+    background: url("images/horse.png");
+    animation: horse-run .6s steps(4) infinite;
+    image-rendering: pixelated;
+    transform: scale(1.4);
+}
+
+@keyframes character-run {
     0% { background-position: 0 }
     100% { background-position: -1600px }
 }
+
+@keyframes skull-run {
+    0% { background-position: 0 }
+    100% { background-position: -768px }
+}
+
+@keyframes horse-run {
+    0% { background-position: 0 }
+    100% { background-position: -576px }
+}
+
