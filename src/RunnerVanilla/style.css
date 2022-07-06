@@ -73,3 +73,22 @@
     background-image: url("images/layer00.png");     
     animation: scroll 4s infinite linear;
 }
+
+#character {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    bottom: 155px;
+    image-rendering: pixelated;
+    transform: scale(2);
+}
+
+#character.run {
+    background: url("images/character-run.png");
+    animation: run .8s steps(8) infinite;
+}
+
+@keyframes run {
+    0% { background-position: 0 }
+    100% { background-position: -1600px }
+}
