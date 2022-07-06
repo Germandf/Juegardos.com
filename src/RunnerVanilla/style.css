@@ -81,6 +81,7 @@
     bottom: 0px;
     image-rendering: pixelated;
     transform: scale(2);
+    border: 1px solid green;
 }
 
 #character.running {
@@ -90,7 +91,7 @@
 
 #character.jumping {
     background: url("images/character-jumping-full.png");
-    animation: character-jumping .8s steps(3) forwards;
+    animation: character-jumping 1s steps(36) forwards;
 }
 
 #character.taking-damage {
@@ -104,13 +105,20 @@
 }
 
 @keyframes character-running {
-    0% { background-position: 0 }
+    0% { background-position: 0; }
     100% { background-position: -1600px }
 }
 
 @keyframes character-jumping {
-    0% { background-position: 0 }
-    100% { background-position: -600px }
+    0% { background-position: 0px; bottom: 0px; }
+    24.9% { background-position: 0px; }
+    25% { background-position: -200px; }
+    49.9% { background-position: -200px; }
+    50% { background-position: -400px; bottom: 150px; }
+    74.9% { background-position: -400px; }
+    75% { background-position: -600px; }
+    99.9% { background-position: -600px; }
+    100% { background-position: -800px; bottom: 0px; }
 }
 
 @keyframes character-taking-damage {
@@ -133,6 +141,7 @@
     animation: skull-run 1s steps(8) infinite;
     image-rendering: pixelated;
     transform: scale(1.4);
+    border: 1px solid green;
 }
 
 #horse {
@@ -145,6 +154,7 @@
     animation: horse-run .6s steps(4) infinite;
     image-rendering: pixelated;
     transform: scale(1.4);
+    border: 1px solid green;
 }
 
 #claw {
@@ -157,6 +167,7 @@
     animation: claw-idle 2s infinite linear;
     image-rendering: pixelated;
     transform: scale(1.4);
+    border: 1px solid green;
 }
 
 @keyframes skull-run {
