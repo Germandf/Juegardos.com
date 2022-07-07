@@ -3,19 +3,18 @@ let skull = document.getElementById("skull");
 let horse = document.getElementById("horse");
 let claw = document.getElementById("claw");
 let jumping = false;
-
-character.style.bottom = "0px";
-character.style.right = "700px";
-skull.style.right = "496px";
-horse.style.right = "96px";
+let dead = false;
 
 window.addEventListener("keydown", (event) => {
+    if (dead) return;
     if (event.key === "ArrowUp" && !jumping) {
         character.className = "jumping";
         jumping = true;
         setTimeout(() => {
-            character.className = "running";
-            jumping = false;
+            if (!dead){
+                character.className = "running";
+                jumping = false;
+            }
         }, 1125)
     } else if (event.key === "ArrowLeft") {
         character.className = "taking-damage";
@@ -26,14 +25,17 @@ window.addEventListener("keydown", (event) => {
 
 let intervalId = setInterval(function() 
 {
-    var skullRight = parseInt(skull.style.right);
-    var horseRight = parseInt(horse.style.right);
-    skull.style.right = (skullRight + 15) + "px";
-    horse.style.right = (horseRight + 15) + "px";
-    var disBtwCharAndSkull = parseInt(character.style.right) - parseInt(skull.style.right);
-    var disBtwCharAndHorse = parseInt(character.style.right) - parseInt(horse.style.right);
-    if (((disBtwCharAndSkull > -50 && disBtwCharAndSkull < 20) && jumping) ||
-        ((disBtwCharAndHorse > -80 && disBtwCharAndHorse < 70) && !jumping)){
+    var disBtwCharAndSkull = character.offsetLeft - skull.offsetLeft;
+    var disBtwCharAndHorse = character.offsetLeft - horse.offsetLeft;
+    if (((disBtwCharAndSkull > -150 && disBtwCharAndSkull < 20) && jumping) ||
+        ((disBtwCharAndHorse > -180 && disBtwCharAndHorse < 70) && !jumping)){
         clearInterval(intervalId);
+        const animations = document.querySelectorAll('[data-pauseable');
+        animations.forEach(animation => {
+            animation.style.animationPlayState = 'paused';
+        });
+        dead = true;
+        character.className = "dying";
+        character.style.animationPlayState = 'running';
     }
 }, 50);
