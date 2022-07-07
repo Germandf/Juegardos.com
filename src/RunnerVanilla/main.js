@@ -9,6 +9,7 @@ let canJump = true;
 let enemies = [];
 let claws = [];
 let clawsCollected = 0;
+let clawsToWin = 2;
 
 livesHtml.innerHTML = lives;
 clawsHtml.innerHTML = clawsCollected;
@@ -90,14 +91,7 @@ function enemyTouchingPlayer() {
         lives--;
         livesHtml.innerHTML = lives;
         if (lives <= 0){
-            clearInterval(intervalId);
-            const animations = document.querySelectorAll('[data-pauseable');
-            animations.forEach(animation => {
-                animation.style.animationPlayState = 'paused';
-            });
-            dead = true;
-            character.className = "dying";
-            character.style.animationPlayState = 'running';
+            finishGame("dying");
         } else {
             takingDamage = true;
             canJump = false;
@@ -118,4 +112,18 @@ function clawTouchingPlayer(claw) {
     clawsHtml.innerHTML = clawsCollected;
     claw.className = "claw taking";
     claws.pop(claw);
+    if (clawsCollected >= clawsToWin){
+        finishGame("attacking");
+    }
+}
+
+function finishGame(characterAnimation) {
+    clearInterval(intervalId);
+    const animations = document.querySelectorAll('[data-pauseable');
+    animations.forEach(animation => {
+        animation.style.animationPlayState = 'paused';
+    });
+    dead = true;
+    character.className = characterAnimation;
+    character.style.animationPlayState = 'running';
 }

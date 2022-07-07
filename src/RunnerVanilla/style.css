@@ -105,6 +105,11 @@
     animation: character-dying .8s steps(5) forwards;
 }
 
+#character.attacking {
+    background: url("images/character-attacking.png");
+    animation: character-attacking .8s steps(6) forwards;
+}
+
 @keyframes character-running {
     0% { background-position: 0; }
     100% { background-position: -1600px }
@@ -130,6 +135,11 @@
 @keyframes character-dying {
     0% { background-position: 0 }
     100% { background-position: -1000px }
+}
+
+@keyframes character-attacking {
+    0% { background-position: 0 }
+    100% { background-position: -1200px }
 }
 
 .skull {
