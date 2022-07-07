@@ -169,7 +169,7 @@
 }
 
 .claw.taking {
-    animation: taking 2s forwards linear;
+    animation: claw-idle 2s infinite, run-backwards 6s forwards linear, taking .5s forwards linear;
 }
 
 @keyframes skull-run {
@@ -194,8 +194,10 @@
 }
 
 @keyframes taking {
-    0% {  }
-    100% { transform: translateY(300px); }
+    0% { transform: translateY(0px) rotateY(0deg); opacity: 1; }
+    25% { transform: translateY(-35px) rotateY(180deg);}
+    50% { transform: translateY(-70px) rotateY(360deg); }
+    100% { transform: translateY(-60px) rotateY(720deg); opacity: 0; }
 }
 
 .lives {
