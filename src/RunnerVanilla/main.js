@@ -7,6 +7,8 @@ let canJump = true;
 let enemies = [];
 
 createEnemy();
+createClaw();
+let intervalId = setInterval(gameLoop, 50);
 
 window.addEventListener("keydown", (event) => {
     if (dead) return;
@@ -22,8 +24,7 @@ window.addEventListener("keydown", (event) => {
     }
 });
 
-let intervalId = setInterval(function() 
-{
+function gameLoop() {
     enemies.forEach(enemy => {
         var distance = character.offsetLeft - enemy.offsetLeft;
         if ((enemy.classList.contains("skull") && distance > -150 && distance < 20 && jumping) ||
@@ -34,7 +35,7 @@ let intervalId = setInterval(function()
             enemies.pop(enemy);
         }
     });
-}, 50);
+}
 
 function createEnemy() {
     if (!dead) {
@@ -49,6 +50,22 @@ function createEnemy() {
         document.querySelector(".runner-container").appendChild(newDiv);
         enemies.push(newDiv);
         setTimeout(() => { createEnemy() }, randomTime);
+    }
+}
+
+function createClaw() {
+    if (!dead) {
+        var randomTime = Math.floor(Math.random() * 5000) + 5000;
+        var randomPosition = Math.floor(Math.random() * 2);
+        const newDiv = document.createElement("div");
+        newDiv.classList.add('claw');
+        if (randomPosition == 1)
+            newDiv.style.bottom = "100px";
+        else
+            newDiv.style.bottom = "225px";
+        newDiv.dataset.pauseable = "";
+        document.querySelector(".runner-container").appendChild(newDiv);
+        setTimeout(() => { createClaw() }, randomTime);
     }
 }
 

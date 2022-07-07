@@ -139,7 +139,7 @@
     bottom: 200px;
     right: 296px;
     background: url("images/skull.png");
-    animation: skull-run 1s steps(8) infinite, run-backwards 4s forwards;
+    animation: skull-run 1s steps(8) infinite, run-backwards 4s  linear forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
 }
@@ -151,7 +151,7 @@
     bottom: 78px;
     right: 46px;
     background: url("images/horse.png");
-    animation: horse-run .6s steps(4) infinite, run-backwards 4s forwards;
+    animation: horse-run .6s steps(4) infinite, run-backwards 4s  linear forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
 }
@@ -163,7 +163,7 @@
     bottom: 216px;
     right: 248px;
     background: url("images/claw.png");
-    animation: claw-idle 2s infinite linear;
+    animation: claw-idle 2s infinite, run-backwards 6s forwards linear;
     image-rendering: pixelated;
     transform: scale(1.4);
 }
