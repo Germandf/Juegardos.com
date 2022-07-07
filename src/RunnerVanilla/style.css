@@ -23,56 +23,60 @@
     left: 0;
     background-repeat: repeat-x;
     background-size: contain;
+    animation-name: scroll;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-play-state: paused;
 }
 
 .layer-09 {      
-    background-image: url("images/layer09.png");   
-    animation: scroll 20s infinite linear;
+    background-image: url("images/layer09.png");
+    animation-duration: 20s;
 }
 
 .layer-08 {      
     background-image: url("images/layer08.png");   
-    animation: scroll 20s infinite linear;
+    animation-duration: 20s;
 }
 
 .layer-07 {        
     background-image: url("images/layer07.png");     
-    animation: scroll 15s infinite linear;
+    animation-duration: 15s;
 }
 
 .layer-06 {        
     background-image: url("images/layer06.png");     
-    animation: scroll 15s infinite linear;
+    animation-duration: 15s;
 }
 
 .layer-05 {        
     background-image: url("images/layer05.png");     
-    animation: scroll 14s infinite linear;
+    animation-duration: 14s;
 }
 
 .layer-04 {        
     background-image: url("images/layer04.png");     
-    animation: scroll 14s infinite linear;
+    animation-duration: 14s;
 }
 
 .layer-03 {        
     background-image: url("images/layer03.png");     
-    animation: scroll 8s infinite linear;
+    animation-duration: 8s;
 }
 
 .layer-02 {        
     background-image: url("images/layer02.png");     
-    animation: scroll 8s infinite linear;
+    animation-duration: 8s;
 }
 
 .layer-01 {        
     background-image: url("images/layer01.png");     
-    animation: scroll 5s infinite linear;
+    animation-duration: 5s;
 }
 
 .layer-00 {        
     background-image: url("images/layer00.png");     
-    animation: scroll 4s infinite linear;
+    animation-duration: 4s;
 }
 
 #character {
@@ -110,6 +114,11 @@
     animation: character-attacking .8s steps(6) forwards;
 }
 
+#character.standing {
+    background: url("images/character-standing.png");
+    animation: character-standing .8s steps(8) infinite;
+}
+
 @keyframes character-running {
     0% { background-position: 0; }
     100% { background-position: -1600px }
@@ -140,6 +149,11 @@
 @keyframes character-attacking {
     0% { background-position: 0 }
     100% { background-position: -1200px }
+}
+
+@keyframes character-standing {
+    0% { background-position: 0 }
+    100% { background-position: -1600px }
 }
 
 .skull {
@@ -221,5 +235,12 @@
     position: absolute;
     left: 0px;
     top: 20px;
+    z-index: 1000;
+}
+
+#start {
+    position: absolute;
+    left: 0px;
+    top: 40px;
     z-index: 1000;
 }

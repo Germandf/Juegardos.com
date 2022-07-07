@@ -1,21 +1,39 @@
 let livesHtml = document.getElementById("lives");
 let clawsHtml = document.getElementById("claws");
+let startButton = document.getElementById("start");
 let character = document.getElementById("character");
-let jumping = false;
-let dead = false;
-let lives = 3;
-let takingDamage = false;
-let canJump = true;
-let enemies = [];
-let claws = [];
+let jumping;
+let dead;
+let lives;
+let takingDamage;
+let canJump;
+let enemies;
+let claws;
 let clawsCollected = 0;
-let clawsToWin = 2;
+let clawsToWin;
+let intervalId;
 
-livesHtml.innerHTML = lives;
-clawsHtml.innerHTML = clawsCollected;
-createEnemy();
-createClaw();
-let intervalId = setInterval(gameLoop, 50);
+startButton.addEventListener("click", () => {
+    lives = 3;
+    clawsToWin = 3;
+    clawsCollected = 0;
+    canJump = true;
+    dead = false;
+    jumping = false;
+    takingDamage = false;
+    enemies = [];
+    claws = [];
+    var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
+    elementsToRemove.forEach(e => e.remove());
+    livesHtml.innerHTML = lives;
+    clawsHtml.innerHTML = clawsCollected;
+    createEnemy();
+    createClaw();
+    intervalId = setInterval(gameLoop, 50);
+    changePauseables("running");
+    character.className = "running";
+    startButton.style.display = "none";
+});
 
 window.addEventListener("keydown", (event) => {
     if (dead) return;
@@ -119,11 +137,17 @@ function clawTouchingPlayer(claw) {
 
 function finishGame(characterAnimation) {
     clearInterval(intervalId);
-    const animations = document.querySelectorAll('[data-pauseable');
-    animations.forEach(animation => {
-        animation.style.animationPlayState = 'paused';
-    });
+    changePauseables("paused");
     dead = true;
     character.className = characterAnimation;
     character.style.animationPlayState = 'running';
+    startButton.innerHTML = "Volver a jugar";
+    startButton.style.display = "initial";
+}
+
+function changePauseables(state) {
+    const animations = document.querySelectorAll('[data-pauseable');
+    animations.forEach(animation => {
+        animation.style.animationPlayState = state;
+    });
 }
