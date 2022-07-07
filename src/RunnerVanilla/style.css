@@ -168,6 +168,10 @@
     transform: scale(1.4);
 }
 
+.claw.taking {
+    animation: taking 2s forwards linear;
+}
+
 @keyframes skull-run {
     0% { background-position: 0; }
     100% { background-position: -768px; }
@@ -187,4 +191,23 @@
 @keyframes run-backwards {
     0% { right: -200px; }
     100% { right: 1100px; }
+}
+
+@keyframes taking {
+    0% {  }
+    100% { transform: translateY(300px); }
+}
+
+.lives {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+.claws {
+    position: absolute;
+    left: 0px;
+    top: 20px;
+    z-index: 1000;
 }
