@@ -82,7 +82,6 @@
     bottom: 0px;
     image-rendering: pixelated;
     transform: scale(2);
-    border: 1px solid green;
     right: 700px;
 }
 
@@ -133,7 +132,7 @@
     100% { background-position: -1000px }
 }
 
-#skull {
+.skull {
     width: 96px;
     height: 96px;
     position: absolute;
@@ -143,10 +142,9 @@
     animation: skull-run 1s steps(8) infinite, run-backwards 4s forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
-    border: 1px solid green;
 }
 
-#horse {
+.horse {
     width: 144px;
     height: 96px;
     position: absolute;
@@ -156,10 +154,9 @@
     animation: horse-run .6s steps(4) infinite, run-backwards 4s forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
-    border: 1px solid green;
 }
 
-#claw {
+.claw {
     width: 32px;
     height: 32px;
     position: absolute;
@@ -169,7 +166,6 @@
     animation: claw-idle 2s infinite linear;
     image-rendering: pixelated;
     transform: scale(1.4);
-    border: 1px solid green;
 }
 
 @keyframes skull-run {
