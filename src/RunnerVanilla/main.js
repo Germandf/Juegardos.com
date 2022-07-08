@@ -71,14 +71,10 @@ function createEnemy() {
     if (gameOver) return;
     var randomTime = Math.floor(Math.random() * 3000) + 1000;
     var randomEnemy = Math.floor(Math.random() * 2);
-    const newDiv = document.createElement("div");
     if (randomEnemy == 1)
-        newDiv.classList.add('skull');
+        new Entity("skull", enemies);
     else
-        newDiv.classList.add('horse');
-    newDiv.dataset.pauseable = "";
-    document.querySelector(".runner-container").appendChild(newDiv);
-    enemies.push(newDiv);
+        new Entity("horse", enemies);
     setTimeout(() => { createEnemy() }, randomTime);
 }
 
@@ -86,15 +82,10 @@ function createClaw() {
     if (gameOver) return;
     var randomTime = Math.floor(Math.random() * 5000) + 5000;
     var randomPosition = Math.floor(Math.random() * 2);
-    const newDiv = document.createElement("div");
-    newDiv.classList.add('claw');
     if (randomPosition == 1)
-        newDiv.style.bottom = "100px";
+        new Entity("claw", claws, "100px");
     else
-        newDiv.style.bottom = "225px";
-    newDiv.dataset.pauseable = "";
-    document.querySelector(".runner-container").appendChild(newDiv);
-    claws.push(newDiv);
+        new Entity("claw", claws, "225px");
     setTimeout(() => { createClaw() }, randomTime);
 }
 
