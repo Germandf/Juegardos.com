@@ -3,13 +3,13 @@ let clawsHtml = document.getElementById("claws");
 let startButton = document.getElementById("start");
 let character = document.getElementById("character");
 let jumping;
-let dead;
+let gameOver;
 let lives;
 let takingDamage;
 let canJump;
 let enemies;
 let claws;
-let clawsCollected = 0;
+let clawsCollected;
 let clawsToWin;
 let intervalId;
 
@@ -18,13 +18,10 @@ startButton.addEventListener("click", () => {
     clawsToWin = 3;
     clawsCollected = 0;
     canJump = true;
-    dead = false;
+    gameOver = false;
     jumping = false;
     takingDamage = false;
-    enemies = [];
-    claws = [];
-    var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
-    elementsToRemove.forEach(e => e.remove());
+    removeAllEntities();
     livesHtml.innerHTML = lives;
     clawsHtml.innerHTML = clawsCollected;
     createEnemy();
@@ -36,15 +33,14 @@ startButton.addEventListener("click", () => {
 });
 
 window.addEventListener("keydown", (event) => {
-    if (dead) return;
+    if (gameOver) return;
     if (event.key === "ArrowUp" && !jumping && canJump) {
         character.className = "jumping";
         jumping = true;
         setTimeout(() => {
-            if (!dead){
-                character.className = "running";
-                jumping = false;
-            }
+            if (gameOver) return;
+            character.className = "running";
+            jumping = false;
         }, 1125)
     }
 });
@@ -72,36 +68,34 @@ function gameLoop() {
 }
 
 function createEnemy() {
-    if (!dead) {
-        var randomTime = Math.floor(Math.random() * 3000) + 1000;
-        var randomEnemy = Math.floor(Math.random() * 2);
-        const newDiv = document.createElement("div");
-        if (randomEnemy == 1)
-            newDiv.classList.add('skull');
-        else
-            newDiv.classList.add('horse');
-        newDiv.dataset.pauseable = "";
-        document.querySelector(".runner-container").appendChild(newDiv);
-        enemies.push(newDiv);
-        setTimeout(() => { createEnemy() }, randomTime);
-    }
+    if (gameOver) return;
+    var randomTime = Math.floor(Math.random() * 3000) + 1000;
+    var randomEnemy = Math.floor(Math.random() * 2);
+    const newDiv = document.createElement("div");
+    if (randomEnemy == 1)
+        newDiv.classList.add('skull');
+    else
+        newDiv.classList.add('horse');
+    newDiv.dataset.pauseable = "";
+    document.querySelector(".runner-container").appendChild(newDiv);
+    enemies.push(newDiv);
+    setTimeout(() => { createEnemy() }, randomTime);
 }
 
 function createClaw() {
-    if (!dead) {
-        var randomTime = Math.floor(Math.random() * 5000) + 5000;
-        var randomPosition = Math.floor(Math.random() * 2);
-        const newDiv = document.createElement("div");
-        newDiv.classList.add('claw');
-        if (randomPosition == 1)
-            newDiv.style.bottom = "100px";
-        else
-            newDiv.style.bottom = "225px";
-        newDiv.dataset.pauseable = "";
-        document.querySelector(".runner-container").appendChild(newDiv);
-        claws.push(newDiv);
-        setTimeout(() => { createClaw() }, randomTime);
-    }
+    if (gameOver) return;
+    var randomTime = Math.floor(Math.random() * 5000) + 5000;
+    var randomPosition = Math.floor(Math.random() * 2);
+    const newDiv = document.createElement("div");
+    newDiv.classList.add('claw');
+    if (randomPosition == 1)
+        newDiv.style.bottom = "100px";
+    else
+        newDiv.style.bottom = "225px";
+    newDiv.dataset.pauseable = "";
+    document.querySelector(".runner-container").appendChild(newDiv);
+    claws.push(newDiv);
+    setTimeout(() => { createClaw() }, randomTime);
 }
 
 function enemyTouchingPlayer() {
@@ -115,10 +109,12 @@ function enemyTouchingPlayer() {
             canJump = false;
             character.className = "taking-damage";
             setTimeout(() => {
+                if (gameOver) return;
                 character.className = "running";
                 canJump = true;
             }, 250);
             setTimeout(() => {
+                if (gameOver) return;
                 takingDamage = false;
             }, 800);
         }
@@ -136,9 +132,10 @@ function clawTouchingPlayer(claw) {
 }
 
 function finishGame(characterAnimation) {
+    gameOver = true;
     clearInterval(intervalId);
     changePauseables("paused");
-    dead = true;
+    removeAllEntities();
     character.className = characterAnimation;
     character.style.animationPlayState = 'running';
     startButton.innerHTML = "Volver a jugar";
@@ -150,4 +147,11 @@ function changePauseables(state) {
     animations.forEach(animation => {
         animation.style.animationPlayState = state;
     });
+}
+
+function removeAllEntities() {
+    var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
+    elementsToRemove.forEach(e => e.remove());
+    enemies = [];
+    claws = [];
 }
