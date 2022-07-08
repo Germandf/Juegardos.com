@@ -7,11 +7,11 @@ let gameOver;
 let lives;
 let takingDamage;
 let canJump;
-let enemies;
-let claws;
+let entities;
 let clawsCollected;
 let clawsToWin;
 let intervalId;
+let takingClaw;
 
 startButton.addEventListener("click", () => {
     lives = 3;
@@ -21,6 +21,7 @@ startButton.addEventListener("click", () => {
     gameOver = false;
     jumping = false;
     takingDamage = false;
+    takingClaw = false;
     removeAllEntities();
     livesHtml.innerHTML = lives;
     clawsHtml.innerHTML = clawsCollected;
@@ -46,23 +47,17 @@ window.addEventListener("keydown", (event) => {
 });
 
 function gameLoop() {
-    enemies.forEach(enemy => {
-        var distance = character.offsetLeft - enemy.getElement().offsetLeft;
-        if ((enemy.getType() === "skull" && distance > -150 && distance < 20 && jumping) ||
-            (enemy.getType() === "horse" && distance > -180 && distance < 70 && !jumping)){
+    entities.forEach(entity => {
+        var distance = character.offsetLeft - entity.getElement().offsetLeft;
+        if ((entity.getType() === "skull" && distance > -150 && distance < 20 && jumping) ||
+            (entity.getType() === "horse" && distance > -180 && distance < 70 && !jumping)){
             enemyTouchingPlayer();
         }
-        if (enemy.offsetLeft < -200){
-            enemies.pop(enemy);
+        else if (entity.getType() === "claw" && distance > -150 && distance < 20) {
+            clawTouchingPlayer(entity);
         }
-    });
-    claws.forEach(claw => {
-        var distance = character.offsetLeft - claw.getElement().offsetLeft;
-        if ((distance > -150 && distance < 20)) {
-            clawTouchingPlayer(claw);
-        }
-        if (claw.offsetLeft < -200){
-            claws.pop(claw);
+        else if (entity.offsetLeft < -200){
+            entities.pop(entity);
         }
     });
 }
@@ -76,7 +71,7 @@ function createEnemy() {
         entity = new Entity("skull");
     else
         entity = new Entity("horse");
-    enemies.push(entity);
+    entities.push(entity);
     setTimeout(() => { createEnemy() }, randomTime);
 }
 
@@ -89,41 +84,45 @@ function createClaw() {
         entity = new Entity("claw", "100px");
     else
         entity = new Entity("claw", "225px");
-        claws.push(entity);
+        entities.push(entity);
     setTimeout(() => { createClaw() }, randomTime);
 }
 
 function enemyTouchingPlayer() {
-    if (!takingDamage){
-        lives--;
-        livesHtml.innerHTML = lives;
-        if (lives <= 0){
-            finishGame("dying");
-        } else {
-            takingDamage = true;
-            canJump = false;
-            character.className = "taking-damage";
-            setTimeout(() => {
-                if (gameOver) return;
-                character.className = "running";
-                canJump = true;
-            }, 250);
-            setTimeout(() => {
-                if (gameOver) return;
-                takingDamage = false;
-            }, 800);
-        }
+    if (takingDamage) return;
+    lives--;
+    livesHtml.innerHTML = lives;
+    if (lives <= 0){
+        finishGame("dying");
+    } else {
+        takingDamage = true;
+        canJump = false;
+        character.className = "taking-damage";
+        setTimeout(() => {
+            if (gameOver) return;
+            character.className = "running";
+            canJump = true;
+        }, 250);
+        setTimeout(() => {
+            if (gameOver) return;
+            takingDamage = false;
+        }, 800);
     }
 }
 
-function clawTouchingPlayer(claw) {
+function clawTouchingPlayer(entity) {
+    if (takingClaw) return;
+    takingClaw = true;
     clawsCollected++;
     clawsHtml.innerHTML = clawsCollected;
-    claw.getElement().className = "claw taking";
-    claws.pop(claw);
+    entity.getElement().className = "claw taking";
+    entities.pop(entity);
     if (clawsCollected >= clawsToWin){
         finishGame("attacking");
     }
+    setTimeout(() => {
+        takingClaw = false;
+    }, 800);
 }
 
 function finishGame(characterAnimation) {
@@ -147,6 +146,5 @@ function changePauseables(state) {
 function removeAllEntities() {
     var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
     elementsToRemove.forEach(e => e.remove());
-    enemies = [];
-    claws = [];
+    entities = [];
 }
