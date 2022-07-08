@@ -47,9 +47,9 @@ window.addEventListener("keydown", (event) => {
 
 function gameLoop() {
     enemies.forEach(enemy => {
-        var distance = character.offsetLeft - enemy.offsetLeft;
-        if ((enemy.classList.contains("skull") && distance > -150 && distance < 20 && jumping) ||
-            (enemy.classList.contains("horse") && distance > -180 && distance < 70 && !jumping)){
+        var distance = character.offsetLeft - enemy.getElement().offsetLeft;
+        if ((enemy.getType() === "skull" && distance > -150 && distance < 20 && jumping) ||
+            (enemy.getType() === "horse" && distance > -180 && distance < 70 && !jumping)){
             enemyTouchingPlayer();
         }
         if (enemy.offsetLeft < -200){
@@ -57,7 +57,7 @@ function gameLoop() {
         }
     });
     claws.forEach(claw => {
-        var distance = character.offsetLeft - claw.offsetLeft;
+        var distance = character.offsetLeft - claw.getElement().offsetLeft;
         if ((distance > -150 && distance < 20)) {
             clawTouchingPlayer(claw);
         }
@@ -71,10 +71,12 @@ function createEnemy() {
     if (gameOver) return;
     var randomTime = Math.floor(Math.random() * 3000) + 1000;
     var randomEnemy = Math.floor(Math.random() * 2);
+    var entity;
     if (randomEnemy == 1)
-        new Entity("skull", enemies);
+        entity = new Entity("skull");
     else
-        new Entity("horse", enemies);
+        entity = new Entity("horse");
+    enemies.push(entity);
     setTimeout(() => { createEnemy() }, randomTime);
 }
 
@@ -82,10 +84,12 @@ function createClaw() {
     if (gameOver) return;
     var randomTime = Math.floor(Math.random() * 5000) + 5000;
     var randomPosition = Math.floor(Math.random() * 2);
+    var entity;
     if (randomPosition == 1)
-        new Entity("claw", claws, "100px");
+        entity = new Entity("claw", "100px");
     else
-        new Entity("claw", claws, "225px");
+        entity = new Entity("claw", "225px");
+        claws.push(entity);
     setTimeout(() => { createClaw() }, randomTime);
 }
 
@@ -115,7 +119,7 @@ function enemyTouchingPlayer() {
 function clawTouchingPlayer(claw) {
     clawsCollected++;
     clawsHtml.innerHTML = clawsCollected;
-    claw.className = "claw taking";
+    claw.getElement().className = "claw taking";
     claws.pop(claw);
     if (clawsCollected >= clawsToWin){
         finishGame("attacking");
