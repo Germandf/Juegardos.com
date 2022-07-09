@@ -1,6 +1,4 @@
-let livesHtml = document.getElementById("lives");
-let clawsHtml = document.getElementById("claws");
-let startButton = document.getElementById("start");
+let scene = new Scene();
 let character = document.getElementById("character");
 let jumping;
 let gameOver;
@@ -12,21 +10,22 @@ let clawsToWin;
 let intervalId;
 let timeoutId;
 
-startButton.addEventListener("click", () => {
+scene.getPlayButton().addEventListener("click", () => {
     lives = 3;
     clawsToWin = 3;
     clawsCollected = 0;
     canJump = true;
     gameOver = false;
     jumping = false;
-    removeAllEntities();
-    livesHtml.innerHTML = lives;
-    clawsHtml.innerHTML = clawsCollected;
+    entities = [];
+    scene.removeAllEntities();
+    scene.updateLives(lives);
+    scene.updateClawsCollected(clawsCollected);
+    scene.changePauseables("running");
+    scene.showPlayButton(false);
     createEntity();
     intervalId = setInterval(gameLoop, 50);
-    changePauseables("running");
     character.className = "running";
-    startButton.style.display = "none";
 });
 
 window.addEventListener("keydown", (event) => {
@@ -48,7 +47,7 @@ function gameLoop() {
         if (entity.isTouching(distance, jumping))
             entityTouchingPlayer(entity);
         else if (entity.getElement().offsetLeft < -200)
-            removeEntity(entity)
+            removeEntityFromArray(entity);
     });
 }
 
@@ -72,17 +71,17 @@ function createEntity() {
 }
 
 function entityTouchingPlayer(entity) {
-    removeEntity(entity);
+    removeEntityFromArray(entity);
     if (entity.getType() == "claw"){
         clawsCollected++;
-        clawsHtml.innerHTML = clawsCollected;
+        scene.updateClawsCollected(clawsCollected);
         entity.getElement().className = "claw taking";
         if (clawsCollected >= clawsToWin){
             finishGame("attacking");
         }
     } else {
         lives--;
-        livesHtml.innerHTML = lives;
+        scene.updateLives(lives);
         if (lives <= 0){
             finishGame("dying");
         } else {
@@ -101,28 +100,14 @@ function entityTouchingPlayer(entity) {
 function finishGame(characterAnimation) {
     gameOver = true;
     clearInterval(intervalId);
-    changePauseables("paused");
-    removeAllEntities();
+    scene.changePauseables("paused");
+    scene.removeAllEntities();
+    scene.showPlayButton(true);
     character.className = characterAnimation;
     character.style.animationPlayState = 'running';
-    startButton.innerHTML = "Volver a jugar";
-    startButton.style.display = "initial";
 }
 
-function changePauseables(state) {
-    const animations = document.querySelectorAll('[data-pauseable');
-    animations.forEach(animation => {
-        animation.style.animationPlayState = state;
-    });
-}
-
-function removeAllEntities() {
-    var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
-    elementsToRemove.forEach(e => e.remove());
-    entities = [];
-}
-
-function removeEntity(entity) {
+function removeEntityFromArray(entity) {
     const index = entities.indexOf(entity);
     if (index > -1)
         entities.splice(index, 1);
