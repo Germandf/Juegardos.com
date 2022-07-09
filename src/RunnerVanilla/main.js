@@ -22,7 +22,7 @@ scene.getPlayButton().addEventListener("click", () => {
     scene.updateLives(lives);
     scene.updateClawsCollected(clawsCollected);
     scene.changePauseables("running");
-    scene.showPlayButton(false);
+    scene.showButtons(false);
     createEntity();
     intervalId = setInterval(gameLoop, 50);
     character.className = "running";
@@ -102,7 +102,7 @@ function finishGame(characterAnimation) {
     clearInterval(intervalId);
     scene.changePauseables("paused");
     scene.removeAllEntities();
-    scene.showPlayButton(true);
+    scene.showButtons(true);
     character.className = characterAnimation;
     character.style.animationPlayState = 'running';
 }

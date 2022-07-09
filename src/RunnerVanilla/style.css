@@ -244,3 +244,17 @@
     top: 40px;
     z-index: 1000;
 }
+
+#change-background {
+    position: absolute;
+    left: 0px;
+    top: 60px;
+    z-index: 1000;
+}
+
+#change-character {
+    position: absolute;
+    left: 0px;
+    top: 80px;
+    z-index: 1000;
+}
