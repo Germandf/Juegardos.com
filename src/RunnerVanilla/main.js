@@ -12,6 +12,7 @@ let clawsCollected;
 let clawsToWin;
 let intervalId;
 let takingClaw;
+let timeoutId;
 
 startButton.addEventListener("click", () => {
     lives = 3;
@@ -25,8 +26,7 @@ startButton.addEventListener("click", () => {
     removeAllEntities();
     livesHtml.innerHTML = lives;
     clawsHtml.innerHTML = clawsCollected;
-    createEnemy();
-    createClaw();
+    createEntity();
     intervalId = setInterval(gameLoop, 50);
     changePauseables("running");
     character.className = "running";
@@ -56,30 +56,23 @@ function gameLoop() {
     });
 }
 
-function createEnemy() {
+function createEntity() {
     if (gameOver) return;
+    window.clearTimeout(timeoutId);
     var randomTime = Math.floor(Math.random() * 3000) + 1000;
-    var randomEnemy = Math.floor(Math.random() * 2);
-    var entity;
-    if (randomEnemy == 1)
-        entity = new Entity("skull");
-    else
-        entity = new Entity("horse");
-    entities.push(entity);
-    setTimeout(() => { createEnemy() }, randomTime);
-}
-
-function createClaw() {
-    if (gameOver) return;
-    var randomTime = Math.floor(Math.random() * 5000) + 5000;
+    var randomEntity = Math.floor(Math.random() * 3);
     var randomPosition = Math.floor(Math.random() * 2);
     var entity;
-    if (randomPosition == 1)
+    if (randomEntity == 1)
+        entity = new Entity("skull");
+    else if (randomEntity == 2)
+        entity = new Entity("horse");
+    else if (randomPosition == 1)
         entity = new Entity("claw", "100px");
     else
         entity = new Entity("claw", "225px");
-        entities.push(entity);
-    setTimeout(() => { createClaw() }, randomTime);
+    entities.push(entity);
+    timeoutId = setTimeout(() => { createEntity() }, randomTime);
 }
 
 function entityTouchingPlayer(entity) {
