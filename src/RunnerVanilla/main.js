@@ -5,13 +5,11 @@ let character = document.getElementById("character");
 let jumping;
 let gameOver;
 let lives;
-let takingDamage;
 let canJump;
 let entities;
 let clawsCollected;
 let clawsToWin;
 let intervalId;
-let takingClaw;
 let timeoutId;
 
 startButton.addEventListener("click", () => {
@@ -21,8 +19,6 @@ startButton.addEventListener("click", () => {
     canJump = true;
     gameOver = false;
     jumping = false;
-    takingDamage = false;
-    takingClaw = false;
     removeAllEntities();
     livesHtml.innerHTML = lives;
     clawsHtml.innerHTML = clawsCollected;
@@ -51,8 +47,8 @@ function gameLoop() {
         var distance = character.offsetLeft - entity.getElement().offsetLeft;
         if (entity.isTouching(distance, jumping))
             entityTouchingPlayer(entity);
-        else if (entity.offsetLeft < -200)
-            entities.pop(entity);
+        else if (entity.getElement().offsetLeft < -200)
+            removeEntity(entity)
     });
 }
 
@@ -76,27 +72,20 @@ function createEntity() {
 }
 
 function entityTouchingPlayer(entity) {
+    removeEntity(entity);
     if (entity.getType() == "claw"){
-        if (takingClaw) return;
-        takingClaw = true;
         clawsCollected++;
         clawsHtml.innerHTML = clawsCollected;
         entity.getElement().className = "claw taking";
-        entities.pop(entity);
         if (clawsCollected >= clawsToWin){
             finishGame("attacking");
         }
-        setTimeout(() => {
-            takingClaw = false;
-        }, 800);
     } else {
-        if (takingDamage) return;
         lives--;
         livesHtml.innerHTML = lives;
         if (lives <= 0){
             finishGame("dying");
         } else {
-            takingDamage = true;
             canJump = false;
             character.className = "taking-damage";
             jumping = false;
@@ -105,10 +94,6 @@ function entityTouchingPlayer(entity) {
                 character.className = "running";
                 canJump = true;
             }, 250);
-            setTimeout(() => {
-                if (gameOver) return;
-                takingDamage = false;
-            }, 800);
         }
     }
 }
@@ -135,4 +120,10 @@ function removeAllEntities() {
     var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
     elementsToRemove.forEach(e => e.remove());
     entities = [];
+}
+
+function removeEntity(entity) {
+    const index = entities.indexOf(entity);
+    if (index > -1)
+        entities.splice(index, 1);
 }
