@@ -35,7 +35,7 @@ startButton.addEventListener("click", () => {
 
 window.addEventListener("keydown", (event) => {
     if (gameOver) return;
-    if (event.key === "ArrowUp" && !jumping && canJump) {
+    if (event.key == "ArrowUp" && !jumping && canJump) {
         character.className = "jumping";
         jumping = true;
         setTimeout(() => {
@@ -76,7 +76,7 @@ function createEntity() {
 }
 
 function entityTouchingPlayer(entity) {
-    if (entity.getType() === "claw"){
+    if (entity.getType() == "claw"){
         if (takingClaw) return;
         takingClaw = true;
         clawsCollected++;
@@ -99,6 +99,7 @@ function entityTouchingPlayer(entity) {
             takingDamage = true;
             canJump = false;
             character.className = "taking-damage";
+            jumping = false;
             setTimeout(() => {
                 if (gameOver) return;
                 character.className = "running";
