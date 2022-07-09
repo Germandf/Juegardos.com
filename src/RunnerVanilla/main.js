@@ -12,7 +12,7 @@ let timeoutId;
 
 scene.getPlayButton().addEventListener("click", () => {
     lives = 3;
-    clawsToWin = 3;
+    clawsToWin = 6;
     clawsCollected = 0;
     canJump = true;
     gameOver = false;
@@ -59,13 +59,13 @@ function createEntity() {
     var randomPosition = Math.floor(Math.random() * 2);
     var entity;
     if (randomEntity == 1)
-        entity = new Entity("skull");
+        entity = new Entity("skull", true);
     else if (randomEntity == 2)
-        entity = new Entity("horse");
+        entity = new Entity("horse", false);
     else if (randomPosition == 1)
-        entity = new Entity("claw", "100px");
+        entity = new Entity("claw", false);
     else
-        entity = new Entity("claw", "225px");
+        entity = new Entity("claw", true);
     entities.push(entity);
     timeoutId = setTimeout(() => { createEntity() }, randomTime);
 }
