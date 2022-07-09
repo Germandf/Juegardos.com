@@ -7,6 +7,9 @@ class Scene {
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
         this.changeCharacterButton.addEventListener("click", () => this.changeCharacter());
+        this.skins = ["default", "skin-2", "skin-3", "skin-4"];
+        this.currentBackground = "default";
+        this.currentCharacter = "default";
     }
     
     updateLives(lives){
@@ -47,7 +50,13 @@ class Scene {
     }
 
     changeBackground() {
-        console.log("TODO: change background");
+        var index = this.skins.indexOf(this.currentBackground);
+        if(index >= 0 && index < this.skins.length - 1)
+            this.currentBackground = this.skins[index + 1]
+        else
+            this.currentBackground = "default";
+        var layers = document.querySelectorAll(".layer");
+        layers.forEach(e => e.className = "layer " + this.currentBackground);
     }
 
     changeCharacter() {

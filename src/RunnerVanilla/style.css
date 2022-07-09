@@ -29,52 +29,64 @@
     animation-play-state: paused;
 }
 
-.layer-09 {      
+.layer.skin-2 {
+    filter: hue-rotate(90deg);
+}
+
+.layer.skin-3 {
+    filter: hue-rotate(180deg);
+}
+
+.layer.skin-4 {
+    filter: hue-rotate(270deg);
+}
+
+#layer-09 {      
     background-image: url("images/layer09.png");
     animation-duration: 20s;
 }
 
-.layer-08 {      
+#layer-08 {      
     background-image: url("images/layer08.png");   
     animation-duration: 20s;
 }
 
-.layer-07 {        
+#layer-07 {        
     background-image: url("images/layer07.png");     
     animation-duration: 15s;
 }
 
-.layer-06 {        
+#layer-06 {        
     background-image: url("images/layer06.png");     
     animation-duration: 15s;
 }
 
-.layer-05 {        
+#layer-05 {        
     background-image: url("images/layer05.png");     
     animation-duration: 14s;
 }
 
-.layer-04 {        
+#layer-04 {        
     background-image: url("images/layer04.png");     
     animation-duration: 14s;
 }
 
-.layer-03 {        
+#layer-03 {        
     background-image: url("images/layer03.png");     
     animation-duration: 8s;
 }
 
-.layer-02 {        
+#layer-02 {        
     background-image: url("images/layer02.png");     
     animation-duration: 8s;
 }
 
-.layer-01 {        
+#layer-01 {        
     background-image: url("images/layer01.png");     
     animation-duration: 5s;
 }
 
-.layer-00 {        
+#layer-00 {        
     background-image: url("images/layer00.png");     
     animation-duration: 4s;
 }
