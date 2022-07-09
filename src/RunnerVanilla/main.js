@@ -49,16 +49,10 @@ window.addEventListener("keydown", (event) => {
 function gameLoop() {
     entities.forEach(entity => {
         var distance = character.offsetLeft - entity.getElement().offsetLeft;
-        if ((entity.getType() === "skull" && distance > -150 && distance < 20 && jumping) ||
-            (entity.getType() === "horse" && distance > -180 && distance < 70 && !jumping)){
-            enemyTouchingPlayer();
-        }
-        else if (entity.getType() === "claw" && distance > -150 && distance < 20) {
-            clawTouchingPlayer(entity);
-        }
-        else if (entity.offsetLeft < -200){
+        if (entity.isTouching(distance, jumping))
+            entityTouchingPlayer(entity);
+        else if (entity.offsetLeft < -200)
             entities.pop(entity);
-        }
     });
 }
 
@@ -88,41 +82,41 @@ function createClaw() {
     setTimeout(() => { createClaw() }, randomTime);
 }
 
-function enemyTouchingPlayer() {
-    if (takingDamage) return;
-    lives--;
-    livesHtml.innerHTML = lives;
-    if (lives <= 0){
-        finishGame("dying");
-    } else {
-        takingDamage = true;
-        canJump = false;
-        character.className = "taking-damage";
+function entityTouchingPlayer(entity) {
+    if (entity.getType() === "claw"){
+        if (takingClaw) return;
+        takingClaw = true;
+        clawsCollected++;
+        clawsHtml.innerHTML = clawsCollected;
+        entity.getElement().className = "claw taking";
+        entities.pop(entity);
+        if (clawsCollected >= clawsToWin){
+            finishGame("attacking");
+        }
         setTimeout(() => {
-            if (gameOver) return;
-            character.className = "running";
-            canJump = true;
-        }, 250);
-        setTimeout(() => {
-            if (gameOver) return;
-            takingDamage = false;
+            takingClaw = false;
         }, 800);
+    } else {
+        if (takingDamage) return;
+        lives--;
+        livesHtml.innerHTML = lives;
+        if (lives <= 0){
+            finishGame("dying");
+        } else {
+            takingDamage = true;
+            canJump = false;
+            character.className = "taking-damage";
+            setTimeout(() => {
+                if (gameOver) return;
+                character.className = "running";
+                canJump = true;
+            }, 250);
+            setTimeout(() => {
+                if (gameOver) return;
+                takingDamage = false;
+            }, 800);
+        }
     }
-}
-
-function clawTouchingPlayer(entity) {
-    if (takingClaw) return;
-    takingClaw = true;
-    clawsCollected++;
-    clawsHtml.innerHTML = clawsCollected;
-    entity.getElement().className = "claw taking";
-    entities.pop(entity);
-    if (clawsCollected >= clawsToWin){
-        finishGame("attacking");
-    }
-    setTimeout(() => {
-        takingClaw = false;
-    }, 800);
 }
 
 function finishGame(characterAnimation) {
