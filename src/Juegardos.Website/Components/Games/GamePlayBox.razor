@@ -6,6 +6,10 @@
         {
             <Connect4 />
         }
+        else if (_hardcodedGame == HardcodedGame.SamuraiApocalypse)
+        {
+            <SamuraiApocalypse />
+        }
         else
         {
             <img src="@Game.Image" />
@@ -49,6 +53,8 @@
     {
         if (StringHelper.FormatToUrlName(Game.Name) == "4-en-linea")
             _hardcodedGame = HardcodedGame.Connect4;
+        if (StringHelper.FormatToUrlName(Game.Name) == "samurai-apocalypse")
+            _hardcodedGame = HardcodedGame.SamuraiApocalypse;
         else
             _hardcodedGame = HardcodedGame.None;
     }
@@ -64,7 +70,8 @@
     public enum HardcodedGame
     {
         None,
-        Connect4
+        Connect4,
+        SamuraiApocalypse
     }
 
 }
