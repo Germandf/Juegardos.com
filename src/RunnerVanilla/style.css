@@ -42,52 +42,52 @@
 }
 
 #layer-09 {      
-    background-image: url("images/layer09.png");
+    background-image: url("images/samuraiApocalypse/layer09.png");
     animation-duration: 20s;
 }
 
 #layer-08 {      
-    background-image: url("images/layer08.png");   
+    background-image: url("images/samuraiApocalypse/layer08.png");   
     animation-duration: 20s;
 }
 
 #layer-07 {        
-    background-image: url("images/layer07.png");     
+    background-image: url("images/samuraiApocalypse/layer07.png");     
     animation-duration: 15s;
 }
 
 #layer-06 {        
-    background-image: url("images/layer06.png");     
+    background-image: url("images/samuraiApocalypse/layer06.png");     
     animation-duration: 15s;
 }
 
 #layer-05 {        
-    background-image: url("images/layer05.png");     
+    background-image: url("images/samuraiApocalypse/layer05.png");     
     animation-duration: 14s;
 }
 
 #layer-04 {        
-    background-image: url("images/layer04.png");     
+    background-image: url("images/samuraiApocalypse/layer04.png");     
     animation-duration: 14s;
 }
 
 #layer-03 {        
-    background-image: url("images/layer03.png");     
+    background-image: url("images/samuraiApocalypse/layer03.png");     
     animation-duration: 8s;
 }
 
 #layer-02 {        
-    background-image: url("images/layer02.png");     
+    background-image: url("images/samuraiApocalypse/layer02.png");     
     animation-duration: 8s;
 }
 
 #layer-01 {        
-    background-image: url("images/layer01.png");     
+    background-image: url("images/samuraiApocalypse/layer01.png");     
     animation-duration: 5s;
 }
 
 #layer-00 {        
-    background-image: url("images/layer00.png");     
+    background-image: url("images/samuraiApocalypse/layer00.png");     
     animation-duration: 4s;
 }
 
@@ -114,32 +114,32 @@
 }
 
 #character.running {
-    background: url("images/character-running.png");
+    background: url("images/samuraiApocalypse/character-running.png");
     animation: character-running .8s steps(8) infinite;
 }
 
 #character.jumping {
-    background: url("images/character-jumping-full.png");
+    background: url("images/samuraiApocalypse/character-jumping.png");
     animation: character-jumping 1.125s steps(36) forwards;
 }
 
 #character.taking-damage {
-    background: url("images/character-taking-damage.png");
+    background: url("images/samuraiApocalypse/character-taking-damage.png");
     animation: character-taking-damage .2s steps(3) forwards;
 }
 
 #character.dying {
-    background: url("images/character-dying.png");
+    background: url("images/samuraiApocalypse/character-dying.png");
     animation: character-dying .8s steps(5) forwards;
 }
 
 #character.attacking {
-    background: url("images/character-attacking.png");
+    background: url("images/samuraiApocalypse/character-attacking.png");
     animation: character-attacking .8s steps(6) forwards;
 }
 
 #character.standing {
-    background: url("images/character-standing.png");
+    background: url("images/samuraiApocalypse/character-standing.png");
     animation: character-standing .8s steps(8) infinite;
 }
 
@@ -186,7 +186,7 @@
     position: absolute;
     bottom: 200px;
     right: 296px;
-    background: url("images/skull.png");
+    background: url("images/samuraiApocalypse/skull.png");
     animation: skull-run 1s steps(8) infinite, run-backwards 4s  linear forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
@@ -198,7 +198,7 @@
     position: absolute;
     bottom: 78px;
     right: 46px;
-    background: url("images/horse.png");
+    background: url("images/samuraiApocalypse/horse.png");
     animation: horse-run .6s steps(4) infinite, run-backwards 4s  linear forwards;
     image-rendering: pixelated;
     transform: scale(1.4);
@@ -210,7 +210,7 @@
     position: absolute;
     bottom: 216px;
     right: 248px;
-    background: url("images/claw.png");
+    background: url("images/samuraiApocalypse/claw.png");
     animation: claw-idle 2s infinite, run-backwards 6s forwards linear;
     image-rendering: pixelated;
     transform: scale(1.4);
