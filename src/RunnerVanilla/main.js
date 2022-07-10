@@ -7,8 +7,9 @@ let canJump;
 let entities;
 let clawsCollected;
 let clawsToWin;
-let intervalId;
-let timeoutId;
+let gameLoopInterval;
+let createEntityTimeout;
+let runAgainTimeout;
 
 scene.getPlayButton().addEventListener("click", () => {
     lives = 3;
@@ -24,7 +25,7 @@ scene.getPlayButton().addEventListener("click", () => {
     scene.changePauseables("running");
     scene.showButtons(false);
     createEntity();
-    intervalId = setInterval(gameLoop, 50);
+    gameLoopInterval = setInterval(gameLoop, 50);
     character.className = "running";
 });
 
@@ -33,7 +34,7 @@ window.addEventListener("keydown", (event) => {
     if (event.key == "ArrowUp" && !jumping && canJump) {
         character.className = "jumping";
         jumping = true;
-        setTimeout(() => {
+        runAgainTimeout = setTimeout(() => {
             if (gameOver) return;
             character.className = "running";
             jumping = false;
@@ -53,7 +54,7 @@ function gameLoop() {
 
 function createEntity() {
     if (gameOver) return;
-    window.clearTimeout(timeoutId);
+    window.clearTimeout(createEntityTimeout);
     var randomTime = Math.floor(Math.random() * 3000) + 1000;
     var randomEntity = Math.floor(Math.random() * 3);
     var randomPosition = Math.floor(Math.random() * 2);
@@ -67,7 +68,7 @@ function createEntity() {
     else
         entity = new Entity("claw", true);
     entities.push(entity);
-    timeoutId = setTimeout(() => { createEntity() }, randomTime);
+    createEntityTimeout = setTimeout(() => { createEntity() }, randomTime);
 }
 
 function entityTouchingPlayer(entity) {
@@ -80,6 +81,7 @@ function entityTouchingPlayer(entity) {
             finishGame("attacking");
         }
     } else {
+        window.clearTimeout(runAgainTimeout);
         lives--;
         scene.updateLives(lives);
         if (lives <= 0){
@@ -99,7 +101,7 @@ function entityTouchingPlayer(entity) {
 
 function finishGame(characterAnimation) {
     gameOver = true;
-    clearInterval(intervalId);
+    clearInterval(gameLoopInterval);
     scene.changePauseables("paused");
     scene.removeAllEntities();
     scene.showButtons(true);
