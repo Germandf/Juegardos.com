@@ -12,6 +12,15 @@ let createEntityTimeout;
 let runAgainTimeout;
 
 scene.getPlayButton().addEventListener("click", () => {
+    setUpGame();
+});
+
+window.addEventListener("keydown", (event) => {
+    if (event.key == "ArrowUp")
+        jump();
+});
+
+function setUpGame() {
     lives = 3;
     clawsToWin = 6;
     clawsCollected = 0;
@@ -27,20 +36,19 @@ scene.getPlayButton().addEventListener("click", () => {
     createEntity();
     gameLoopInterval = setInterval(gameLoop, 50);
     character.className = "running";
-});
+}
 
-window.addEventListener("keydown", (event) => {
-    if (gameOver) return;
-    if (event.key == "ArrowUp" && !jumping && canJump) {
-        character.className = "jumping";
-        jumping = true;
-        runAgainTimeout = setTimeout(() => {
-            if (gameOver) return;
-            character.className = "running";
-            jumping = false;
-        }, 1125)
-    }
-});
+function jump() {
+    if (gameOver || jumping || !canJump) 
+        return;
+    character.className = "jumping";
+    jumping = true;
+    runAgainTimeout = setTimeout(() => {
+        if (gameOver) return;
+        character.className = "running";
+        jumping = false;
+    }, 1125)
+}
 
 function gameLoop() {
     entities.forEach(entity => {
@@ -53,7 +61,8 @@ function gameLoop() {
 }
 
 function createEntity() {
-    if (gameOver) return;
+    if (gameOver) 
+        return;
     window.clearTimeout(createEntityTimeout);
     var randomTime = Math.floor(Math.random() * 3000) + 1000;
     var randomEntity = Math.floor(Math.random() * 3);
