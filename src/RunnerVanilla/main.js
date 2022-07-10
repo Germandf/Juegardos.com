@@ -20,6 +20,7 @@ window.addEventListener("keydown", (event) => {
         jump();
 });
 
+// set up all variables and call necessary methods before playing
 function setUpGame() {
     lives = 3;
     clawsToWin = 6;
@@ -38,6 +39,7 @@ function setUpGame() {
     character.className = "running";
 }
 
+// makes character jump and set it's state as running after a second
 function jump() {
     if (gameOver || jumping || !canJump) 
         return;
@@ -50,6 +52,7 @@ function jump() {
     }, 1125)
 }
 
+// checks collisions for all entities (enemies and collectibles)
 function gameLoop() {
     entities.forEach(entity => {
         var distance = character.offsetLeft - entity.getElement().offsetLeft;
@@ -60,6 +63,8 @@ function gameLoop() {
     });
 }
 
+// create randomly an enemy or entity, it can be flying or not, and calls itself again 
+// after a random amount of seconds
 function createEntity() {
     if (gameOver) 
         return;
@@ -80,6 +85,8 @@ function createEntity() {
     createEntityTimeout = setTimeout(() => { createEntity() }, randomTime);
 }
 
+// collision logic, if the entity is an enemy, takes 1 live and checks for game over, 
+// if it's a claw (collectible) adds one and checks for winning condition
 function entityTouchingPlayer(entity) {
     removeEntityFromArray(entity);
     if (entity.getType() == "claw"){
@@ -108,6 +115,7 @@ function entityTouchingPlayer(entity) {
     }
 }
 
+// sets gameOver to true, pauses all elements, removes all entities and shows UI again
 function finishGame(characterAnimation) {
     gameOver = true;
     clearInterval(gameLoopInterval);
@@ -118,6 +126,7 @@ function finishGame(characterAnimation) {
     character.style.animationPlayState = 'running';
 }
 
+// gets the entity index from the entities array and removes it
 function removeEntityFromArray(entity) {
     const index = entities.indexOf(entity);
     if (index > -1)
