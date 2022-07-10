@@ -42,8 +42,6 @@
         content: "An error has occurred."
     }
 
-/* RESET */
-
 * {
     margin: 0;
     padding: 0;
@@ -56,7 +54,6 @@
 /* DESIGN SYSTEM */
 
 :root {
-    /* COLORS */
     --primary-light: #AA00A2;
     --primary-normal: #670062;
     --primary-dark: #3C0039;
@@ -69,7 +66,6 @@
     --success: #00960F;
     --alert: #AB0000;
     --invisible: rgba(0,0,0,1);
-    /* FONTS */
     --primary-font: 'Open Sans';
 }
 
@@ -349,7 +345,9 @@ textarea.primary-input {
         
     }
  }
+
 /* ICONS */
+
 .big-button i {
     font-size: 40px;
     margin: 0 5px 0 0;
@@ -375,31 +373,25 @@ textarea.primary-input {
 @keyframes stared-animation {
     0% {
         transform: rotateY(0deg);
-        /*opacity: 0.8;*/
     }
 
     20% {
         transform: rotateX(0deg);
-        /*opacity: 0.5;*/
     }
 
     40% {
         transform: rotateY(-90deg);
-        /*opacity: 0.8;*/
     }
 
     60% {
         transform: rotateX(-90deg);
-        /*opacity: 1;*/
     }
     80% {
         transform: rotateY(0deg);
-        /*opacity: 0.8;*/
     }
 
     100% {
         transform: rotateX(0deg);
-        /*opacity: 1;*/
     }
 }
 
@@ -1105,12 +1097,11 @@ textarea.primary-input {
 }
 
 .game-with-ad {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    /*max-width: 970px;*/
 }
 
     .game-with-ad > .ad {
@@ -1260,6 +1251,17 @@ i.dislike.selected {
     }
 }
 
+@media (min-width: 1024px) {
+    .game-with-ad {
+        width: auto;
+    }
+
+    .gameplay-container {
+        width: auto;
+        min-width: 970px;
+    }
+}
+
 /* SEARCH PAGE */
 
 .search-container {
@@ -1404,6 +1406,7 @@ i.dislike.selected {
 }
 
 /* ACCOUNT PAGE */
+
 .my-account-main {
     display: flex;
     flex-direction: column;
