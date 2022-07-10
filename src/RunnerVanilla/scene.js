@@ -7,9 +7,9 @@ class Scene {
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
         this.changeCharacterButton.addEventListener("click", () => this.changeCharacter());
-        this.skins = ["default", "skin-2", "skin-3", "skin-4"];
-        this.currentBackground = "default";
-        this.currentCharacter = "default";
+        this.skins = ["skin-1", "skin-2", "skin-3", "skin-4"];
+        this.currentBackground = "skin-1";
+        this.currentCharacter = "skin-1";
     }
     
     updateLives(lives){
@@ -54,12 +54,18 @@ class Scene {
         if(index >= 0 && index < this.skins.length - 1)
             this.currentBackground = this.skins[index + 1]
         else
-            this.currentBackground = "default";
+            this.currentBackground = "skin-1";
         var layers = document.querySelectorAll(".layer");
         layers.forEach(e => e.className = "layer " + this.currentBackground);
     }
 
     changeCharacter() {
-        console.log("TODO: change character");
+        var index = this.skins.indexOf(this.currentCharacter);
+        if(index >= 0 && index < this.skins.length - 1)
+            this.currentCharacter = this.skins[index + 1]
+        else
+            this.currentCharacter = "skin-1";
+        var character = document.querySelector("#character");
+        character.dataset.skin = this.currentCharacter;
     }
 }

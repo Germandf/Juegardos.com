@@ -101,6 +101,18 @@
     right: 700px;
 }
 
+#character[data-skin="skin-2"] {
+    filter: hue-rotate(90deg);
+}
+
+#character[data-skin="skin-3"] {
+    filter: hue-rotate(180deg);
+}
+
+#character[data-skin="skin-4"] {
+    filter: hue-rotate(270deg);
+}
+
 #character.running {
     background: url("images/character-running.png");
     animation: character-running .8s steps(8) infinite;
