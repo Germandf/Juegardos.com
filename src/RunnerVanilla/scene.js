@@ -2,7 +2,7 @@ class Scene {
     constructor() {
         this.livesHtml = document.getElementById("lives");
         this.clawsHtml = document.getElementById("claws");
-        this.playButton = document.querySelector(".play");
+        this.playButton = document.getElementById("play");
         this.gameLogo = document.getElementById("gameLogo");
         this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
