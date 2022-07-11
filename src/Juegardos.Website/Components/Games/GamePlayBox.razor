@@ -19,13 +19,13 @@
     </div>
     <div class="gameplay-box-bar">
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
-        <i class="material-icons-outlined" @onclick='() => _js.InvokeVoidAsync("navigator.clipboard.writeText", _navigationManager.Uri)'>share</i>
+        <i class="material-icons-outlined" @onclick='() => _js.InvokeVoidAsync("copyToClipboard", _navigationManager.Uri)'>share</i>
         <span class="likes-bar">
             <i class="@(Game.UserLikeDecision == LikeDecision.Like ? "material-icons like selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Like)">thumb_up</i>           
             <i class="@(Game.UserLikeDecision == LikeDecision.Dislike ? "material-icons dislike selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Dislike)">thumb_down</i>
         </span>
         <Star Game="Game" />
-        <i class="material-icons">open_in_full</i>
+        <i class="material-icons" @onclick='() => _js.InvokeVoidAsync("toggleFullscreen")'>open_in_full</i>
     </div>
 </div>
 
