@@ -2,7 +2,8 @@ class Scene {
     constructor() {
         this.livesHtml = document.getElementById("lives");
         this.clawsHtml = document.getElementById("claws");
-        this.playButton = document.getElementById("play");
+        // this.playButton = document.getElementById("play");
+        this.playButton = document.querySelector(".play");
         this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
@@ -34,7 +35,7 @@ class Scene {
 
     showButtons(show) {
         if (show) {
-            this.playButton.innerHTML = "Volver a jugar";
+            this.playButton.innerHTML = "Reiniciar";
             this.playButton.style.display = "initial";
             this.changeBackgroundButton.style.display = "initial";
             this.changeCharacterButton.style.display = "initial";

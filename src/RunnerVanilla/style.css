@@ -1,5 +1,6 @@
 * {
     margin: 0;
+    font-family: 'Press Start 2p';
 }
 
 @keyframes scroll {
@@ -250,11 +251,49 @@
     z-index: 1000;
 }
 
-#play {
+/* #play {
     position: absolute;
     left: 0px;
     top: 40px;
     z-index: 1000;
+} */
+
+.play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: auto;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 1000;    
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 5px 10px 5px 10px;
+    background-color: #beacb3;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: #5c3747;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 .2em #97828a;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+    animation: pulse 1s infinite 1s cubic-bezier(0.25, 0, 0, 1) alternate;
+}
+
+@keyframes pulse {
+    from {
+        color: #5c3747;
+    }
+    to {
+        color: #ce2038;
+    }
+}
+
+.play:active {
+    transform: translateY(-40%) translateX(-50%);
+    box-shadow: none;
 }
 
 #change-background {
