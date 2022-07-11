@@ -3,6 +3,8 @@ class Scene {
         this.livesHtml = document.getElementById("lives");
         this.clawsHtml = document.getElementById("claws");
         this.playButton = document.getElementById("play");
+        this.gameLogo = document.getElementById("gameLogo");
+        this.labelsBar = document.getElementById("labels-bar");
         this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
@@ -11,9 +13,9 @@ class Scene {
         this.currentBackground = "skin-1";
         this.currentCharacter = "skin-1";
     }
-    
+
     // updates lives in html
-    updateLives(lives){
+    updateLives(lives) {
         this.livesHtml.innerHTML = lives;
     }
 
@@ -36,17 +38,20 @@ class Scene {
         elementsToRemove.forEach(e => e.remove());
     }
 
-    // sets UI on or off
-    showButtons(show) {
-        if (show) {
-            this.playButton.innerHTML = "Volver a jugar";
-            this.playButton.style.display = "initial";
-            this.changeBackgroundButton.style.display = "initial";
-            this.changeCharacterButton.style.display = "initial";
-        } else {
+    // sets UI on play mode or not
+    setPlayingUI(playing) {
+        if (playing) {
             this.playButton.style.display = "none";
+            this.gameLogo.style.display = "none";
             this.changeBackgroundButton.style.display = "none";
             this.changeCharacterButton.style.display = "none";
+            this.labelsBar.style.display = "flex";
+        } else {
+            this.playButton.innerHTML = "Reiniciar";
+            this.playButton.style.display = "initial";
+            this.gameLogo.style.display = "initial";
+            this.changeBackgroundButton.style.display = "initial";
+            this.changeCharacterButton.style.display = "initial";
         }
     }
 
@@ -58,7 +63,7 @@ class Scene {
     // changes background skin
     changeBackground() {
         var index = this.skins.indexOf(this.currentBackground);
-        if(index >= 0 && index < this.skins.length - 1)
+        if (index >= 0 && index < this.skins.length - 1)
             this.currentBackground = this.skins[index + 1]
         else
             this.currentBackground = "skin-1";
@@ -69,7 +74,7 @@ class Scene {
     // changes character skin
     changeCharacter() {
         var index = this.skins.indexOf(this.currentCharacter);
-        if(index >= 0 && index < this.skins.length - 1)
+        if (index >= 0 && index < this.skins.length - 1)
             this.currentCharacter = this.skins[index + 1]
         else
             this.currentCharacter = "skin-1";

@@ -1652,6 +1652,7 @@ i.dislike.selected {
 
 .gameplay-box .samurai-apocalypse {
     background-color: black;
+    font-family: 'Press Start 2p';
 }
 
 @keyframes scroll {
@@ -1998,37 +1999,88 @@ i.dislike.selected {
     }
 }
 
-.lives {
-    position: absolute;
-    left: 0px;
-    top: 0px;
+.labels-bar {
+    display: none;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    color: #ce2038;
+    font-size: 18px;
+    text-shadow: -1px -1px black, 1px 1px white;
+}
+
+.lives, .claws, #gameLogo {
     z-index: 1000;
 }
 
-.claws {
+.button {
     position: absolute;
-    left: 0px;
-    top: 20px;
     z-index: 1000;
-}
-
-#play {
-    position: absolute;
-    left: 0px;
-    top: 40px;
-    z-index: 1000;
+    padding: 5px 10px 5px 10px;
+    background-color: #beacb3;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: #5c3747;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 .2em #97828a;
+    cursor: pointer;
+    transition: all .05s ease-in-out;
 }
 
 #change-background {
-    position: absolute;
-    left: 0px;
-    top: 60px;
-    z-index: 1000;
+    left: 660px;
+    top: 600px;
+    font-size: 1rem;
 }
 
+    #change-background:active, #change-character:active {
+        top: 602px;
+        box-shadow: none;
+    }
+
+    #change-background:hover, #change-character:hover {
+        color: #ce2038;
+        background-color: #e2d5da;
+    }
+
 #change-character {
+    left: 50px;
+    top: 600px;
+}
+
+.play {
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    font-size: 2rem;
+    line-height: normal;
+    font-weight: bold;
+    animation: pulse 1s infinite 1s cubic-bezier(0.25, 0, 0, 1) alternate;
+}
+
+@keyframes pulse {
+    from {
+        color: #5c3747;
+    }
+
+    to {
+        color: #ce2038;
+    }
+}
+
+.play:active {
+    transform: translateY(-40%) translateX(-50%);
+    box-shadow: none;
+}
+
+.play:hover {
+    background-color: #e2d5da;
+}
+
+#gameLogo {
     position: absolute;
-    left: 0px;
-    top: 80px;
-    z-index: 1000;
+    top: 120px;
+    left: 50px;
+    width: 90%;
 }
