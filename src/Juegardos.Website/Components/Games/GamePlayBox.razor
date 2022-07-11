@@ -1,4 +1,6 @@
 ﻿@namespace Juegardos.Website.Components
+@inject IJSRuntime _js
+@inject NavigationManager _navigationManager
 
 <div class="gameplay-container">
     <div class="gameplay-box">
@@ -17,7 +19,7 @@
     </div>
     <div class="gameplay-box-bar">
         <i class="material-symbols-outlined" @onclick="() => _howToPlayModal.Open()">help</i>
-        <i class="material-icons-outlined">share</i>
+        <i class="material-icons-outlined" @onclick='() => _js.InvokeVoidAsync("navigator.clipboard.writeText", _navigationManager.Uri)'>share</i>
         <span class="likes-bar">
             <i class="@(Game.UserLikeDecision == LikeDecision.Like ? "material-icons like selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Like)">thumb_up</i>           
             <i class="@(Game.UserLikeDecision == LikeDecision.Dislike ? "material-icons dislike selected" : "material-icons-outlined")" @onclick="() => ChangeLike(LikeDecision.Dislike)">thumb_down</i>
