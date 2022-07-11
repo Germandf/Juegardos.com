@@ -237,26 +237,63 @@
     100% { transform: translateY(-60px) rotateY(720deg); opacity: 0; }
 }
 
+.info-labels {
+    top: 20px;
+    z-index: 1000;
+    color: #ce2038;
+    font-size: 18px;
+    text-shadow: -1px -1px black, 1px 1px white;
+}
+
 .lives {
     position: absolute;
-    left: 0px;
-    top: 0px;
+    left: 50px;
+    top: 20px;
     z-index: 1000;
 }
 
 .claws {
     position: absolute;
-    left: 0px;
+    left: 230px;
     top: 20px;
     z-index: 1000;
 }
 
-/* #play {
+.change-background {    
     position: absolute;
-    left: 0px;
-    top: 40px;
+    left: 660px;
+    top: 10px;
     z-index: 1000;
-} */
+    font-size: 1rem;
+    padding: 5px 10px 5px 10px;
+    background-color: #beacb3;
+    text-shadow: -1px -1px black, 1px 1px white;
+    color: #5c3747;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    box-shadow: 0 .2em #97828a;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+}
+
+.change-background:active {
+    top: .8em;
+    box-shadow: none;
+}
+
+.change-background:hover {
+    color: #ce2038;
+    background-color: #e2d5da;
+}
+
+#change-character {
+    /* position: absolute;
+    left: 0px;
+    top: 80px; */
+    z-index: 1000;
+}
 
 .play {
     position: absolute;
@@ -296,16 +333,6 @@
     box-shadow: none;
 }
 
-#change-background {
-    position: absolute;
-    left: 0px;
-    top: 60px;
-    z-index: 1000;
-}
-
-#change-character {
-    position: absolute;
-    left: 0px;
-    top: 80px;
-    z-index: 1000;
+.play:hover {
+    background-color: #e2d5da;
 }
