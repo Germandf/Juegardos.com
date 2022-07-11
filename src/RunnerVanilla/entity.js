@@ -17,6 +17,7 @@ class Entity {
         this.element = newEntity;
     }
 
+    // returns if entity is touching character
     isTouching(distance, jumping) {
         return ((this.flying && jumping) || (!this.flying && !jumping)) && (
             (this.type == "skull" && distance > -100 && distance < 0) ||
@@ -24,10 +25,12 @@ class Entity {
             (this.type == "claw" && distance > -125 && distance < -50));
     }
     
+    // returns entity's type (skull, horse or claw currently)
     getType() {
         return this.type;
     }
 
+    // returns entity's html element
     getElement() {
         return this.element;
     }

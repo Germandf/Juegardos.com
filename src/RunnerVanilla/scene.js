@@ -5,21 +5,24 @@ class Scene {
         this.playButton = document.querySelector(".play");
         this.changeBackgroundButton = document.querySelector(".change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
-        // this.changeCharacterButton = document.getElementById("change-character");
-        // this.changeCharacterButton.addEventListener("click", () => this.changeCharacter());
-        this.skins = ["default", "skin-2", "skin-3", "skin-4"];
-        this.currentBackground = "default";
-        this.currentCharacter = "default";
+        this.changeCharacterButton = document.querySelector(".change-character");
+        this.changeCharacterButton.addEventListener("click", () => this.changeCharacter());
+        this.skins = ["skin-1", "skin-2", "skin-3", "skin-4"];
+        this.currentBackground = "skin-1";
+        this.currentCharacter = "skin-1";
     }
     
+    // updates lives in html
     updateLives(lives){
         this.livesHtml.innerHTML = lives;
     }
 
+    // updates claws in html
     updateClawsCollected(clawsCollected) {
         this.clawsHtml.innerHTML = clawsCollected;
     }
 
+    // changes all animation play states for elements with data attribute 'pauseable'
     changePauseables(state) {
         const animations = document.querySelectorAll('[data-pauseable');
         animations.forEach(animation => {
@@ -27,11 +30,13 @@ class Scene {
         });
     }
 
+    // removes all entities elements from game container
     removeAllEntities() {
         var elementsToRemove = document.querySelectorAll('.skull, .horse, .claw');
         elementsToRemove.forEach(e => e.remove());
     }
 
+    // sets UI on or off
     showButtons(show) {
         if (show) {
             this.playButton.innerHTML = "Reiniciar";
@@ -45,21 +50,30 @@ class Scene {
         }
     }
 
+    // returns play button html element
     getPlayButton() {
         return this.playButton;
     }
 
+    // changes background skin
     changeBackground() {
         var index = this.skins.indexOf(this.currentBackground);
         if(index >= 0 && index < this.skins.length - 1)
             this.currentBackground = this.skins[index + 1]
         else
-            this.currentBackground = "default";
+            this.currentBackground = "skin-1";
         var layers = document.querySelectorAll(".layer");
         layers.forEach(e => e.className = "layer " + this.currentBackground);
     }
 
+    // changes character skin
     changeCharacter() {
-        console.log("TODO: change character");
+        var index = this.skins.indexOf(this.currentCharacter);
+        if(index >= 0 && index < this.skins.length - 1)
+            this.currentCharacter = this.skins[index + 1]
+        else
+            this.currentCharacter = "skin-1";
+        var character = document.querySelector("#character");
+        character.dataset.skin = this.currentCharacter;
     }
 }
