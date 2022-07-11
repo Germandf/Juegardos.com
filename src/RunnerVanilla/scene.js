@@ -3,6 +3,7 @@ class Scene {
         this.livesHtml = document.getElementById("lives");
         this.clawsHtml = document.getElementById("claws");
         this.playButton = document.querySelector(".play");
+        this.gameLogo = document.getElementById("gameLogo");
         this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
@@ -41,10 +42,12 @@ class Scene {
         if (show) {
             this.playButton.innerHTML = "Reiniciar";
             this.playButton.style.display = "initial";
+            this.gameLogo.style.display = "initial";
             this.changeBackgroundButton.style.display = "initial";
             this.changeCharacterButton.style.display = "initial";
         } else {
             this.playButton.style.display = "none";
+            this.gameLogo.style.display = "none";
             this.changeBackgroundButton.style.display = "none";
             this.changeCharacterButton.style.display = "none";
         }

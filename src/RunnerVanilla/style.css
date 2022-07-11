@@ -258,7 +258,7 @@
     text-shadow: -1px -1px black, 1px 1px white;
 }
 
-.lives, .claws {
+.lives, .claws , #gameLogo{
     z-index: 1000;
 }
 
@@ -324,4 +324,11 @@
 
 .play:hover {
     background-color: #e2d5da;
+}
+
+#gameLogo {
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    width: 90%;
 }
