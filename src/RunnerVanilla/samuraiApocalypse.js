@@ -17,6 +17,8 @@ window.startSamuraiApocalypse = () => {
     });
 
     window.addEventListener("keydown", (event) => {
+        if (event.key == "ArrowUp" || event.key == "ArrowDown")
+            event.preventDefault();
         if (event.key == "ArrowUp")
             jump();
     });

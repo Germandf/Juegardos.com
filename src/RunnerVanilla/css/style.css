@@ -357,12 +357,12 @@
 }
 
 .lives, .claws, #gameLogo {
-    z-index: 1000;
+    z-index: 1;
 }
 
 .button {
     position: absolute;
-    z-index: 1000;
+    z-index: 1;
     padding: 5px 10px 5px 10px;
     background-color: #beacb3;
     text-shadow: -1px -1px black, 1px 1px white;
