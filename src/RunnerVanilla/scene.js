@@ -42,11 +42,11 @@ class Scene {
             this.playButton.innerHTML = "Reiniciar";
             this.playButton.style.display = "initial";
             this.changeBackgroundButton.style.display = "initial";
-            // this.changeCharacterButton.style.display = "initial";
+            this.changeCharacterButton.style.display = "initial";
         } else {
             this.playButton.style.display = "none";
             this.changeBackgroundButton.style.display = "none";
-            // this.changeCharacterButton.style.display = "none";
+            this.changeCharacterButton.style.display = "none";
         }
     }
 
