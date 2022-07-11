@@ -3,9 +3,9 @@ class Scene {
         this.livesHtml = document.getElementById("lives");
         this.clawsHtml = document.getElementById("claws");
         this.playButton = document.querySelector(".play");
-        this.changeBackgroundButton = document.querySelector(".change-background");
+        this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
-        this.changeCharacterButton = document.querySelector(".change-character");
+        this.changeCharacterButton = document.getElementById("change-character");
         this.changeCharacterButton.addEventListener("click", () => this.changeCharacter());
         this.skins = ["skin-1", "skin-2", "skin-3", "skin-4"];
         this.currentBackground = "skin-1";
