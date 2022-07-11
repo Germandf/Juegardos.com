@@ -34,7 +34,7 @@ window.startSamuraiApocalypse = () => {
         scene.updateLives(lives);
         scene.updateClawsCollected(clawsCollected);
         scene.changePauseables("running");
-        scene.showButtons(false);
+        scene.setPlayingUI(true);
         createEntity();
         gameLoopInterval = setInterval(gameLoop, 50);
         character.className = "running";
@@ -122,7 +122,7 @@ window.startSamuraiApocalypse = () => {
         clearInterval(gameLoopInterval);
         scene.changePauseables("paused");
         scene.removeAllEntities();
-        scene.showButtons(true);
+        scene.setPlayingUI(false);
         character.className = characterAnimation;
         character.style.animationPlayState = 'running';
     }

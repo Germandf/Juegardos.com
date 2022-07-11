@@ -34,7 +34,7 @@ window.startSamuraiApocalypse = () => {
         scene.updateLives(lives);
         scene.updateClawsCollected(clawsCollected);
         scene.changePauseables("running");
-        scene.showButtons(false);
+        scene.setPlayingUI(true);
         createEntity();
         gameLoopInterval = setInterval(gameLoop, 50);
         character.className = "running";
@@ -42,7 +42,7 @@ window.startSamuraiApocalypse = () => {
 
     // makes character jump and set it's state as running after a second
     function jump() {
-        if (gameOver || jumping || !canJump) 
+        if (gameOver || jumping || !canJump)
             return;
         character.className = "jumping";
         jumping = true;
@@ -67,7 +67,7 @@ window.startSamuraiApocalypse = () => {
     // create randomly an enemy or entity, it can be flying or not, and calls itself again 
     // after a random amount of seconds
     function createEntity() {
-        if (gameOver) 
+        if (gameOver)
             return;
         window.clearTimeout(createEntityTimeout);
         var randomTime = Math.floor(Math.random() * 3000) + 1000;
@@ -90,18 +90,18 @@ window.startSamuraiApocalypse = () => {
     // if it's a claw (collectible) adds one and checks for winning condition
     function entityTouchingPlayer(entity) {
         removeEntityFromArray(entity);
-        if (entity.getType() == "claw"){
+        if (entity.getType() == "claw") {
             clawsCollected++;
             scene.updateClawsCollected(clawsCollected);
             entity.getElement().className = "claw taking";
-            if (clawsCollected >= clawsToWin){
+            if (clawsCollected >= clawsToWin) {
                 finishGame("attacking");
             }
         } else {
             window.clearTimeout(runAgainTimeout);
             lives--;
             scene.updateLives(lives);
-            if (lives <= 0){
+            if (lives <= 0) {
                 finishGame("dying");
             } else {
                 canJump = false;
@@ -122,7 +122,7 @@ window.startSamuraiApocalypse = () => {
         clearInterval(gameLoopInterval);
         scene.changePauseables("paused");
         scene.removeAllEntities();
-        scene.showButtons(true);
+        scene.setPlayingUI(false);
         character.className = characterAnimation;
         character.style.animationPlayState = 'running';
     }

@@ -4,6 +4,7 @@ class Scene {
         this.clawsHtml = document.getElementById("claws");
         this.playButton = document.getElementById("play");
         this.gameLogo = document.getElementById("gameLogo");
+        this.labelsBar = document.getElementById("labels-bar");
         this.changeBackgroundButton = document.getElementById("change-background");
         this.changeBackgroundButton.addEventListener("click", () => this.changeBackground());
         this.changeCharacterButton = document.getElementById("change-character");
@@ -37,19 +38,20 @@ class Scene {
         elementsToRemove.forEach(e => e.remove());
     }
 
-    // sets UI on or off
-    showButtons(show) {
-        if (show) {
+    // sets UI on play mode or not
+    setPlayingUI(playing) {
+        if (playing) {
+            this.playButton.style.display = "none";
+            this.gameLogo.style.display = "none";
+            this.changeBackgroundButton.style.display = "none";
+            this.changeCharacterButton.style.display = "none";
+            this.labelsBar.style.display = "flex";
+        } else {
             this.playButton.innerHTML = "Reiniciar";
             this.playButton.style.display = "initial";
             this.gameLogo.style.display = "initial";
             this.changeBackgroundButton.style.display = "initial";
             this.changeCharacterButton.style.display = "initial";
-        } else {
-            this.playButton.style.display = "none";
-            this.gameLogo.style.display = "none";
-            this.changeBackgroundButton.style.display = "none";
-            this.changeCharacterButton.style.display = "none";
         }
     }
 
