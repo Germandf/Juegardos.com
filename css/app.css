@@ -1578,6 +1578,63 @@ i.dislike.selected {
     transform: translateZ(50px);
 }
 
+/* TOASTS */
+
+.toast {
+    display: none;
+    padding: 1rem;
+    color: #fff;
+    z-index: 2;
+    position: fixed;
+    min-width: 20rem;
+    max-width: 25rem;
+    bottom: 0;
+    border-radius: 1rem;
+    margin: 1rem;
+}
+
+.toast-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+    .toast-body p {
+        margin-bottom: 0;
+    }
+
+.toast-visible {
+    display: flex;
+    flex-direction: row;
+    animation: fadein 1.5s;
+}
+
+.toast-info {
+    background-color: var(--black);
+}
+
+.toast-success {
+    background-color: var(--success);
+}
+
+.toast-warning {
+    background-color: var(--terciary-normal);
+}
+
+.toast-error {
+    background-color: var(--alert);
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 /* CONNECT 4 */
 
 .gameplay-box .connect4 {
