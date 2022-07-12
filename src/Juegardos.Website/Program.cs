@@ -10,5 +10,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped<IGameService, GameService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddSingleton<IAppState, AppState>();
+builder.Services.AddScoped<ToastService>();
 
 await builder.Build().RunAsync();
